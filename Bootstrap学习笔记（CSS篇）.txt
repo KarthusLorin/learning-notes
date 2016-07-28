@@ -1,0 +1,741 @@
+一.排版
+
+1.文字部分(text)
+
+	如果想让一个段落p突出显示，可以通过添加类名“.lead”实现，其作用就是增大文本字号，加粗文本，而且对行高和margin也做相应的处理。（.lead用来使文本突出显示）
+
+	<b>和<strong>标签让文本直接加粗。
+
+	<em>或<i>来实现斜体
+
+	强调相关的类：
+	.text-muted：提示，使用浅灰色（#999）
+	.text-primary：主要，使用蓝色（#428bca）
+	.text-success：成功，使用浅绿色(#3c763d)
+	.text-info：通知信息，使用浅蓝色（#31708f）
+	.text-warning：警告，使用黄色（#8a6d3b）
+	.text-danger：危险，使用褐色（#a94442）
+
+	Bootstrap通过定义四个类名来控制文本的对齐风格：
+	.text-left：左对齐
+	.text-center：居中对齐
+	.text-right：右对齐
+	.text-justify：两端对齐
+
+
+2.列表部分
+
+	去点列表类名：.list-unstyled （无点，会自动把左边距变为0）
+	内联列表类名：.list-inline（把垂直列表换成水平列表，而且去掉项目符号（编号），保持水平显示。也可以说内联列表就是为制作水平导航而生。）
+	定义列表：与普通的用法一样，只是调整了行间距，外边距和字体加粗效果<dl>表示列表开始(与ol，ul效果差不多)，<dt>字体加粗（字体加粗版的li），<dd>相当于<li>
+	水平定义列表类名:.dl-horizontal(给定义列表实现水平显示效果,注意：屏幕超过768px时才有效果，而且当标题宽度超过160px时，将会显示三个省略号)
+
+3.代码
+
+	1、使用<code></code>来显示单行内联代码
+	2、使用<pre></pre>来显示多行块代码
+	3、使用<kbd></kbd>来显示用户输入代码
+	不管使用哪种代码风格，在代码中碰到小于号（<）要使用硬编码“&lt;”来替代，大于号(>)使用“&gt;”来替代。
+	<pre>的拓展：.pre-scrollable（控制代码块区域最大高度为340px）
+
+4.表格（table）
+
+	1.表格行（<tr></tr>）的类：	
+	（1）.active表示当前活动的信息（背景为灰色）
+	（2）.success表示成功或者正确的行为（背景为黄色）
+	（3）.info表示中立的信息或行为（背景为淡蓝）
+	（4）.warning表示警告，需要特别注意（背景为黄色）
+	（5）.danger表示危险或者可能是错误的行为（背景为红色）
+	注意要实现悬浮状态，需要在<table>标签上加入table-hover类。
+
+	2.基础表格（无边框）
+	在Bootstrap中，对于基础表格是通过类名“.table”来控制。如果在<table>元素中不添加任何类名，表格是无任何样式效果的。
+	想得到基础表格，我们只需要在<table>元素上添加“.table”类名，就可以得到Bootstrap的基础表格。
+	Bootstrap表格的不同：给表格设置了margin-bottom:20px以及设置单元内距，在thead底部设置了一个2px的浅灰实线，每个单元格顶部设置了一个1px的浅灰实线（反正看起来更好看了）
+	
+	3.斑马线表格
+	在<table class="table">的基础上增加类名：.table-striped
+
+	4.带边框的表格
+	在<table class="table">的基础上增加类名：.table-bordered
+
+	5.鼠标悬浮高亮的表格（当你鼠标悬浮在某一单元格上时，单元格所在行的背景色都会变成浅灰色）
+	在<table class="table">的基础上增加类名：.table-hover
+
+	6.紧凑型表格
+	在<table class="table">的基础上增加类名：.table-condensed
+
+	7.响应式表格（当你的浏览器可视区域小于768px时，表格底部会出现水平滚动条）
+	在<table class="table">的基础上增加类名：.table-responsive
+
+
+二.表单（将表单和控件一起放入.form-group）
+
+1.表单
+
+	1.基础表单
+
+	2.水平表单（标签居左，表单控件居右）在form中使用类名：.form-horizontal
+
+	3.内联表单（将表单的控件都在一行内显示）
+	在<form>元素中添加类名：.form-inline
+
+2.表单控件（框）（为了让控件在各种表单风格中样式不出错，需要添加类名.form-control）
+	
+	1.输入框input
+	Bootstrap框架都是通过input[type=“?”](其中?号代表type类型，比如说text类型，对应的是input[type=“text”])的形式来定义样式的
+
+	2.下拉选择框select
+	<select class="form-control"> 	//单行下拉选择框
+      		<option>1</option> 
+      		<option>2</option> 
+      		<option>3</option> 
+      		<option>4</option> 
+      		<option>5</option> 
+      	</select>
+	<select multiple class="form-control"> 	//多行下拉选择框（在select加上了multiple）
+        	<option>1</option> 
+        	<option>2</option> 
+        	<option>3</option> 
+        	<option>4</option> 
+        	<option>5</option> 
+      	</select>
+
+	3.文本域textarea
+	设置rows可定义其高度，设置cols可以设置其宽度。但如果textarea元素中添加了类名“form-control”类名，则无需设置cols属性
+	<textarea class="form-control" rows="3"></textarea>
+
+	4.复选框checkbox和单选择按钮radio
+		1、不管是checkbox还是radio都使用label包起来了
+		2、checkbox连同label标签放置在一个名为“.checkbox”的容器（div）内
+		3、radio连同label标签放置在一个名为“.radio”的容器（div）内在Bootstrap框架中，主要借助“.checkbox”和“.radio”样式，来处理复选框、单选按钮与标签的对齐方式。
+
+	5.复选框和单选按钮水平排列
+		1、如果checkbox需要水平排列，只需要在label标签上添加类名“checkbox-inline”
+		2、如果radio需要水平排列，只需要在label标签上添加类名“radio-inline”
+
+3.表单控件（状态）
+
+	1.表单控件大小
+		1、.input-sm:让控件比正常大小更小
+		2、.input-lg:让控件比正常大小更大
+
+	2.表单控件状态(焦点状态)
+		伪类:focus（一般默认有）
+
+	3.表单控件状态(禁用状态)
+		添加属性“disabled”
+		<input class="form-control input-lg" id="disabledInput" type="text" placeholder="表单已被禁用，不可输入" disabled>
+
+	4.表单控件状态(验证状态)
+		1、.has-warning:警告状态（黄色）
+		2、.has-error：错误状态（红色）
+		3、.has-success：成功状态（绿色）
+		注意：如果想要表单里有图标表示这种状态，加上.has-feedback
+
+	5.表单提示信息
+		使用了.help-block类，将提示信息以块状显示，并且显示在控件底部	实例：<span class="help-block">你输入的信息是错误的</span>
+		.help-inline一般让提示信息显示在控件的后面，也就是同一水平显示
+
+4.按钮
+	
+	1.基本按钮
+		通过.btn来实现 实例：<button class="btn" type="button">我是一个基本按钮</button>
+
+	2.默认按钮
+		首先通过基础类名.btn定义了一个基础的按钮风格，然后通过.btn-default定义了一个默认的按钮风格 实例：<button class="btn btn-default" type="button">默认按钮</button>
+
+	3.多标签支持（只要有了.btn和.btn-default狗都能变成按钮）
+		钮除了使用<button>标签元素之外，还可以使用<input type="submit">和<a>标签，建议使用button或a标签来制作按钮
+
+	4.定制风格
+		1.默认按钮.btn-default 	（白色按钮）
+		2.主要按钮.btn-primary	（蓝色按钮）
+		3.成功按钮.btn-success	（绿色按钮）
+		4.信息按钮.btn-info	（蓝色按钮）
+		5.警告按钮.btn-warning	（黄色按钮）
+		6.危险按钮.btn-danger	（红色按钮）
+		7.链接按钮.btn-link	（和a标签的效果差不多）
+		8.基本按钮.btn		（灰色）
+
+	5.按钮大小
+		1.变大.btn-lg
+		2.变小.btn-sm
+		3.最小.btn-xs
+
+	6.块状按钮
+		.btn-block,按钮使用这个类名就可以让按钮充满整个容器，并且这个按钮不会有任何的padding和margin值。
+
+	7.按钮状态——活动状态
+		Bootstrap按钮的活动状态主要包括按钮的悬浮状态(:hover)，点击状态(:active)和焦点状态（:focus）几种
+
+	8.按钮状态——禁用状态
+		方法1：在标签中添加disabled属性
+		方法2：在元素标签中添加类名.disabled
+
+	9.图像
+		1、.img-responsive：响应式图片，主要针对于响应式设计
+		2、.img-rounded：圆角图片
+		3、.img-circle：圆形图片
+		4、.img-thumbnail：缩略图片
+
+	10.图标（http://getbootstrap.com/components/#glyphicons）（用法类似于font-awsome）
+		实例：<span class="glyphicon 图标名字"></span>
+
+三.网格系统
+
+1.实现原理：网格系统的实现原理非常简单，仅仅是通过定义容器大小，平分12份(也有平分成24份或32份，但12份是最常见的)，再调整内外边距，最后结合媒体查询，就制作出了强大的响应式网格系统。
+  Bootstrap框架中的网格系统就是将容器平分成12份。
+
+2.工作原理
+	1.数据行(.row)必须包含在容器（.container）中，以便为其赋予合适的对齐方式和内距(padding)。
+	2.在行(.row)中可以添加列(.column)，但列数之和不能超过平分的总列数，比如12（注意：超过了12的部分直接隐藏，比如3334和3333的效果是一样的）
+	3.具体内容应当放置在列容器（column）之内，而且只有列（column）才可以作为行容器(.row)的直接子元素
+	4.通过设置内距（padding）从而创建列与列之间的间距。然后通过为第一列和最后一列设置负值的外距（margin）来抵消内距(padding)的影响
+	实例：<div class="container">
+		<div class="row">
+			<div class="col-md-4">.col-md-4</div>
+			<div class="col-md-8">.col-md-8</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4">.col-md-4</div>
+			<div class="col-md-4">.col-md-4</div>
+			<div class="col-md-4">.col-md-4</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">.col-md-3</div>
+			<div class="col-md-6">.col-md-6</div>
+			<div class="col-md-3">.col-md-3</div>
+		</div>
+	      </div>
+
+3.基本用法
+	1.列组合：列组合简单理解就是更改数字来合并列（原则：列总和数不能超12），有点类似于表格的colspan属性	
+	2.列偏移：.col-md-offset-*(其中星号代表要偏移的列组合数)，列与偏移列的总数不得超过12，不然会致列断行显示
+	3.列排序：.col-md-push-*和.col-md-pull-*(其中星号代表移动的列组合数)
+		实例：<div class="container">
+			<div class="row">
+				<div class="col-md-4 col-md-push-8">.col-md-4</div>
+				<div class="col-md-8 col-md-pull-4">.col-md-8</div>
+			</div>
+		      </div>
+	
+	4.列的嵌套：注意：如果在.col-md-8中嵌套一个，那么里面的列加起来列与偏移列的总数为12（因为父列被默认为100%）
+
+四.菜单、按钮及导航
+
+1.下拉菜单（要用到js）
+	
+	1.基本用法
+		1.使用一个名为“dropdown”的容器包裹了整个下拉菜单元素
+		2.使用了一个<button>按钮做为父菜单，并且定义类名“dropdown-toggle”和自定义“data-toggle”属性，且值必须和最外容器类名一致
+		3.下拉菜单项使用一个ul列表，并且定义一个类名为“dropdown-menu”
+		实例：	<div class="dropdown">
+  				<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+    					选择你喜欢的水果
+    					<span class="caret"></span>
+  				</button>
+  				<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+    					<li role="presentation"><a role="menuitem" tabindex="-1" href="#">苹果</a></li>
+   				 	<li role="presentation"><a role="menuitem" tabindex="-1" href="#">香蕉</a></li>
+    					<li role="presentation"><a role="menuitem" tabindex="-1" href="#">梨</a></li>
+    					<li role="presentation"><a role="menuitem" tabindex="-1" href="#">桃</a></li>
+  				</ul>
+			</div> 
+
+	2.下拉分割线
+		假设下拉菜单有两个组，那么组与组之间可以通过添加一个空的<li>，并且给这个<li>添加类名“divider”来实现添加下拉分隔线的功能
+
+	3.菜单标题
+		.dropdown-header实现菜单标题
+
+	4.对齐方式
+		Bootstrap框架中下拉菜单默认是左对齐，如果你想让下拉菜单相对于父容器右对齐时，可以在.dropdown-menu上添加一个.pull-right或者.dropdown-menu-right类名
+		与此同时，还有一个类名刚好与.dropdown-menu-right相反的类名.dropdown-menu-left，其效果就是让下拉菜单与父容器左边对齐，其实就是默认效果
+	
+	5.菜单项状态
+		1.悬浮状态（:hover）
+		2.焦点状态（:focus）
+		3.当前状态（.active）
+		4.禁用状态（.disabled）
+
+2.按钮
+
+	1.按钮组
+		使用一个名为.btn-group的容器，把多个按钮放到这个容器中；.btn-group容器里的button标签需要带有类名.btn
+
+	2.按钮工具栏
+		把多个.btn-group放入类名位.btn-toolbar的容器中，组与组之前保持5px的左外距
+		.btn-group-lg:大按钮组
+		.btn-group-sm:小按钮组
+		.btn-group-xs:超小按钮组
+		只需要在“.btn-group”类名上追加对应的类名，就可以得到不同大小的按钮组
+
+	3.嵌套分组
+		下拉菜单和普通的按钮组排列在一起，可以实现类似于导航菜单的效果
+		只需要把当初制作下拉菜单的“dropdown”的容器换成“btn-group”，并且和普通的按钮放在同一级
+		用法
+		<div class="btn-group">
+   			<button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">关于我们<span class="caret"></span></button>
+   			<ul class="dropdown-menu">
+        			 <li><a href="##">公司简介</a></li>
+         			<li><a href="##">企业文化</a></li>
+         			<li><a href="##">组织结构</a></li>
+         			<li><a href="##">客服服务</a></li>
+    			</ul>
+		</div>
+		
+	4.垂直分组
+		把水平分组的.btn-group类名换成.btn-group-vertical
+
+	5.等分按钮
+		按钮组里面的每个按钮平分整个容器宽度
+		在按钮组.btn-group上追加一个.btn-group-justified
+
+	6.按钮下拉菜单
+		按钮下拉菜单其实就是普通的下拉菜单，只不过把<a>标签元素换成了<button>标签元素。唯一不同的是外部容器.div.dropdown换成了div.btn-group
+
+	7.按钮的向下向上三角形（下拉菜单最右边的三角形）
+		按钮的向下三角形，我们是通过在<button>标签中添加一个<span>标签元素，并且命名为.caret
+		
+	8.向上弹起的下拉菜单
+		如何实现下拉菜单向上弹起，实现方法：需要在.btn-group类或.dropdown上追加.dropup
+
+3.导航
+
+	1.基础样式（基础样式是水平的）
+		Bootstrap框架中制作导航条主要通过.nav样式。默认的.nav样式不提供默认的导航样式，必须附加另外一个样式才会有效，比如.nav-tabs、.nav-pills之类
+
+	2.标签形tab导航
+		标签形导航，也称为选项卡导航。特别是在很多内容分块显示的时，使用这种选项卡来分组十分适合
+		通过.nav-tabs样式来实现。在制作标签形导航时需要在原导航.nav上追加此类名
+		.active可以让添加该类名的项成为当前选中项
+		.disable可以让添加该类名的项变为禁用状态
+		实例： 	<ul class="nav nav-tabs">
+    				<li class="active"><a href="##">Home</a></li>
+ 				<li><a href="##">CSS3</a></li>
+ 				<li><a href="##">Sass</a></li>
+ 				<li><a href="##">jQuery</a></li>
+ 				<li class="disabled"><a href="##">Responsive</a></li>
+			</ul>
+
+	3.胶囊形pills导航
+		其实现方法和.nav-tabs类似，同样的结构，只需要把类名.nav-tabs换成.nav-pills
+
+	4.垂直堆叠的导航
+		制作垂直堆叠导航只需要在.nav-pills的基础上添加一个.nav-stacked类名即可
+		在.nav-tabs的基础上添加一个.nav-stacked类名不能实现（因为不美观，所以在Bootstrap V3.x版本将这个效果取消）
+
+	5.自适应导航
+		自适应导航指的是导航占据容器全部宽度，而且菜单项可以像表格的单元格一样自适应宽度
+		通过.nav-justified使用，他需要和.nav-tabs或者.nav-pills配合在一起使用
+
+	6.导航加下拉菜单
+		将li当作父容器，使用类名“dropdown”，同时在li中嵌套另一个列表ul
+		示例：	<ul class="nav nav-pills">
+				<li class="active"><a href="##">首页</a></li>
+				<li class="dropdown">
+					<a href="##" class="dropdown-toggle" data-toggle="dropdown">教程<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+          					<li><a href="##">CSS3</a></li>
+						<li><a href="##">Sass</a></li>
+						<li><a href="##">jQuery</a></li>
+						<li><a href="##">Responsive</a></li>
+					</ul>
+				</li>
+				<li><a href="##">关于我们</a></li>
+			</ul>
+
+	7.面包屑式导航
+		面包屑(Breadcrumb)一般用于导航，主要是起的作用是告诉用户现在所处页面的位置（当前位置）
+		在ol或ul（列表标签）上加.breadcrumb
+		示例：	<ol class="breadcrumb">
+				<li><a href="#">首页</a></li>
+				<li><a href="#">我的书</a></li>
+				<li class="active">《图解CSS3》</li>
+			</ol>
+
+五.导航条、分页导航
+
+1.导航条
+	1.导航条与导航的区别
+		导航条(navbar)中有一个背景色、而且导航条可以是纯链接（类似导航），也可以是表单，还有就是表单和导航一起结合等多种形式
+		也就是说导航条包括了导航，导航条比导航多了一些组件（如表单）
+
+	2.基础导航条
+		第一步：首先在制作导航的列表(<ul class=”nav”>)基础上添加类名.navbar-nav（注意：列表本身有.nav）
+		第二步：在列表外部添加一个容器（div），并且使用类名.navbar和.navbar-default
+		示例：	<div class="navbar navbar-default" role="navigation">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="##">网站首页</a></li>
+					<li><a href="##">系列教程</a></li>
+					<li><a href="##">名师介绍</a></li>
+					<li><a href="##">成功案例</a></li>
+					<li><a href="##">关于我们</a></li>
+				</ul>
+			</div>
+	
+	3.为导航条添加标题、二级菜单及状态
+		通过.navbar-header和.navbar-brand来实现导航条最前面的标题
+		二级导航条菜单就是把二级导航菜单中的nav改为navbar
+		示例：	<div class="navbar navbar-default" role="navigation">
+				<div class="navbar-header">
+					<a href="##" class="navbar-brand">慕课网</a>
+				</div>
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="##">网站首页</a></li>
+					<li class="dropdown">
+						<a href="##" data-toggle="dropdown" class="dropdown-toggle">系列教程<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="##">CSS3</a></li>
+							<li><a href="##">JavaScript</a></li>
+							<li class="disabled"><a href="##">PHP</a></li>
+						</ul>
+					</li>
+					<li><a href="##">名师介绍</a></li>
+ 					<li><a href="##">成功案例</a></li>
+					 <li><a href="##">关于我们</a></li>
+				</ul>
+			</div>
+
+	4.带表单的导航条
+		在navbar容器中放置一个带有.navbar-form类名的表单
+		.navbar-left让表单左浮动，更好实现对齐，还提供了.navbar-right
+		示例：	<form action="##" class="navbar-form navbar-left" role="search">
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="请输入关键词" />
+				</div>
+				<button type="submit" class="btn btn-default">搜索</button>
+			</form>
+
+	5.导航条中的按钮、文本和链接
+		1、导航条中的按钮navbar-btn
+		2、导航条中的文本navbar-text
+		3、导航条中的普通链接navbar-link
+		但这三种样式在框架中使用时受到一定的限制，需要和navbar-brand、navbar-nav配合起来使用。而且对数量也有一定的限制，一般情况在使用一到两个不会有问题，超过两个就会有问题。
+		
+	6.固定导航条（导航条固定在浏览器顶部或底部）
+		在制作导航条最外部容器navbar上追加对应的类名：
+		.navbar-fixed-top：导航条固定在浏览器窗口顶部
+		.navbar-fixed-bottom：导航条固定在浏览器窗口底部
+	
+	7.响应式导航条（重点）
+		使用方法：
+		1、保证在窄屏时需要折叠的内容必须包裹在带一个div内，并且为这个div加入.collapse、.navbar-collapse两个类名。最后为这个div添加一个class类名或者id名。
+		2、保证在窄屏时要显示的图标样式（固定写法）
+		<button class="navbar-toggle" type="button" data-toggle="collapse">
+			<span class="sr-only">Toggle Navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+		3、并为button添加data-target=".类名/#id名"，究竞是类名还是id名呢？由需要折叠的div来决定
+		<div class="collapse navbar-collapse" id="example">
+			<ul class="nav navbar-nav">
+      			…
+      			</ul>
+		</div>
+
+		
+		示例：<div class="navbar navbar-default" role="navigation">
+			<div class="navbar-header">
+				<!-- .navbar-toggle样式用于toggle收缩的内容，即nav-collapse collapse样式所在元素 -->
+				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+					<span class="sr-only">Toggle Navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<!-- 确保无论是宽屏还是窄屏，navbar-brand都显示 -->
+				<a href="##" class="navbar-brand">慕课网</a>
+			</div>
+			<!-- 屏幕宽度小于768px时，div.navbar-responsive-collapse容器里的内容都会隐藏，显示icon-bar图标，当点击icon-bar图标时，再展开。屏幕大于768px时，默认显示。 -->
+			<div class="collapse navbar-collapse navbar-responsive-collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="##">网站首页</a></li>
+					<li><a href="##">系列教程</a></li>
+					<li><a href="##">名师介绍</a></li>
+					<li><a href="##">成功案例</a></li>
+					<li><a href="##">关于我们</a></li>
+				</ul>
+			</div>
+		      </div>
+
+	8.反色导航条（比较好看）
+		将.navbar-deafult类名换成.navbar-inverse类名
+	
+	9.带页码的分页导航
+		在ul标签上加入.pagination
+			在此基础上：1、通过“pagination-lg”让分页导航变大；
+				    2、通过“pagination-sm”让分页导航变小：
+		示例：	<ul class="pagination">
+   				<li><a href="#">&laquo;</a></li>		//&laquo；是《号
+   				<li><a href="#">1</a></li>
+   				<li><a href="#">2</a></li>
+   				<li><a href="#">3</a></li>
+   				<li><a href="#">4</a></li>
+   				<li><a href="#">5</a></li>
+   				<li><a href="#">&raquo;</a></li>
+			</ul>
+
+	10.翻页分页导航
+		这种分页导航是看不到具体的页码，只会提供一个“上一页”和“下一页”的按钮
+		在ul标签上加入.pager
+		示例：	<ul class="pager">
+				<li><a href="#">&laquo;上一页</a></li>
+				<li><a href="#">下一页&raquo;</a></li>
+			</ul> 
+		previous：让“上一步”按钮居左
+		next：让“下一步”按钮居右
+		示例：	<ul class="pager">
+				<li class="previous"><a href="#">&laquo;上一页</a></li>
+				<li class="next"><a href="#">下一页&raquo;</a></li>
+			</ul> 
+		如果在li标签上添加了disabled类名的时候，分页按钮处于禁用状态，但同样不能禁止其点击功能。你可以通过js来处理，或将a标签换成span标签
+		示例：	<ul class="pager">
+				<li class="disabled"><span>&laquo;上一页</span></li>
+				<li><a href="#">下一页&raquo;</a></li>
+			</ul>  
+
+2.标签
+	用来告诉用户一些额外的信息，比如说在导航上添加了一个新导航项，可能就会加一个“new”标签，来告诉用户
+	.label来实现高亮显示
+	示例：<h3>Example heading <span class="label label-default">New</span></h3>
+	在.label的基础上加上类可以改变颜色
+	.label-deafult:默认标签，深灰色
+	.label-primary：主要标签，深蓝色
+	.label-success：成功标签，绿色
+	.label-info：信息标签，浅蓝色
+	.label-warning：警告标签，橙色
+	.label-danger：错误标签，红色
+
+3.徽章
+	常出现的是一些系统发出的信息，比如你登录你的twitter后，如果你信息没有看，系统会告诉你有多少信息未读（就比如消息栏上有一个未读消息，上面就有个1）
+	.badge样式来实现。
+	示例：<a href="#">Inbox <span class="badge">42</span></a>
+	徽章在按钮元素button和胶囊形导航nav-pills也可以有类似的样式，只不过是颜色不同而以
+
+
+六.其它内置组件
+
+1.缩略图
+	1.简单缩略图
+		.thumbnail样式配合bootstrap的网格系统来实现
+		示例：	<div class="container">
+				<div class="row">
+					<div class="col-xs-6 col-md-3">
+						<a href="#" class="thumbnail">
+							<img src="" style="height: 180px; width: 100%; display: block;" alt="">
+						</a>
+					</div>
+					…
+				</div>
+			</div>
+
+	2.复杂缩略图（带标题、描述内容，按钮等）
+		在仅有缩略图的基础上，添加了一个div名为.caption的容器
+		示例：	<div class="container">
+				<div class="row">
+					<div class="col-xs-6 col-md-3">
+						<a href="#" class="thumbnail">
+							<img src="" style="height: 180px; width: 100%; display: block;" alt="">
+						</a>
+						<div class="caption">
+							<h3>Bootstrap框架系列教程</h3>
+							<p>Bootstrap框架是一个优秀的前端框，就算您是一位后端程序员或者你是一位不懂设计的前端人员，你也能依赖于Bootstrap制作做优美的网站</p>
+							<p>
+								<a href="##" class="btn btn-primary">开始学习</a>
+								<a href="##" class="btn btn-info">正在学习</a>
+							</p>
+						</div>
+					</div>
+    					…
+    				</div>
+			</div>
+
+2.警示框
+	1.默认警示框
+		通过.alert样式来实现警示框效果
+		1、成功警示框：告诉用用户操作成功，在.alert样式基础上追加.alert-success样式，具体呈现的是背景、边框和文本都是绿色；
+		2、信息警示框：给用户提供提示信息，在.alert样式基础上追加.alert-info样式，具体呈现的是背景、边框和文本都是浅蓝色；
+		3、警告警示框：提示用户小心操作（提供警告信息），在.alert样式基础上追加.alert-warning样式，具体呈现的是背景、边框、文本都是浅黄色；
+		4、错误警示框：提示用户操作错误，在.alert样式基础上追加.alert-danger样式，具体呈现的是背景、边框和文本都是浅红色。
+		具体使用的时候，可以在类名为.alert的div容器里放置提示信息。实现不同类型警示框，只需要在.alert基础上追加对应的类名
+		示例：	<div class="alert alert-success" role="alert">恭喜您操作成功！</div>
+			<div class="alert alert-info" role="alert">请输入正确的密码</div>
+			<div class="alert alert-warning" role="alert">您已操作失败两次，还有最后一次机会</div>
+			<div class="alert alert-danger" role="alert">对不起，您输入的密码有误</div>
+
+	2.可关闭的警示框
+		只需要在默认的警示框里面添加一个关闭按钮。然后进行三个步骤：
+		1、需要在基本警示框.alert的基础上添加.alert-dismissable样式。
+		2、在button标签中加入class=.close类，实现警示框关闭按钮的样式。
+		3、要确保关闭按钮元素上设置了自定义属性：data-dismiss="alert"（因为可关闭警示框需要借助于Javascript来检测该属性，从而控制警示框的关闭）
+		示例：	<div class="alert alert-success alert-dismissable" role="alert">
+				<button class="close" type="button" data-dismiss="alert">&times;</button>		//注意：&times;是×
+				恭喜您操作成功！
+			</div>
+		
+	3.警示框的链接
+		给警示框加的链接添加一个名为.alert-link的类名
+		示例：	<div class="alert alert-success" role="alert">
+				<strong>Well done!</strong> 
+				You successfully read 
+				<a href="#" class="alert-link">this important alert message</a>
+			</div>
+
+3.进度条
+	1.基本样式
+		两个容器，外容器使用.progress样式，子容器使用.progress-bar样式。其中.progress用来设置进度条的容器样式，而.progress-bar用于限制进度条的进度
+		示例：	<div class="progress">
+       				<div class="progress-bar" style="width:40%"></div>
+			</div>
+
+	2.彩色进度条
+		.progress-bar-info：表示信息进度条，进度条颜色为蓝色
+		.progress-bar-success：表示成功进度条，进度条颜色为绿色
+		.progress-bar-warning：表示警告进度条，进度条颜色为黄色
+		.progress-bar-danger：表示错误进度条，进度条颜色为红色
+		示例：	<div class="progress">
+				<div class="progress-bar progress-bar-success" style="width:40%"></div>
+			</div>
+	
+	3.条纹进度条
+		在进度条的容器.progress基础上增加类名.progress-striped
+		示例：	<div class="progress progress-striped">
+				<div class="progress-bar progress-bar-success" style="width:40%"></div>
+			</div>
+
+	4.动态条纹进度条
+		在进度条.progress .progress-striped两个类的基础上再加入.active
+		示例：	<div class="progress progress-striped active">
+				<div class="progress-bar progress-bar-success" style="width:40%"></div>
+			</div>
+
+	5.层叠进度条
+		将不同状态的进度条放置在一起，按水平方式排列（如果要实现条纹进度条，则原本加在父容器上的类.progress-bar-striped加在子容器内）
+		示例：	<div class="progress">
+				<div class="progress-bar progress-bar-success" style="width:20%"></div>
+				<div class="progress-bar progress-bar-info progress-bar-striped" style="width:20%"></div>
+				<div class="progress-bar progress-bar-warning" style="width:30%"></div>
+				<div class="progress-bar progress-bar-danger progress-bar-striped" style="width:15%"></div>
+			</div> 
+
+	6.带Label的进度条（进度条上有数字）
+		只需要在进度条中添加你需要的值
+		示例：	<div class="progress">
+				<div class="progress-bar progress-bar-success"  role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width:20%">20%</div>
+			</div>
+
+4.媒体对象
+	1.默认媒体对象
+		媒体对象一般是成组出现，而一组媒体对象常常包括以下几个部分：
+		1.媒体对像的容器：常使用.media类名表示，用来容纳媒体对象的所有内容
+		2.媒体对像的对象：常使用.media-object表示，就是媒体对象中的对象，常常是图片
+		3.媒体对象的主体：常使用.media-body表示，就是媒体对像中的主体内容，可以是任何元素，常常是图片侧边内容
+		4.媒体对象的标题：常使用.media-heading表示，就是用来描述对象的一个标题，此部分可选
+		除了上面四个部分之外，在Bootstrap框架中还常常使用.pull-left或者.pull-right来控制媒体对象中的对象浮动方式
+		示例：	<div class="media">
+				<a class="pull-left" href="#">
+					<img class="media-object" src="http://img.mukewang.com/52e1d29d000161fe06000338-300-170.jpg" alt="...">
+				</a>
+				<div class="media-body">
+					<h4 class="media-heading">系列：十天精通CSS3</h4>
+					<div>全方位深刻详解CSS3模块知识，经典案例分析，代码同步调试，让网页穿上绚丽装备！</div>
+				</div>
+			</div>
+
+	2.媒体对象的嵌套
+		将另一个媒体对象结构放置在媒体对象的主体内.media-body（和.media-heading平级）
+		
+	3.媒体对象列表
+		在写结构的时候可以使用ul，并且在ul上添加类名.media-list，而在li上使用.media
+
+5.列表组
+	1.基础列表组
+		基础列表组主要包括两个部分：
+		1.list-group：列表组容器，常用的是ul元素，当然也可以是ol或者div元素
+		2.list-group-item：列表项，常用的是li元素，当然也可以是div元素
+		示例：	<ul class="list-group">
+				<li class="list-group-item">揭开CSS3的面纱</li>
+				<li class="list-group-item">CSS3选择器</li>
+				<li class="list-group-item">CSS3边框</li>
+				<li class="list-group-item">CSS3背景</li>
+				<li class="list-group-item">CSS3文本</li>
+			</ul>
+	
+	2.带徽章的列表组
+		带徽章的列表组其实就是将Bootstrap框架中的徽章组件和基础列表组结合在一起的一个效果
+		在.list-group-item中添加徽章组件.badge
+		示例：	<li class="list-group-item">
+				<span class="badge">13</span>揭开CSS3的面
+			</li>
+
+	3.带链接的列表组
+		方法一：在li标签内部加上a标签（不好看，而且只有点击文字才能跳转）
+		方法二：ul.list-group使用div.list-group来替换，而li.list-group-item直接用a.list-group-item来替换
+		示例：	<div class="list-group">
+    				<a href="##" class="list-group-item">图解CSS3</a>
+    				<a href="##" class="list-group-item"><span class="badge">220</span>Sass教程</a>
+    				<a href="##" class="list-group-item">玩转Bootstrap</a>
+			</div>
+
+	4.自定义列表组
+		.list-group-item-heading：用来定义列表项头部样式
+		.list-group-item-text：用来定义列表项主要内容
+		示例：	<div class="list-group">
+    				<a href="##" class="list-group-item">
+        				<h4 class="list-group-item-heading">图解CSS3</h4>
+        				<p class="list-group-item-text">...</p>
+    				</a>
+    				<a href="##" class="list-group-item">
+        				<h4 class="list-group-item-heading">Sass中国</h4>
+        				<p class="list-group-item-text">...</p>
+    				</a>
+			</div>
+
+	5.列表项的状态设置
+		active：表示当前状态
+		disabled：表示禁用状态
+
+	6.多彩列表组
+		.list-group-item-success：成功，背景色绿色
+		.list-group-item-info：信息，背景色蓝色
+		.list-group-item-warning：警告，背景色为黄色
+		.list-group-item-danger：错误，背景色为红色
+
+6.面板
+	1.基础面板
+		基础面板非常简单，就是一个div容器运用了.panel样式，产生一个具有边框的文本显示块
+		.panel-body来放置面板主体内容
+		示例：	<div class="panel panel-default">
+				<div class="panel-body">我是一个基础面板，带有默认主题样式风格</div>
+			</div>
+
+	2.带有头和尾的面板
+		panel-heading：用来设置面板头部样式
+		panel-footer：用来设置面板尾部样式
+		示例：	<div class="panel panel-default">
+				<div class="panel-heading">图解CSS3</div>
+				<div class="panel-body">…</div>
+				<div class="panel-footer">作者：大漠</div>
+			</div>
+
+	3.彩色面板
+		在panel的类名基础上增加自己需要的类名：
+		panel-primary：重点蓝
+		panel-success：成功绿
+		panel-info:信息蓝
+		panel-warning：警告黄
+		panel-danger：危险红
+
+	4.面板中嵌套表格
+		在.panel中添加<table class="table table-bordered">（表格）
+
+	5.面板中嵌套列表组
+		在.panel中添加	<ul class="list-group">
+            				<li class="list-group-item">我是列表项</li>
+            				<li class="list-group-item">我是列表项</li>
+            				<li class="list-group-item">我是列表项</li>
+        			</ul>
+

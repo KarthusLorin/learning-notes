@@ -1,0 +1,674 @@
+一、基础选择器
+
+1.ance desc选择器
+	ance参数表示父元素，desc参数表示后代元素
+	示例：$("div span")
+	效果：选取div后代的所有sapn
+
+2.parent > child选择器
+	选择目标是子集元素（不包括孙）
+	示例：$("div>span")
+	效果：选取div儿子中的所有span
+
+3.prev + next选择器
+	查找与“prev”元素紧邻的下一个“next”元素
+	参数prev为任何有效的选择器，参数“next”为另外一个有效选择器
+	示例：$("p+span")
+	效果：选取p紧邻的下一个span元素
+
+4.prev ~ siblings选择器
+	获取prev 元素后面全部相邻的元素
+	示例：$("p~span")
+	效果：选取p后面所有的span元素
+
+注意：prev + next选择器，prev ~ siblings选择器选择的无论是同辈的还是后代的
+
+二、过滤性选择器
+
+1.:first过滤选择器
+	获取第一个元素，常常与其它选择器一起使用，获取指定的一组元素中的第一个元素
+	示例：$("li:first")
+	效果：选取第一个li元素
+
+2.:eq(index)过滤选择器
+	灵活选择任意的一个标签元素
+	参数index表示索引号（即：一个整数），它从0开始，如果index的值为3，表示选择的是第4个元素
+	示例：$("li:eq(2)")
+	效果：选择li的第三个元素
+
+3.:contains(text)过滤选择器
+	选择包含指定字符串的全部元素
+	参数text表示页面中的文字
+	示例：$("li:contains('土豪')")
+	效果：选择含有土豪的li元素
+
+4.:has(selector)过滤选择器
+	获取选择器中包含指定元素名称的全部元素
+	参数selector就是包含的元素名称，是被包含元素
+	示例：$("li:has('label')")
+	效果：选择含有label标签的li元素
+
+5.:hidden过滤选择器
+	获取全部不可见的元素，这些不可见的元素中包括type属性值为hidden的元素
+	示例：$("p:hidden")
+	效果：选择隐藏的p元素
+
+6.:visible过滤选择器
+	获取全部可见的元素
+	示例：$("p:visible")
+	效果：选择可见的p元素
+
+7.[attribute=value]属性选择器
+	取与属性名和属性值完全相同的全部元素
+	[]是专用于属性选择器的括号符，参数attribute表示属性名称，value参数表示属性值
+	示例：$("li[title='我喜欢']")
+	效果：选择li标签中title属性为'我喜欢'的元素
+
+8.[attribute!=value]属性选择器
+	获取不包含属性名，或者与属性名和属性值不相同的全部元素
+	示例：$("li[title!='我喜欢']")
+	效果：选择li标签中不含title属性或title属性不为'我喜欢'的元素
+
+9.[attribute*=value]属性选择器(7是要求完全一样，这个只要求里面有字段一样)
+	获取属性值中包含指定内容的全部元素
+	示例：$("li[title*='我']")
+	效果：选择li标签中title属性含有'我'的元素
+
+10.:first-child子元素过滤选择器
+	获取每个父元素中返回的首个子元素，它是一个集合，常用多个集合数据的选择处理
+	示例：$("li:first-child")
+	效果：选择每个列表中的第一个li标签
+
+11.:last-child子元素过滤选择器
+	获取每个父元素中返回的最后一个子元素，它也是一个集合，常用多个集合数据的选择处理
+	示例：$("li:last-child")
+	效果：选择每个列表中的最后一个li标签
+
+三、表单选择器
+
+1.:input表单选择器
+	获取表单全部元素
+	注意：不仅包括所有<input>标记的表单元素，而且还包括<textarea>、<select> 和 <button>标记的表单元素，因此，它选择的表单元素是最广的
+	示例：$("#frmTest :input").addClass("bg_blue")
+	效果：选择id为frmTest的form标签中的所有表单，添加类（注意：:input前有空格）
+
+2.:text表单文本选择器
+	获取表单中全部单行的文本输入框元素
+	示例：$("#frmTest :text").addClass("bg_blue");
+	效果：选择id为frmTest的form标签中的所有单行文本输入表单，添加类
+
+3.:password表单密码选择器
+	获取表单中全部的密码输入文本框元素
+	示例：$("#frmTest :password").addClass("bg_red");
+	效果：选择id为frmTest的form标签中的所有密码输入文本框元素，添加类
+
+4.:radio单选按钮选择器
+	获取表单中的全部单选按钮元素
+	示例：$("#frmTest :radio").attr("disabled","true");
+	效果：选择id位frmTest的form标签中的所有radio单选按钮
+
+5.:checkbox复选框选择器
+	获取表单中的复选框元素
+
+6.:submit提交按钮选择器
+	获取表单中的提交按钮元素
+	示例：$("#frmTest input:submit").addClass("bg_red");
+
+7.:image图像域选择器
+	当一个<input>元素的“type”属性值设为“image”时，该元素就是一个图像域，使用:image选择器可以快速获取该类全部元素
+	示例：$("#frmTest :image").addClass("bg_red");
+	效果：选择<input>图像域，而不能获取<img>格式的图像元素
+
+8.:button表单按钮选择器
+	获取且只能获取“type”属性值为“button”的<input>和<button>这两类普通按钮元素
+	示例：$("#frmTest :button").addClass("bg_blue");
+
+9.:checked选中状态选择器
+	获取属性值为“checked”的元素（按钮或者复选框）
+	示例：$("#frmTest :checked").attr("disabled", true);
+
+10.:selected选中状态选择器
+	获取<select>下拉列表框中全部处于选中状态的<option>选项元素
+	示例：$("#frmTest :selected").text()
+
+四、操作DOM元素
+
+1.使用attr()方法控制元素的属性
+	attr()方法的作用是设置或者返回元素的属性，其中attr(属性名)格式是获取元素属性名的值，attr(属性名，属性值)格式则是设置元素属性名的值
+	示例：	$("#a1").attr("href","www.imooc.com");
+            	var $url = $("#a1").attr("href");
+            	$("#tip").html($url);
+	效果：设置id为a1的a标签的href属性为www.imooc.com，得到href的属性，打印
+
+2.操作元素的内容
+	使用html()和text()方法操作元素的内容，当两个方法的参数为空时，表示获取该元素的内容，而如果方法中包含参数，则表示将参数值设置为元素内容
+	html（）与text（）的区别：
+		1.html（）：html()方法可以获取元素的HTML内容，因此，原文中的格式代码也被一起获取
+		2.text（）：text()方法只是获取元素中的文本内容
+	例子：	var $content = "<b>唉，我又变胖了！</b>";
+            	$("#html").html($content);
+            	$("#text").text($content);
+	效果：	唉，我又变胖了！
+		<b>唉，我又变胖了！</b>
+
+3.操作元素的样式
+	通过addClass()和css()方法可以方便地操作元素中的样式，前者括号中的参数为增加元素的样式名称，后者直接将样式的属性内容写在括号中
+	示例：$("#content").css({"background":"#ff0000","color":"White"});
+	注意css（）的格式
+
+4.移除属性和样式
+	使用removeAttr(name)和removeClass(class)分别可以实现移除元素的属性和样式的功能，前者方法中参数表示移除属性名，后者方法中参数则表示移除的样式名
+	示例：$("#content").removeClass("blue white")
+	效果：去除blue与white两个类
+
+5.使用append()方法向元素内追加内容
+	append(content)方法的功能是向指定的元素中追加内容，被追加的content参数，可以是字符、HTML元素标记，还可以是一个返回字符串内容的函数
+	示例：	function rethtml() {
+                	var $html = "<div id='test' title='hi'>我是调用函数创建的</div>"
+                	return $html;
+           	 }
+            	$("body").append(rethtml());
+	效果：相当于append（$rethtml）
+
+6.使用appendTo()方法向被选元素内插入内容
+	appendTo()方法也可以向指定的元素内插入内容
+	格式：$(content).appendTo(selector)
+	参数content表示需要插入的内容，参数selector表示被选的元素，即把content内容插入selector元素内，默认是在尾部
+	示例：	var $html = "<span class='red'>小青蛙</span>";
+            	$($html).appendTo("div");
+	效果：在div最后插入一个“小青蛙”
+
+7.使用before()和after()在元素前后插入内容
+	使用before()和after()方法可以在元素的前后插入内容
+	格式：$(selector).before(content)和$(selector).after(content)
+	参数content表示插入的内容，该内容可以是元素或HTML字符串
+	示例：	var $html = "<span class='red'>兄弟。</span>"
+            	$(".green").after($html);
+	效果：在含有green类的标签后面添加一个<span class='red'>兄弟。</span>
+
+8.使用clone()方法复制元素
+	调用clone()方法可以生成一个被选元素的副本，即复制了一个被选元素，包含它的节点、文本和属性
+	格式：$(selector).clone()
+	参数selector可以是一个元素或HTML内容
+	示例：$("body").append($(".red").clone());
+	效果：用clone（）方法复制了含有red类的标签，然后插入到body中的最后
+
+9.替换内容
+	replaceWith()和replaceAll()方法都可以用于替换元素或元素中的内容，但它们调用时，内容和被替换元素所在的位置不同
+	格式：$(selector).replaceWith(content)和$(content).replaceAll(selector)
+	参数selector为被替换的元素，content为替换的内容
+	示例： 	var $html = "<span class='red' title='hi'>我是土豪</span>";
+            	$($html).replaceAll(".green");
+	效果：用我是土豪替换.green
+	注意：是完全替换，属性什么的也替换了
+
+10.使用wrap()和wrapInner()方法包裹元素和内容
+	wrap()和wrapInner()方法都可以进行元素的包裹，但前者用于包裹元素本身，后者则用于包裹元素中的内容
+	格式：$(selector).wrap(wrapper)和$(selector).wrapInner(wrapper)
+	参数selector为被包裹的元素，wrapper参数为包裹元素的格式
+	示例：$(".red").wrapInner("<i></i>");
+	效果：.red中的文字变为斜体
+
+11.使用each()方法遍历元素
+	使用each()方法可以遍历指定的元素集合，在遍历时，通过回调函数返回遍历元素的序列号
+	格式：$(selector).each(function(index))
+	参数function为遍历时的回调函数，index为遍历元素的序列号，它从0开始。
+	示例：	$("span").each(function (index) {
+                	if (index == 1) {
+                    	$(this).attr("class", "red");
+                	}
+            	});
+	效果：遍历span，给序列号为1的加上red类
+
+12.使用remove()和empty()方法删除元素
+	remove()方法删除所选元素本身和子元素，该方法可以通过添加过滤参数指定需要删除的某些元素，而empty()方法则只删除所选元素的子元素
+	示例1：$("span").empty()
+	效果：删除span的所有子元素
+	示例2：$("span").remove(".red")
+	效果：删除含有red类的span
+
+五、jQuery 事件与应用
+
+1.页面加载时触发ready()事件
+	ready()事件类似于onLoad()事件，但前者只要页面的DOM结构加载后便触发，而后者必须在页面全部元素加载成功才触发，ready()可以写多个，按顺序执行
+	注意：$(document).ready(function(){})等价于$(function(){});（第一种更常用）
+	示例：	$(document).ready(function(){
+                	$("#btntest").bind("click", function () {
+                    	$("#tip").html("我被点击了！");
+                	});
+            	});
+
+2.使用bind()方法绑定元素的事件
+	bind()方法绑定元素的事件非常方便，绑定前，需要知道被绑定的元素名，绑定的事件名称，事件中执行的函数内容就可以
+	格式：$(selector).bind(event,[data] function)
+	参数event为事件名称，多个事件名称用空格隔开，function为事件执行的函数
+	示例： 	$(function () {
+               		$("#btntest").bind("click", function () {
+                    		$(this).attr("disabled", "true");
+                	})
+            	});
+	效果：按钮点击后变为不可用
+
+3.使用hover()方法切换事件
+	hover()方法的功能是当鼠标移到所选元素上时，执行方法中的第一个函数，鼠标移出时，执行方法中的第二个函数，实现事件的切实效果
+	格式：$(selector).hover(over，out);
+	over参数为移到所选元素上触发的函数，out参数为移出元素时触发的函数
+	示例：	$(function () {
+                	$("div").hover(
+                	function () {
+                    		$(this).addClass("orange");
+                	},
+                	function () {
+                    		$(this).removeClass("orange")
+                	})
+            	});
+	效果：移到div上时，添加类——orange，移出时，去除类——orange
+
+4.使用toggle()方法绑定多个函数
+	toggle()方法可以在元素的click事件中绑定两个或两个以上的函数，同时，它还可以实现元素的隐藏与显示的切换（每点一次就调用下一个函数）
+	格式：$(selector).toggle(fun1(),fun2(),funN(),...)
+	fun1，fun2就是多个函数的名称
+	示例：	$(function () {
+                	$("#btntest").bind("click", function () {
+                    		$("div").toggle();
+                	})
+            	});
+	效果：点击id为btntest的按钮后，div再隐藏和显示之间切换
+
+5.使用unbind()方法移除元素绑定的事件
+	unbind()方法可以移除元素已绑定的事件
+	格式：$(selector).unbind(event,fun)
+	参数event表示需要移除的事件名称，多个事件名用空格隔开，fun参数为事件执行时调用的函数名称
+	示例：$("#btntest").bind("click", function () {
+                    $("div").unbind("click dblclick")
+                    $(this).attr("disabled", "true");
+                });
+	效果：点击按钮后，解除对点击和双击的绑定，同时，给按钮添加上disabled属性
+
+6.使用one()方法绑定元素的一次性事件
+	one()方法可以绑定元素任何有效的事件，但这种方法绑定的事件只会触发一次
+	格式：$(selector).one(event,[data],fun)
+	参数event为事件名称，data为触发事件时携带的数据，fun为触发该事件时执行的函数
+	示例：	$(function () {
+                	var intI = 0;
+                	$("div").one("click", function () {
+                    		intI++;
+                    		$(this).css("font-size", intI + "px");
+                	})
+            	});
+	效果：点击div后，div的font-size变为1px
+
+7.调用trigger()方法手动触发指定的事件
+	trigger()方法可以直接手动触发元素指定的事件，这些事件可以是元素自带事件，也可以是自定义的事件，总之，该事件必须能执行
+	格式：$(selector).trigger(event)
+	event参数为需要手动触发的事件名称
+	示例：$("div").trigger("change-color");
+	效果：直接触发事件——change-color
+
+8.文本框的focus和blur事件
+	focus事件在元素获取焦点时触发，如点击文本框时，触发该事件；而blur事件则在元素丢失焦点时触发，如点击除文本框的任何元素，都会触发该事件
+	示例：	$(function () {
+                	$("input")
+                	.bind("focus", function () {
+                    		$("div").html("请输入您的姓名！");
+                	})
+                	.bind("blur", function () {
+                    		if ($(this).val().length == 0)
+                        	$("div").html("你的名称不能为空！");
+                	})
+            	});
+	效果：聚焦于表单时，下面的div提示输入姓名，离开时，如果为空，提示你的名称不能为空
+
+9.下拉列表框的change事件
+	当一个元素的值发生变化时，将会触发change事件，例如在选择下拉列表框中的选项时，就会触change事件
+	示例：	$(function () {
+                	$("select").bind("change", function () {
+                    		if ($(this).val() == "苹果")
+                        	$(this).css("background-color", "red");
+                    		else
+                        	$(this).css("background-color", "green");
+                	})
+            	});
+	效果：选择了苹果，下拉列表框背景变为红色；选择其他，下拉表框背景变为绿色
+
+10.调用live()方法绑定元素的事件（从 jQuery 1.7 开始，不再建议使用 .live() 方法）
+	与bind()方法相同，live()方法与可以绑定元素的可执行事件，除此相同功能之外，live()方法还可以绑定动态元素，即使用代码添加的元素事件
+	格式：$(selector).live(event,[data],fun)
+	参数event为事件名称，data为触发事件时携带的数据，fun为触发该事件时执行的函数
+	示例：	$(function () {
+                	$("#btntest").live("click mouseover", function () {
+                    		$(this).attr("disabled", "true");
+                	})
+                	$("body").append("<input id='btntest' type='button' value='点击或移出就不可用了' />");
+            	});
+	效果：对未来添加的按钮进行实践绑定，只要点击或移除按钮按钮就会变得不可用
+
+六、jQuery 动画特效
+
+1.调用show()和hide()方法显示和隐藏元素
+	show()和hide()方法用于显示或隐藏页面中的元素
+	格式：$(selector).hide(speed,[callback])和$(selector).show(speed,[callback])
+	参数speed设置隐藏或显示时的速度值，可为“slow”、“fast”或毫秒数值，可选项参数callback为隐藏或显示动作执行完成后调用的函数名
+	示例：$("h4").bind("click", function () {
+                    if ($("#hidval").val() == 0) {
+                        $("ul").show();
+                        $("#hidval").val(1);
+                    } else {
+                        $("ul").hide();
+                        $("#hidval").val(0);
+                    }
+                });
+	效果：当点击h4时，若按钮值为0则显示ul，若按钮值为1则隐藏ul
+
+2.调用toggle()方法实现动画切换效果
+	如果元素处于显示状态，调用该方法则隐藏该元素，反之，则显示该元素
+	格式：$(selector).toggle(speed,[callback])
+	示例：$(function () {
+                var $spn = $("#spnTip");
+                $("h4").bind("click", function () {
+                    $("ul").toggle("slow",function(){
+                     $spn.html() == "隐藏" ? $spn.html("显示") : $spn.html("隐藏");
+                    })
+                });
+            });
+	效果：隐藏和显示之间的切换
+
+3.使用slideUp()和slideDown()方法的滑动效果
+	可以使用slideUp()和slideDown()方法在页面中滑动元素，前者用于向上滑动元素，后者用于向下滑动元素
+	格式：$(selector).slideUp(speed,[callback])和$(selector).slideDown(speed,[callback])
+	注意：slideDown()仅适用于被隐藏的元素；slideUp()则相反
+	示例：$(function () {
+                $("h4").bind("click", function () {
+                    if ($("#hidval").val() == 0) {
+                        $("ul").slideUp(3000,function(){
+                            $("#hidval").val(1);
+                        })
+                    } else {
+                        $("ul").slideDown(3000,function(){
+                            $("#hidval").val(0);
+                        })
+                    }
+                })
+            });
+
+4.使用slideToggle()方法实现图片“变脸”效果
+	使用slideToggle()方法可以切换slideUp()和slideDown()，即调用该方法时，如果元素已向上滑动，则元素自动向下滑动，反之，则元素自动向上滑动
+	格式：$(selector).slideToggle(speed,[callback])
+	示例：$(function () {
+                var $spn = $("#spnTip");
+                $("h4").bind("click", function () {
+                    $("ul").slideToggle(3000,function() {
+               $spn.html() == "向下滑" ? $spn.html("向上滑") : $spn.html("向下滑");
+                    })
+                })
+            });
+
+5.使用fadeIn()与fadeOut()方法实现淡入淡出效果
+	fadeIn()和fadeOut()方法可以实现元素的淡入淡出效果，前者淡入隐藏的元素，后者可以淡出可见的元素
+	格式：$(selector).fadeIn(speed,[callback])和$(selector).fadeOut(speed,[callback])
+
+6.使用fadeTo()方法设置淡入淡出效果的不透明度
+	调用fadeTo()方法，可以将所选择元素的不透明度以淡入淡出的效果调整为指定的值
+	格式：$(selector).fadeTo(speed,opacity,[callback])
+	speed参数为效果的速度，opacity参数为指定的不透明值，它的取值范围是0.0~1.0，可选项参数callback为效果完成后，回调的函数名
+	示例：$(function () {
+                $("span").each(function (index) {
+                    switch (index) {
+                        case 0:
+                            $(this).fadeTo(3000,0.2);
+                            break;
+                        case 1:
+                            $(this).fadeTo(3000,0.4);
+                            break;
+                        case 2:
+                            $(this).fadeTo(3000,0.6)
+                            break;
+                    }
+                });
+            });
+
+7.调用animate()方法制作简单的动画效果
+	调用animate()方法可以创建自定义动画效果
+	格式：$(selector).animate({params},speed,[callback])
+	params参数为制作动画效果的CSS属性名与值，speed参数为动画的效果的速度，单位为毫秒，可选项callback参数为动画完成时执行的回调函数名
+	示例：$(function () {
+                $("span").animate({
+                    width: "80px",
+                    height: "80px"
+                },
+                3000, function () {
+                    $("#tip").html("执行完成!");
+                });
+            });
+	
+8.调用animate()方法制作移动位置的动画
+	调用animate()方法还能制作移动位置的动画，在移动位置之前，必须将被移元素的“position”属性值设为“absolute”或“relative”，否则，该元素移动不了
+	示例：$(function () {
+                $("span").animate({
+                    left: "+=100px"
+                }, 3000, function () {
+                    $("span").animate({
+                        height: '+=30px',
+                        width: '+=30px'
+                    }, 3000, function () {
+                        $("#tip").html("执行完成!");
+                    });
+                });
+            });
+
+9.调用stop()方法停止当前所有动画效果
+	stop()方法的功能是在动画完成之前，停止当前正在执行的动画效果，这些效果包括滑动、淡入淡出和自定义的动画
+	格式：$(selector).stop([clearQueue],[goToEnd])
+	两个可选项参数clearQueue和goToEnd都是布尔类型值，前者表示是否停止正在执行的动画，后者表示是否完成正在执行的动画，默认为false
+	示例：$(function () {
+                $("span").animate({
+                    left: "+=100px"
+                }, 3000, function () {
+                    $(this).animate({
+                        height: '+=60px',
+                        width: '+=60px'
+                    }, 3000, function () {
+                        $("#tip").html("执行完成!");
+                    });
+                });
+                $("#btnStop").bind("click", function () {
+                   $("span").stop()
+                    $("#tip").html("执行停止!");
+                });
+            });
+
+10.调用delay()方法延时执行动画效果
+	delay()方法的功能是设置一个延时值来推迟动画效果的执行
+	格式：$(selector).delay(duration)
+	参数duration为延时值，它的单位是毫秒，当超过延时值时，动画继续执行
+	示例：$(function () {
+                $("span").animate({
+                    left: "+=100px"
+                }, 3000, function () {
+                    $(this).animate({
+                        height: '+=60px',
+                        width: '+=60px'
+                    }, 3000, function () {
+                        $("#tip").html("执行完成!");
+                    });
+                });
+                $("#btnStop").bind("click", function () {
+                    $("span").delay(2000);
+                    $("#tip").html("正在延时!");
+                });
+            });
+
+七、jQuery 实现Ajax应用
+
+1.使用load()方法异步请求数据
+	使用load()方法通过Ajax请求加载服务器中的数据，并把返回的数据放置到指定的元素中
+	格式：load(url,[data],[callback])
+	参数url为加载服务器地址，可选项data参数为请求时发送的数据，callback参数为数据请求成功后，执行的回调函数
+	示例：$(function () {
+                $("#btnShow").bind("click", function () {
+                    var $this = $(this);
+                    $("ul")
+                    .html("<img src='Images/Loading.gif' alt=''/>")
+                    .load("http://www.imooc.com/data/fruit_part.html", function(){
+                        $this.attr("disabled", "true");
+                    });
+                })
+            });
+	效果：点击后，调入服务器中的数据
+
+2.使用getJSON()方法异步加载JSON格式数据
+	使用getJSON()方法可以通过Ajax异步请求的方式，获取服务器中的数据，并对获取的数据进行解析，显示在页面中
+	格式：jQuery.getJSON(url,[data],[callback])或$.getJSON(url,[data],[callback])
+	url参数为请求加载json格式文件的服务器地址，可选项data参数为请求时发送的数据，callback参数为数据请求成功后，执行的回调函数
+	示例：$(function () {
+                $("#btnShow").bind("click", function () {
+                    var $this = $(this);
+                    $.getJSON("http://www.imooc.com/data/sport.json",function(data){
+                        $this.attr("disabled", "true");
+                        $.each(data, function (index, sport) {
+                            if(index==3)
+                            $("ul").append("<li>" + sport["name"] + "</li>");
+                        });
+    
+                    });
+                })
+            });
+
+3.使用getScript()方法异步加载并执行js文件
+	使用getScript()方法异步请求并执行服务器中的JavaScript格式的文件
+	格式：jQuery.getScript(url,[callback])或$.getScript(url,[callback]
+	参数url为服务器请求地址，可选项callback参数为请求成功后执行的回调函数
+	示例：$(function () {
+                $("#btnShow").bind("click", function () {
+                    var $this = $(this);
+                    $.getScript("http://www.imooc.com/data/sport_f.js",function(){
+                        $this.attr("disabled", "true");
+                    });
+                })
+            });
+
+4.使用get()方法以GET方式从服务器获取数据
+	使用get()方法时，采用GET方式向服务器请求数据，并通过方法中回调函数的参数返回请求的数据
+	格式：$.get(url,[callback])
+	示例：$(function () {
+                $("#btnShow").bind("click", function () {
+                    var $this = $(this);
+                    $.get("http://www.imooc.com/data/info_f.php",function(data){
+                        $this.attr("disabled", "true");
+                        $("ul").append("<li>我的名字叫：" + data.name + "</li>");
+                        $("ul").append("<li>男朋友对我说：" + data.say + "</li>");
+                    }, "json");
+                })
+            });
+
+5.使用post()方法以POST方式从服务器发送数据
+	与get()方法相比，post()方法多用于以POST方式向服务器发送数据，服务器接收到数据之后，进行处理，并将处理结果返回页面
+	格式：$.post(url,[data],[callback])
+	示例：$(function () {
+                $("#btnCheck").bind("click", function () {
+                    $.post("http://www.imooc.com/data/check_f.php",{
+                    num: $("#txtNumber").val()
+                    },
+                    function (data) {
+                        $("ul").append("<li>你输入的<b>  "
+                        + $("#txtNumber").val() + " </b>是<b> "
+                        + data + " </b></li>");
+                    });
+                })
+            });
+
+6.使用serialize()方法序列化表单元素值
+	使用serialize()方法可以将表单中有name属性的元素值进行序列化，生成标准URL编码文本字符串，直接可用于ajax请求
+	格式：$(selector).serialize()
+	selector参数是一个或多个表单中的元素或表单元素本身
+	示例：$(function () {
+                $("#btnAction").bind("click", function () {
+                    $("#litest").html($("form").serialize())
+                })
+            })
+
+7.使用ajax()方法加载服务器数据
+	使用ajax()方法是最底层、功能最强大的请求服务器数据的方法，它不仅可以获取服务器返回的数据，还能向服务器发送请求并传递数值
+	格式：jQuery.ajax([settings])或$.ajax([settings])
+	参数settings为发送ajax请求时的配置对象，在该对象中，url表示服务器请求的路径，data为请求时传递的数据，dataType为服务器返回的数据类型，success为请求成功的执行的回调函数，type为发送数据请求的方式，默认为get
+	示例： $(function () {
+                $("#btnCheck").bind("click", function () {
+                    $.ajax({
+                        url: "http://www.imooc.com/data/check.php",
+                        data: { num: $("#txtNumber").val() },
+                        type: "post",
+                        success: function (data) {
+                            $("ul").append("<li>你输入的<b>  "
+                            + $("#txtNumber").val() + " </b>是<b> "
+                            + data + " </b></li>");
+                        }
+                    });
+                })
+            });
+
+8.使用ajaxSetup()方法设置全局Ajax默认选项
+	使用ajaxSetup()方法可以设置Ajax请求的一些全局性选项值，设置完成后，后面的Ajax请求将不需要再添加这些选项值
+	格式：jQuery.ajaxSetup([options])或$.ajaxSetup([options])
+	可选项options参数为一个对象，通过该对象设置Ajax请求时的全局选项值
+	示例：$(function () {
+                $.ajaxSetup({
+                    dataType: "text",
+                    type: "post",
+                    success: function(data){
+                        $("ul").append("<li>你输入的<b>  "
+                            + $("#txtNumber").val() + " </b>是<b> "
+                            + data + " </b></li>");
+                    }
+                });
+                $("#btnShow_1").bind("click", function () {
+                    $.ajax({
+                        data: { num: $("#txtNumber").val() },
+                        url: "http://www.imooc.com/data/check.php"
+                    });
+                })
+                $("#btnShow_2").bind("click", function () {
+                    $.ajax({
+                        data: { num: $("#txtNumber").val() },
+                        url: "http://www.imooc.com/data/check_f.php"
+                    });
+                })
+            });
+
+9.使用ajaxStart()和ajaxStop()方法
+	ajaxStart()和ajaxStop()方法是绑定Ajax事件。ajaxStart()方法用于在Ajax请求发出前触发函数，ajaxStop()方法用于在Ajax请求完成后触发函数
+	格式：$(selector).ajaxStart(function())和$(selector).ajaxStop(function())
+	两个方法中括号都是绑定的函数，当发送Ajax请求前执行ajaxStart()方法绑定的函数，请求成功后，执行ajaxStop ()方法绑定的函数
+	示例： $(function () {
+                $("divload").ajaxStart(function(){
+                    $(this).html("正在请求数据...");
+                });
+                $("divload").ajaxStop(function(){
+                    $(this).html("数据请求完成！");
+                });
+                $("#btnShow").bind("click", function () {
+                    var $this = $(this);
+                    $.ajax({
+                        url: "http://www.imooc.com/data/info_f.php",
+                        dataType: "json",
+                        success: function (data) {
+                            $this.attr("disabled", "true");
+                        $("ul").append("<li>我的名字叫：" + data.name + "</li>");
+                        $("ul").append("<li>男朋友对我说：" + data.say + "</li>");
+                        }
+                    });
+                })
+            });
+
+
+	
+
+	
+
+
+
+
+
+
+
+
+
