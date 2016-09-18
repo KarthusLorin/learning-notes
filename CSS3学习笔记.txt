@@ -1,281 +1,281 @@
-һ���߿�
+一、边框
 
-1.Բ��Ч����border-radius��
-	border-radius����Ԫ������Բ�Ǳ߿�
-	ʾ����	1.border-radius:10px; /* ���нǶ�ʹ�ð뾶Ϊ10px��Բ�� */ 
-		2.border-radius: 5px 4px 3px 2px; /* �ĸ��뾶ֵ�ֱ������Ͻǡ����Ͻǡ����½Ǻ����½ǣ�˳ʱ�� */ 
+1.圆角效果（border-radius）
+	border-radius是向元素添加圆角边框
+	示例：	1.border-radius:10px; /* 所有角都使用半径为10px的圆角 */ 
+		2.border-radius: 5px 4px 3px 2px; /* 四个半径值分别是左上角、右上角、右下角和左下角，顺时针 */ 
 
-	ע��1.ʵ���ϰ�Բ���������Ѹ߶�(height)��Ϊ���ȣ�width����һ�룬����ֻ�������ϽǺ����Ͻǵİ뾶��Ԫ�صĸ߶�һ�£�����Ҳ�ǿ��Եģ�
-	    ʾ����	div{
-    				height:50px;/*��width��һ��*/
+	注：1.实心上半圆：方法：把高度(height)设为宽度（width）的一半，并且只设置左上角和右上角的半径与元素的高度一致（大于也是可以的）
+	    示例：	div{
+    				height:50px;/*是width的一半*/
     				width:100px;
     				background:#9da;
-    				border-radius:50px 50px 0 0;/*�뾶��������Ϊheight��ֵ*/
+    				border-radius:50px 50px 0 0;/*半径至少设置为height的值*/
     			}
 
-	    2.ʵ��Բ���������ѿ��ȣ�width����߶�(height)ֵ����Ϊһ�£�Ҳ���������Σ��������ĸ�Բ��ֵ������Ϊ����ֵ��һ�롣
-	    ʾ����	div{
-    				height:100px;/*��width����һ��*/
+	    2.实心圆：方法：把宽度（width）与高度(height)值设置为一致（也就是正方形），并且四个圆角值都设置为它们值的一半。
+	    示例：	div{
+    				height:100px;/*与width设置一致*/
     				width:100px;
     				background:#9da;
-    				border-radius:50px;/*�ĸ�Բ��ֵ������Ϊ���Ȼ�߶�ֵ��һ��*/
+    				border-radius:50px;/*四个圆角值都设置为宽度或高度值的一半*/
    	 		}
 
-2.��Ӱ��box-shadow��
-	box-shadow: X��ƫ���� Y��ƫ���� [��Ӱģ���뾶] [��Ӱ��չ�뾶] [��Ӱ��ɫ] [ͶӰ��ʽ];
-	ע�⣺	1.ֻ��X��ƫ���� Y��ƫ�����Ǳ����
-		2.������Ӷ����Ӱ��ֻ���ö��Ÿ�������
-	ʾ����	.box_shadow{
+2.阴影（box-shadow）
+	box-shadow: X轴偏移量 Y轴偏移量 [阴影模糊半径] [阴影扩展半径] [阴影颜色] [投影方式];
+	注意：	1.只有X轴偏移量 Y轴偏移量是必须的
+		2.如果添加多个阴影，只需用逗号隔开即可
+	示例：	.box_shadow{
   				box-shadow:4px 2px 6px #333333; 
 		}
 
-3.Ϊ�߿�Ӧ��ͼƬ��border-image��
-	ʾ����border-image��url(border.png) 70 70 70 repeat��
-	��������ͼ�Ŀ��ȣ�repeat��ͼƬ���췽ʽ��round��ƽ�̣���repeat���ظ�����stretch�����죩��
+3.为边框应用图片（border-image）
+	示例：border-image（url(border.png) 70 70 70 repeat）
+	数字是切图的宽度，repeat是图片延伸方式（round（平铺），repeat（重复），stretch（拉伸））
 
-������ɫ���
+二、颜色相关
 
-1.��ɫ֮RGBA
-	RGBA����RGB�Ļ����������˿���alpha͸���ȵĲ���
-	ʾ����background-color:rgba(100,120,60,0.5);
+1.颜色之RGBA
+	RGBA是在RGB的基础上增加了控制alpha透明度的参数
+	示例：background-color:rgba(100,120,60,0.5);
 
-2.����ɫ�� 
-	CSS3 Gradient ��Ϊ���Խ���(linear)�;��򽥱�(radial)
-	ʾ����linear-gradient(to bottom,#fff,#999)
-	��һ������Ϊ���䷽��һ��Ϊ�Ƕȣ�����ɫ������ʾ��ɫ����ʼ���������
-	ʾ����background-image:linear-gradient(to left, red, orange,yellow,green,blue,indigo,violet);
+2.渐变色彩 
+	CSS3 Gradient 分为线性渐变(linear)和径向渐变(radial)
+	示例：linear-gradient(to bottom,#fff,#999)
+	第一个参数为渐变方向（一般为角度），颜色参数表示颜色的起始点与结束点
+	示例：background-image:linear-gradient(to left, red, orange,yellow,green,blue,indigo,violet);
 
-��������������
+三、文字与字体
 
 1.text-overflow
-	text-overflow���������Ƿ�ʹ��һ��ʡ�Ա�ǣ�...����ʾ�������ı������
-	text-overflow��clip����ʾ���У�|ellipsis����ʾ��ʾʡ�Ա�ǣ�
-	����text-overflowֻ������˵���������ʱ��ʲô��ʽ��ʾ��Ҫʵ�����ʱ����ʡ�Ժŵ�Ч�������붨��ǿ���ı���һ������ʾ��white-space:nowrap�����������Ϊ���أ�overflow:hidden��
-	ʾ����	text-overflow:ellipsis; 
+	text-overflow用来设置是否使用一个省略标记（...）标示对象内文本的溢出
+	text-overflow：clip（表示剪切）|ellipsis（表示显示省略标记）
+	但是text-overflow只是用来说明文字溢出时用什么方式显示，要实现溢出时产生省略号的效果，还须定义强制文本在一行内显示（white-space:nowrap）及溢出内容为隐藏（overflow:hidden）
+	示例：	text-overflow:ellipsis; 
 		overflow:hidden; 
 		white-space:nowrap; 
 
-2.word-wrap�������ã�
-	word-wrap�������������ı���Ϊ����ǰ�г���ָ�������ı߽�ʱ�Ƿ�Ͽ�ת��
-	word-wrap:normal(��ʾ���������ı�����)|break-word����ʾ���ݽ��ڱ߽��ڻ��У�
-	normalΪ�����Ĭ��ֵ��break-word�����ڳ����ʻ� URL��ַ�ڲ����л��У������Բ����ã��������Ĭ��ֵ����
+2.word-wrap（不常用）
+	word-wrap可以用来设置文本行为，当前行超过指定容器的边界时是否断开转行
+	word-wrap:normal(表示控制连续文本换行)|break-word（表示内容将在边界内换行）
+	normal为浏览器默认值，break-word设置在长单词或 URL地址内部进行换行，此属性不常用，用浏览器默认值即可
 
-3.Ƕ������@font-face
-	@font-face�ܹ����ط������˵������ļ�����������˿�����ʾ�û�������û�а�װ������
-	�÷���	@font-face {
-    			font-family : ��������;
-    			src : �����ļ��ڷ������ϵ���Ի����·��;
+3.嵌入字体@font-face
+	@font-face能够加载服务器端的字体文件，让浏览器端可以显示用户电脑里没有安装的字体
+	用法：	@font-face {
+    			font-family : 字体名称;
+    			src : 字体文件在服务器上的相对或绝对路径;
 		}
 
-4.�ı���Ӱtext-shadow
-	text-shadow�������������ı�����ӰЧ��
+4.文本阴影text-shadow
+	text-shadow可以用来设置文本的阴影效果
 	text-shadow: X-Offset Y-Offset blur color;
-	X-Offset����ʾ��Ӱ��ˮƽƫ�ƾ��룬��ֵΪ��ֵʱ��Ӱ����ƫ�ƣ���֮����ƫ�ƣ�      
-	Y-Offset����ָ��Ӱ�Ĵ�ֱƫ�ƾ��룬�����ֵ����ֵʱ����Ӱ����ƫ�ƣ���֮����ƫ�ƣ�
-	Blur����ָ��Ӱ��ģ���̶ȣ���ֵ�����Ǹ�ֵ�����ֵԽ����ӰԽģ������֮��ӰԽ�������������Ҫ��Ӱģ�����Խ�Blurֵ����Ϊ0��
-	Color����ָ��Ӱ����ɫ�������ʹ��rgbaɫ
-	ʾ����text-shadow: 0 1px 1px #fff
+	X-Offset：表示阴影的水平偏移距离，其值为正值时阴影向右偏移，反之向左偏移；      
+	Y-Offset：是指阴影的垂直偏移距离，如果其值是正值时，阴影向下偏移，反之向上偏移；
+	Blur：是指阴影的模糊程度，其值不能是负值，如果值越大，阴影越模糊，反之阴影越清晰，如果不需要阴影模糊可以将Blur值设置为0；
+	Color：是指阴影的颜色，其可以使用rgba色
+	示例：text-shadow: 0 1px 1px #fff
 
-�ġ��뱳����ص���ʽ
+四、与背景相关的样式
 
-1.����ͼƬ��ԭʼ��ʼλ��
-	background-origin����Ԫ�ر���ͼƬ��ԭʼ��ʼλ��
-	background-origin �� border-box | padding-box | content-box;
-	�����ֱ��ʾ����ͼƬ�Ǵӱ߿򣬻����ڱ߾ࣨĬ��ֵ������������������ʼ��ʾ
-	ע�⣺�����������no-repeat�����������Ч������ӱ߿�ʼ��ʾ
+1.背景图片的原始起始位置
+	background-origin设置元素背景图片的原始起始位置
+	background-origin ： border-box | padding-box | content-box;
+	参数分别表示背景图片是从边框，还是内边距（默认值），或者是内容区域开始显示
+	注意：如果背景不是no-repeat，这个属性无效，它会从边框开始显示
 
-2.�ü�����ͼƬ
-	background-clip����������ͼƬ���ʵ��Ĳü�����Ӧʵ����Ҫ
-	background-clip �� border-box | padding-box | content-box | no-clip
-	�����ֱ��ʾ�ӱ߿򡢻�����䣬����������������ü�������no-clip��ʾ�����У��Ͳ���border-box��ʾͬ����Ч����backgroud-clipĬ��ֵΪborder-box
+2.裁剪背景图片
+	background-clip用来将背景图片做适当的裁剪以适应实际需要
+	background-clip ： border-box | padding-box | content-box | no-clip
+	参数分别表示从边框、或内填充，或者内容区域向外裁剪背景。no-clip表示不裁切，和参数border-box显示同样的效果。backgroud-clip默认值为border-box
 
-3.���ñ���ͼƬ��С��һ����cover���ԣ�
-	background-size���ñ���ͼƬ�Ĵ�С���Գ���ֵ��ٷֱ���ʾ��������ͨ��cover��contain����ͼƬ��������
-	cover������˼��Ϊ���ǣ���������ͼƬ�ȱ���������������������
-	contain�����ɣ���������ͼƬ�ȱ�������ĳһ�߽���������ԵΪֹ��
+3.设置背景图片大小（一般用cover属性）
+	background-size设置背景图片的大小，以长度值或百分比显示，还可以通过cover和contain来对图片进行伸缩
+	cover：顾名思义为覆盖，即将背景图片等比缩放以填满整个容器；
+	contain：容纳，即将背景图片等比缩放至某一边紧贴容器边缘为止。
 
-4.���ر������õ���˵��
-	����CSS2��background���������origin��clip��size��ɵ���background�Ķ�ε���
-	��дʱΪ�ö��Ÿ�����ÿ��ֵ���÷ֽ�д��ʱ������ж������ͼƬ������������ֻ��һ��������background-repeatֻ��һ�������������б���ͼƬӦ�ø�����ֵ
+4.多重背景（用到再说）
+	就是CSS2里background的属性外加origin、clip和size组成的新background的多次叠加
+	缩写时为用逗号隔开的每组值；用分解写法时，如果有多个背景图片，而其他属性只有一个（例如background-repeat只有一个），表明所有背景图片应用该属性值
 
 
-�塢CSS3ѡ�������ϣ�
+五、CSS3选择器（上）
 
-1.����ѡ����
+1.属性选择器
 	1.E[att^="val"]
-	Ч����ѡ��ƥ��Ԫ��E����EԪ�ض���������att��������ֵ��val��ͷ���κ��ַ���
+	效果：选择匹配元素E，且E元素定义了属性att，其属性值以val开头的任何字符串
 
 	2.E[att$="val"]
-	Ч����ѡ��ƥ��Ԫ��E����EԪ�ض���������att��������ֵ��val��β���κ��ַ���
+	效果：选择匹配元素E，且E元素定义了属性att，其属性值以val结尾的任何字符串
 
 	3.E[att*="val"]
-	Ч����ѡ��ƥ��Ԫ��E����EԪ�ض���������att��������ֵ����λ�ð�����"val"�����仰˵���ַ���������ֵ�е�����λ����ƥ��
+	效果：选择匹配元素E，且E元素定义了属性att，其属性值任意位置包含了"val"。换句话说，字符串与属性值中的任意位置相匹配
 
-2.�ṹ��α��ѡ������root��û���ã�
-	root�Ǹ�ѡ������������˼����ƥ��Ԫ��E�����ĵ��ĸ�Ԫ�ء���HTML�ĵ��У���Ԫ��ʼ����<html>
-	ʾ����:	root {
+2.结构性伪类选择器—root（没卵用）
+	root是根选择器，他的意思就是匹配元素E所在文档的根元素。在HTML文档中，根元素始终是<html>
+	示例：:	root {
   			background:orange;
 			}
-	:root{background:orange}��html {background:orange;}����˼һ��
+	:root{background:orange}与html {background:orange;}的意思一样
 
-3.�ṹ��α��ѡ������not
-	:notѡ������Ϊ��ѡ��������jQuery�е�:notѡ����һģһ��������ѡ���ĳ��Ԫ��֮�������Ԫ��
-	ʾ����input:not([type="submit"])
-	Ч����ѡ���submit��ť֮���inputԪ��
+3.结构性伪类选择器—not
+	:not选择器称为否定选择器，和jQuery中的:not选择器一模一样，可以选择除某个元素之外的所有元素
+	示例：input:not([type="submit"])
+	效果：选择除submit按钮之外的input元素
 
-4.�ṹ��α��ѡ������empty
-	:emptyѡ������ʾ�ľ��ǿա�����ѡ��û���κ����ݵ�Ԫ�أ�����û������ָ����һ�����ݶ�û�У�������һ���ո�
-	ʾ����p:empty
-	Ч����ѡ��û�����ݵ�pԪ��
+4.结构性伪类选择器—empty
+	:empty选择器表示的就是空。用来选择没有任何内容的元素，这里没有内容指的是一点内容都没有，哪怕是一个空格
+	示例：p:empty
+	效果：选择没有内容的p元素
 
-5.�ṹ��α��ѡ������target
-	:targetѡ������ΪĿ��ѡ����������ƥ���ĵ�(ҳ��)��url��ĳ����־����Ŀ��Ԫ��
-	ʾ����#band:target
-	Ч����ѡ����ҳ��idΪband��url����
-	ע��Ҳ����ѡ��urlָ��Ķ��󣨱��磺urlָ��һ�����֣���ô:targetѡ�������õľ��ǵ�����url�����ֵ�Ч����
+5.结构性伪类选择器—target
+	:target选择器称为目标选择器，用来匹配文档(页面)的url的某个标志符的目标元素
+	示例：#band:target
+	效果：选择网页中id为band的url对象
+	注：也就是选择url指向的对象（比如：url指向一段文字，那么:target选择器设置的就是点击这个url后文字的效果）
 
-6.�ṹ��α��ѡ������first-child
-	:first-childѡ������ʾ����ѡ��Ԫ���еĵ�һ����Ԫ�أ���ס����Ԫ�أ������Ǻ��Ԫ��
+6.结构性伪类选择器—first-child
+	:first-child选择器表示的是选择元素中的第一个子元素，记住是子元素，而不是后代元素
 	
-7.�ṹ��α��ѡ������last-child
-	:last-childѡ����ѡ�����Ԫ�ص����һ����Ԫ��
+7.结构性伪类选择器—last-child
+	:last-child选择器选择的是元素的最后一个子元素
 
-8.�ṹ��α��ѡ������nth-child(n)
-	:nth-child(n)ѡ����������λĳ����Ԫ�ص�һ�������ض�����Ԫ��
-	ע�⣺���ѡ������nΪһ������ʽʱ��n��0��ʼ
+8.结构性伪类选择器—nth-child(n)
+	:nth-child(n)选择器用来定位某个父元素的一个或多个特定的子元素
+	注意：如果选择器中n为一个表达式时，n从0开始
 
-9.�ṹ��α��ѡ������nth-last-child(n)
-	��nth-child(n)�����𣺴�ĳ��Ԫ�ص����һ����Ԫ�ؿ�ʼ���㣬��ѡ���ض���Ԫ��
+9.结构性伪类选择器—nth-last-child(n)
+	与nth-child(n)的区别：从某父元素的最后一个子元素开始计算，来选择特定的元素
 
-10.first-of-typeѡ����
-	:first-of-type��ѡ���������ڡ�:first-child��ѡ��������֮ͬ������ָ����Ԫ�ص�����,����Ҫ������λһ����Ԫ���µ�ĳ�����͵ĵ�һ����Ԫ��
-	ʾ����.wrapper > p:first-of-type
-	Ч������λdiv�����еĵ�һ��pԪ��
+10.first-of-type选择器
+	:first-of-type”选择器类似于“:first-child”选择器，不同之处就是指定了元素的类型,其主要用来定位一个父元素下的某个类型的第一个子元素
+	示例：.wrapper > p:first-of-type
+	效果：定位div容器中的第一个p元素
 
-11.nth-of-type(n)ѡ����
-	:nth-of-type(n)ѡ������:nth-child(n)ѡ�����ǳ����ƣ���ͬ������ֻ���㸸Ԫ����ָ����ĳ�����͵���Ԫ��
-	ʾ����.wrapper > p:nth-of-type(2n)
-	Ч������λdiv�����е�ż��pԪ��
+11.nth-of-type(n)选择器
+	:nth-of-type(n)选择器和:nth-child(n)选择器非常类似，不同的是它只计算父元素中指定的某种类型的子元素
+	示例：.wrapper > p:nth-of-type(2n)
+	效果：定位div容器中的偶数p元素
 
-12.last-of-typeѡ����
-	:last-of-typeѡ������:first-of-typeѡ����������һ���ģ���ͬ������ѡ���Ǹ�Ԫ���µ�ĳ�����͵����һ����Ԫ��
+12.last-of-type选择器
+	:last-of-type选择器和:first-of-type选择器功能是一样的，不同的是他选择是父元素下的某个类型的最后一个子元素
 
-13.nth-last-of-type(n)ѡ����
-	:nth-last-of-type(n)ѡ������:nth-of-type(n)ѡ������һ���ģ�ѡ��Ԫ����ָ����ĳ����Ԫ�����ͣ���������ʼ�����Ǵ����һ����Ԫ�ؿ�ʼ��
-	��������ʹ�÷����������Ͻ��н��ܵ�:nth-last-child(n)ѡ����һ��
+13.nth-last-of-type(n)选择器
+	:nth-last-of-type(n)选择器和:nth-of-type(n)选择器是一样的，选择父元素中指定的某种子元素类型，但它的起始方向是从最后一个子元素开始，
+	而且它的使用方法类似于上节中介绍的:nth-last-child(n)选择器一样
 
-14.only-childѡ����
-	:only-childѡ����ѡ����Ǹ�Ԫ����ֻ��һ����Ԫ�أ�����ֻ��Ψһ��һ����Ԫ�ء�Ҳ����˵��ƥ���Ԫ�صĸ�Ԫ���н���һ����Ԫ�أ�������һ��Ψһ����Ԫ��
-	ʾ����.post p:only-child��.post�������������div�У�����һ��������pԪ�أ���һ��ֻ��һ��pԪ�أ�
-	Ч����ѡ���ĸ�ֻ�й¶���pԪ��
+14.only-child选择器
+	:only-child选择器选择的是父元素中只有一个子元素，而且只有唯一的一个子元素。也就是说，匹配的元素的父元素中仅有一个子元素，而且是一个唯一的子元素
+	示例：.post p:only-child（.post这个类名有两个div有，其中一个有两个p元素，另一个只有一个p元素）
+	效果：选择哪个只有孤独的p元素
 
-15.only-of-typeѡ��������Ľ������ʾ����
-	:only-of-type�Ǳ�ʾһ��Ԫ�����кܶ����Ԫ�أ�������ֻ��һ�����͵���Ԫ����Ψһ�ģ�ʹ��:only-of-typeѡ�����Ϳ���ѡ�����Ԫ���е�Ψһһ��������Ԫ��
-	ע�⣺�����������Ҫ���У�Ȼ��ѡ�������ģ�����һ��div��3��p��һ��div��1��p������ѡ��¶���p����Ϊ����p�����ڶ���div��p�ǹ¶��ģ���
+15.only-of-type选择器（看慕课网的示例）
+	:only-of-type是表示一个元素他有很多个子元素，而其中只有一种类型的子元素是唯一的，使用:only-of-type选择器就可以选中这个元素中的唯一一个类型子元素
+	注意：如果——必须要都有，然后选出孤立的（比如一个div有3个p，一个div有1个p——则选择孤独的p（因为都有p，而第二个div的p是孤独的））
 
-����CSS3ѡ�������£�
+六、CSS3选择器（下）
 
-1.:enabledѡ����
-	��Web�ı����У���Щ����Ԫ���п��ã���:enabled�����Ͳ����ã���:disabled����״̬
-	��:enabledѡ��������ѡ��enabled�ı���Ԫ��
-	ʾ����input[type="text"]:enabled{}
-	Ч����ѡ��typeΪtext�Ĵ��ڿ���״̬��inputԪ��
+1.:enabled选择器
+	在Web的表单中，有些表单元素有可用（“:enabled”）和不可用（“:disabled”）状态
+	而:enabled选择器可以选择：enabled的表单元素
+	示例：input[type="text"]:enabled{}
+	效果：选择type为text的处于可用状态的input元素
 
-2.:disabledѡ����
-	����
+2.:disabled选择器
+	类似
 
-3.:checkedѡ����
-	:checked��ʾ���ǰ�ť��ѡ��״̬
-	��������
+3.:checked选择器
+	:checked表示的是按钮的选中状态
+	其他类似
 
-4.::selectionѡ����
-	���ѡ����һ�����֣��Ƕ����־���::selection״̬
-	ʾ����        ::selection{}
-	Ч�����Ա�ѡ�е����ָ�����ʽ
+4.::selection选择器
+	鼠标选择中一段文字，那段文字就是::selection状态
+	示例：        ::selection{}
+	效果：对被选中的文字更改样式
 
-5.:read-onlyѡ����
-	:read-only����ָ������ֻ��״̬Ԫ�ص���ʽ
-	ʾ����input[type="text"]:read-only{}
-	Ч����ѡ����ֻ�����Ե��ı���
+5.:read-only选择器
+	:read-only用来指定处于只读状态元素的样式
+	示例：input[type="text"]:read-only{}
+	效果：选择有只读属性的文本框
 
-6.:read-writeѡ����
-	��:read-onlyѡ�����෴
+6.:read-write选择器
+	余:read-only选择器相反
 
-7.::before��::after���ص㣩
-	::before��::after��������Ҫ������Ԫ�ص�ǰ������������ݣ�����������"content"���ʹ�ã�ʹ�õĳ������ľ������������
+7.::before和::after（重点）
+	::before和::after这两个主要用来给元素的前面或后面插入内容，这两个常和"content"配合使用，使用的场景最多的就是清除浮动。
 	
 
-�ߡ� CSS3�еı����붯�����ϣ�
+七、 CSS3中的变形与动画（上）
 
-1.����--��ת rotate()
-	��תrotate()����ͨ��ָ���ĽǶȲ���ʹԪ�����ԭ�������ת
-	����һ���Ƕ�ֵ������ָ����ת�ķ��ȡ�������ֵΪ��ֵ��Ԫ�����ԭ������˳ʱ����ת��������ֵΪ��ֵ��Ԫ�����ԭ��������ʱ����ת��
-	ʾ���� 	-webkit-transform: rotate(45deg);
+1.变形--旋转 rotate()
+	旋转rotate()函数通过指定的角度参数使元素相对原点进行旋转
+	设置一个角度值，用来指定旋转的幅度。如果这个值为正值，元素相对原点中心顺时针旋转；如果这个值为负值，元素相对原点中心逆时针旋转。
+	示例： 	-webkit-transform: rotate(45deg);
 		transform: rotate(45deg);
-	Ч����˳ʱ����ת45��
+	效果：顺时针旋转45度
 
-2.����--Ť�� skew()
-	Ť��skew()�����ܹ���Ԫ����б��ʾ��Χ����X���Y�ᰴ��һ���ĽǶ���б
-	skew()����������ת����ֻ��ı�Ԫ�ص���״
-	ʾ����	-webkit-transform: skew(45deg);
+2.变形--扭曲 skew()
+	扭曲skew()函数能够让元素倾斜显示，围绕着X轴和Y轴按照一定的角度倾斜
+	skew()函数不会旋转，而只会改变元素的形状
+	示例：	-webkit-transform: skew(45deg);
   		-moz-transform:skew(45deg) 
   		transform:skew(45deg);
-	Ч����x����ת45��
-	ע�⣺���Ҫx��y�ᶼ��ת�Ļ�д��skew(x��y)
+	效果：x轴旋转45度
+	注意：如果要x和y轴都旋转的话写成skew(x，y)
 
-3.����--���� scale()
-	���� scale()���� ��Ԫ�ظ�������ԭ��Զ����������
-	ʾ����	-webkit-transform: scale(1.5);
+3.变形--缩放 scale()
+	缩放 scale()函数 让元素根据中心原点对对象进行缩放
+	示例：	-webkit-transform: scale(1.5);
 		-moz-transform:scale(1.5)
   		transform: scale(1.5);
-	Ч�����Ŵ�1.5����ֻ��һ��ֵ��Ĭ��x��yһ����
-	ע�⣺���Ҫ��x��y���Ų�һ������scale��x��y��
+	效果：放大1.5倍（只填一个值则默认x，y一样）
+	注意：如果要求x，y缩放不一样，则scale（x，y）
 
-4.����--λ�� translate()
-	translate()�������Խ�Ԫ����ָ���ķ����ƶ���������position�е�relative��
-	ʾ����  	-webkit-transform: translate(50px,100px);
+4.变形--位移 translate()
+	translate()函数可以将元素向指定的方向移动，类似于position中的relative。
+	示例：  	-webkit-transform: translate(50px,100px);
   			-moz-transform:translate(50px,100px);
   			transform: translate(50px,100px);
-	Ч������Ԫ����Y���·��ƶ�50px,X���ҷ��ƶ�100px
+	效果：将元素向Y轴下方移动50px,X轴右方移动100px
 
-5.����--���� matrix()����̫�߶�
-	matrix() ��һ��������ֵ��(a,b,c,d,e,f)�任��������ָ��һ��2D�任���൱��ֱ��Ӧ��һ��[a b c d e f]�任����
-	�Ժ�Ҫ���ٿ�
+5.变形--矩阵 matrix()——太高端
+	matrix() 是一个含六个值的(a,b,c,d,e,f)变换矩阵，用来指定一个2D变换，相当于直接应用一个[a b c d e f]变换矩阵
+	以后要用再看
 
-6.����--ԭ�� transform-origin
-	�κ�һ��Ԫ�ض���һ�����ĵ㣬Ĭ�����֮�£������ĵ��Ǿ���Ԫ��X���Y���50%��
-	���ǿ���ͨ��transform-origin����Ԫ�ؽ���ԭ��λ�øı䣬ʹԪ��ԭ�㲻��Ԫ�ص�����λ�ã��Դﵽ��Ҫ��ԭ��λ��
-	ʾ����	-webkit-transform-origin: left top;
+6.变形--原点 transform-origin
+	任何一个元素都有一个中心点，默认情况之下，其中心点是居于元素X轴和Y轴的50%处
+	我们可以通过transform-origin来对元素进行原点位置改变，使元素原点不在元素的中心位置，以达到需要的原点位置
+	示例：	-webkit-transform-origin: left top;
  		transform-origin: left top;
 
-7.����--�������� transition-property
-	��CSS�д����򵥵Ĺ���Ч�����Դ����¼���������ʵ�֣�
-	��һ����Ĭ����ʽ������Ԫ�صĳ�ʼ״̬��ʽ��
-	�ڶ�����������Ԫ������״̬��ʽ����������״̬��
-	��������Ĭ����ʽ��ͨ�����ӹ��ɺ���������һЩ��ͬ����ʽ��
-	transition-property:ָ�����ɻ�̬ģ���CSS����
+7.动画--过渡属性 transition-property
+	在CSS中创建简单的过渡效果可以从以下几个步骤来实现：
+	第一，在默认样式中声明元素的初始状态样式；
+	第二，声明过渡元素最终状态样式，比如悬浮状态；
+	第三，在默认样式中通过添加过渡函数，添加一些不同的样式。
+	transition-property:指定过渡或动态模拟的CSS属性
 
-8.����--��������ʱ�� transition-duration
-	transition-duration������Ҫ��������һ�����Թ��ɵ���һ�����������ʱ��
-	ʾ����	-webkit-transition-duration: .5s;
+8.动画--过渡所需时间 transition-duration
+	transition-duration属性主要用来设置一个属性过渡到另一个属性所需的时间
+	示例：	-webkit-transition-duration: .5s;
   		transition-duration: .5s;
 
-9.����--���ɺ��� transition-timing-function
-	transition-timing-function����ָ���ǹ��ɵġ���������������Ҫ����ָ��������Ĺ����ٶȣ��Լ������ڼ�Ĳ�����չ���
-	������ȥw3school�Ͽ�
-	ʾ����	-webkit-transition-timing-function: ease-in-out;
+9.动画--过渡函数 transition-timing-function
+	transition-timing-function属性指的是过渡的“缓动函数”。主要用来指定浏览器的过渡速度，以及过渡期间的操作进展情况
+	函数名去w3school上看
+	示例：	-webkit-transition-timing-function: ease-in-out;
   		transition-timing-function: ease-in-out;
-	Ч�����������ȼ����ټ���
+	效果：过渡是先加速再减速
 
-10.����--�����ӳ�ʱ�� transition-delay
-	transition-delay����Ԫ������ֵ��೤ʱ�俪ʼִ��
-	��ʱ������ı��������߶��css���Ե�transitionЧ��ʱ��ֻҪ�Ѽ���transition����������һ���ö��ţ�������������
-	ʾ����a{ transition: background 0.8s ease-in 0.3,color 0.6s ease-out 0.3;}
+10.动画--过渡延迟时间 transition-delay
+	transition-delay控制元素属性值后多长时间开始执行
+	有时我们想改变两个或者多个css属性的transition效果时，只要把几个transition的声明串在一起，用逗号（“，”）隔开
+	示例：a{ transition: background 0.8s ease-in 0.3,color 0.6s ease-out 0.3;}
 
-�ˡ� CSS3�еı����붯�����£�
+八、 CSS3中的变形与动画（下）
 
-1.Keyframes���ܣ�ע�⣺Chrome �� Safari ��Ҫǰ׺ -webkit-��Foxfire ��Ҫǰ׺ -moz-��
-	Keyframes����Ϊ�ؼ�֡����������Flash�еĹؼ�֡����CSS3������Ҫ�ԡ�@keyframes����ͷ������������Ƕ������Ƽ���һ�Ի����š�{��}���������о���һЩ��ͬʱ�����ʽ����
+1.Keyframes介绍（注意：Chrome 和 Safari 需要前缀 -webkit-；Foxfire 需要前缀 -moz-）
+	Keyframes被称为关键帧，其类似于Flash中的关键帧。在CSS3中其主要以“@keyframes”开头，后面紧跟着是动画名称加上一对花括号“{⋯}”，括号中就是一些不同时间段样式规则
 	@keyframes changecolor{
   		0%{
    			background: red;
@@ -284,8 +284,8 @@
     			background: green;
   		}
 	}
-	һ���hover���
-	���ӣ�
+	一般和hover组合
+	例子：
 	@keyframes wobble {
   	0% {
     		margin-left: 100px;
@@ -314,279 +314,279 @@
   		animation: wobble 5s ease .1s;
 	}
 
-2.���ö���animation-name��ע�⣺Chrome �� Safari ��Ҫǰ׺ -webkit-��Foxfire ��Ҫǰ׺ -moz-��
-	animation-name������Ҫ���������� @keyframes ����õĶ�������Ҫ�ر�ע��: animation-name ���õĶ�������Ҫ�͡�@keyframes��
-	��ʽ��animation-name: none | IDENT[,none|DENT]*
-	1��IDENT���� @keyframes �����Ķ������������Ѿ������ˣ�animation-name ���õĶ�������Ҫ�͡�@keyframes������Ķ���������ȫһ�£�
-	2��noneΪĬ��ֵ����ֵΪ none ʱ����û���κζ���Ч��,��������ڸ����κζ���
+2.调用动画animation-name（注意：Chrome 和 Safari 需要前缀 -webkit-；Foxfire 需要前缀 -moz-）
+	animation-name属性主要是用来调用 @keyframes 定义好的动画。需要特别注意: animation-name 调用的动画名需要和“@keyframes”
+	格式：animation-name: none | IDENT[,none|DENT]*
+	1、IDENT是由 @keyframes 创建的动画名，上面已经讲过了（animation-name 调用的动画名需要和“@keyframes”定义的动画名称完全一致）
+	2、none为默认值，当值为 none 时，将没有任何动画效果,这可以用于覆盖任何动画
 
-3.���ö�������ʱ��animation-duration
-	animation-duration��Ҫ��������CSS3��������ʱ�䣬����ָ��Ԫ�ز��Ŷ�����������ʱ�䳤��Ҳ������ɴ�0%��100%һ�ζ�������ʱ��
-	��ʽ��animation-duration: <time>
+3.设置动画播放时间animation-duration
+	animation-duration主要用来设置CSS3动画播放时间，用来指定元素播放动画所持续的时间长，也就是完成从0%到100%一次动画所需时间
+	格式：animation-duration: <time>
 
-4.���ö������ŷ�ʽ�����嵽w3school�Ͽ����ԣ�
-	animation-timing-function������Ҫ�������ö������ŷ�ʽ����Ҫ��Ԫ�ظ���ʱ����ƽ����ı�����ֵ�ı任���ʣ��򵥵�˵���Ƕ����Ĳ��ŷ�ʽ
+4.设置动画播放方式（具体到w3school上看属性）
+	animation-timing-function属性主要用来设置动画播放方式，主要让元素根据时间的推进来改变属性值的变换速率，简单点说就是动画的播放方式
 
-5.���ö�����ʼ���ŵ�ʱ��animation-delay
-	animation-delay�����������嶯����ʼ���ŵ�ʱ�䣬���������������ŵ�ʱ���
+5.设置动画开始播放的时间animation-delay
+	animation-delay属性用来定义动画开始播放的时间，用来触发动画播放的时间点
 
-6.���ö������Ŵ���animation-iteration-count
-	animation-iteration-count������Ҫ�������嶯���Ĳ��Ŵ���
-	ע�⣺	1����ֵͨ��Ϊ��������Ҳ����ʹ�ô���С�������֣���Ĭ��ֵΪ1������ζ�Ŷ������ӿ�ʼ������ֻ����һ�Ρ�
-		2�����ȡֵΪinfinite�������������޴εĲ��š�
+6.设置动画播放次数animation-iteration-count
+	animation-iteration-count属性主要用来定义动画的播放次数
+	注意：	1、其值通常为整数，但也可以使用带有小数的数字，其默认值为1，这意味着动画将从开始到结束只播放一次。
+		2、如果取值为infinite，动画将会无限次的播放。
 
-7.���ö������ŷ���animation-direction
-	animation-direction������Ҫ�������ö������ŷ�������Ҫ������ֵ��normal��alternate
-	1��normal��Ĭ��ֵ���������Ϊnormalʱ��������ÿ��ѭ��������ǰ���ţ�
-	2����һ��ֵ��alternate�����������ǣ����������ڵ�ż������ǰ���ţ����������򷴷��򲥷�
+7.设置动画播放方向animation-direction
+	animation-direction属性主要用来设置动画播放方向，其主要有两个值：normal、alternate
+	1、normal是默认值，如果设置为normal时，动画的每次循环都是向前播放；
+	2、另一个值是alternate，他的作用是，动画播放在第偶数次向前播放，第奇数次向反方向播放
 
-8.���ö����Ĳ���״̬animation-play-state
-	animation-play-state������Ҫ��������Ԫ�ض����Ĳ���״̬������Ҫ������ֵ��running��paused
-	����running����Ĭ��ֵ����Ҫ���þ������������ֲ�����һ��������ͨ��paused�����ڲ��ŵĶ���ͣ������Ҳ����ͨ��running����ͣ�Ķ������²���
-	ע�⣺��������²��Ų�һ���Ǵ�Ԫ�ض����Ŀ�ʼ���ţ����Ǵ���ͣ���Ǹ�λ�ÿ�ʼ���š����������ͣ�˶����Ĳ��ţ�Ԫ�ص���ʽ���ص���ԭʼ����״̬
-	���磬ҳ�����ʱ�����������š��������£�
+8.设置动画的播放状态animation-play-state
+	animation-play-state属性主要用来控制元素动画的播放状态，其主要有两个值：running和paused
+	其中running是其默认值，主要作用就是类似于音乐播放器一样，可以通过paused将正在播放的动画停下来，也可以通过running将暂停的动画重新播放
+	注意：这里的重新播放不一定是从元素动画的开始播放，而是从暂停的那个位置开始播放。另外如果暂停了动画的播放，元素的样式将回到最原始设置状态
+	例如，页面加载时，动画不播放。代码如下：
 	animation-play-state:paused;
 
-9.���ö���ʱ�������ԣ�Ҫ�õ�ʱ��Ľ������
-	animation-fill-mode���Զ����ڶ�����ʼ֮ǰ�ͽ���֮�����Ĳ�������Ҫ�����ĸ�����ֵ��none��forwards��backwords��both
+9.设置动画时间外属性（要用的时候看慕课网）
+	animation-fill-mode属性定义在动画开始之前和结束之后发生的操作。主要具有四个属性值：none、forwards、backwords和both
 
-�š�������ʽ���
+九、布局样式相关
 
-1.���в��֡���columns
-	���в���columns���Բ�����Ҫ���������Բ������п�������
-	1.column-width  ��Ҫ�������������ÿ�еĿ���
-	2.column-count  ��Ҫ������������е�����
-	���ӣ�Ҫ��ʾ2����ÿ������Ϊ200px������Ϊ��columns: 200px 2;
+1.多列布局——columns
+	多列布局columns属性参数主要就两个属性参数：列宽和列数
+	1.column-width  主要用来定义多列中每列的宽度
+	2.column-count  主要用来定义多列中的列数
+	例子：要显示2栏，每栏宽度为200px，代码为：columns: 200px 2;
 
-2.���в��֡���column-width
-	��ʽ��column-width: auto | <length>
-	1.auto�����column-width����ֵΪauto����û����ʽ������ֵʱ��Ԫ�ض��е��п�������������������������ǰ���ʾ������������column-count������
-	2.length��ʹ�ù̶�ֵ������Ԫ���еĿ��ȣ�����Ҫ������ֵ�ͳ��ȵ�λ��ɣ�������ֵֻ������ֵ������Ϊ��ֵ
+2.多列布局——column-width
+	格式：column-width: auto | <length>
+	1.auto：如果column-width设置值为auto或者没有显式的设置值时，元素多列的列宽将由其他属性来决定，比如前面的示例就是由列数column-count来决定
+	2.length：使用固定值来设置元素列的宽度，其主要是由数值和长度单位组成，不过其值只能是正值，不能为负值
 
-3.�в��֡���column-count
-	column-count������Ҫ������Ԫ��ָ����Ҫ���������������������
-	��ʽ��column-count��auto | <integer>
-	1.auto����ֵΪcolumn-count��Ĭ��ֵ����ʾԪ��ֻ��һ�У�����Ҫ��������������Զ�����
-	2.integer����ֵΪ������ֵ����Ҫ��������Ԫ�ص�������ȡֵΪ����0����������ֵ��Ч
+3.列布局——column-count
+	column-count属性主要用来给元素指定想要的列数和允许的最大列数
+	格式：column-count：auto | <integer>
+	1.auto：此值为column-count的默认值，表示元素只有一列，其主要依靠浏览器计算自动设置
+	2.integer：此值为正整数值，主要用来定义元素的列数，取值为大于0的整数，负值无效
 
-4.�м��column-gap
-	column-gap��Ҫ��������������֮��ļ��
-	��ʽ��column-gap: normal || <length>
-	1.normal��Ĭ��ֵ��ĬֵΪ1em
-	2.length����ֵ��������������֮��ľ��룬�����ʹ��px,em��λ���κ�����ֵ���������Ǹ�ֵ
+4.列间距column-gap
+	column-gap主要用来设置列与列之间的间距
+	格式：column-gap: normal || <length>
+	1.normal：默认值，默值为1em
+	2.length：此值用来设置列与列之间的距离，其可以使用px,em单位的任何整数值，但不能是负值
 
-5.�б��߿�column-rule���������Բ�Ľ������
-	column-rule��Ҫ����������������֮��ı߿���ȡ��߿���ʽ�ͱ߿���ɫ
-	ע�⣺column-rule�����ڳ��õ�border���ԡ���column-rule�ǲ�ռ���κοռ�λ�õģ���������֮��ı�����Ȳ���ı��κ��е�λ��
-	��ʽ��column-rule:<column-rule-width>|<column-rule-style>|<column-rule-color>
-	1.column-rule-width�����������б߿�Ŀ���
-	2.column-rule-style�����������б߿���ʽ
-	3.column-rule-color�����������б߿���ɫ
+5.列表边框column-rule（具体属性查慕课网）
+	column-rule主要是用来定义列与列之间的边框宽度、边框样式和边框颜色
+	注意：column-rule类似于常用的border属性。但column-rule是不占用任何空间位置的，在列与列之间改变其宽度不会改变任何列的位置
+	格式：column-rule:<column-rule-width>|<column-rule-style>|<column-rule-color>
+	1.column-rule-width：用来定义列边框的宽度
+	2.column-rule-style：用来定义列边框样式
+	3.column-rule-color：用来定义列边框颜色
 
-6.��������column-span
-	column-span��Ҫ��������һ������Ԫ���е���Ԫ���ܿ��ж���
-	��ʽ��column-span: none | all
-	1.none����ֵΪcolumn-span��Ĭ��ֵ����ʾ����Խ�κ���
-	2.all�����ֵ��noneֵ�պ��෴����ʾ����Ԫ�ؿ�Խ�����У�����λ���еģ���֮��
-	�÷�������ʹһ��������Կ�Խ������
+6.跨列设置column-span
+	column-span主要用来定义一个分列元素中的子元素能跨列多少
+	格式：column-span: none | all
+	1.none：此值为column-span的默认值，表示不跨越任何列
+	2.all：这个值跟none值刚好相反，表示的是元素跨越所有列，并定位在列的Ｚ轴之上
+	用法举例：使一个标题可以跨越所有列
 
-7.����ģ��box-sizing
-	box-sizing���ԣ��ܹ����ȶ����ģ�͵ĳߴ������ʽ
-	��ʽ��box-sizing: content-box | border-box | inherit
-	1.box-sizing��Ĭ��ֵ������Ԫ��ά��W3C�ı�׼��ģ��
-	2.content-box�����¶���CSS2.1�к�ģ����ɵ�ģʽ����Ԫ��ά��IE��ͳ�ĺ�ģ�ͣ�Ԫ�صĿ��Ȼ�߶ȵ���Ԫ�����ݵĿ��Ȼ�߶ȣ�
-	�÷�������������Ӧ���ֵ��У���Ԫ�ػ����������ھ�padding�����ձ�׼��ģ�ͽ����������Ὣ���ֳ��ƣ���ʹ��box-sizing��border-boxֵ�����������������
+7.盒子模型box-sizing
+	box-sizing属性，能够事先定义盒模型的尺寸解析方式
+	格式：box-sizing: content-box | border-box | inherit
+	1.box-sizing：默认值，其让元素维持W3C的标准盒模型
+	2.content-box：重新定义CSS2.1中盒模型组成的模式，让元素维持IE传统的盒模型（元素的宽度或高度等于元素内容的宽度或高度）
+	用法举例：在自适应布局当中，在元素基础上添加内距padding，按照标准盒模型解析，往往会将布局撑破，但使用box-sizing的border-box值，可以让你轻松完成
 
-8.�������֣�Flexbox���֣�
-	Flexbox���֣����������ֺ�ģ�ͣ�Flexible Box���������ṩһ��������Ч�ķ�ʽ�ƶ��������ͷֲ�һ����������Ŀ���֣���ʹ���ǵĴ�С��δ֪���߶�̬�ģ�������ΪFlex��
-	Flexbox���ֳ�������ƱȽϸ��ӵ�ҳ�棬�������ɵ�ʵ����Ļ����������ڴ�С�����仯ʱ����Ԫ�ص����λ�úʹ�С���䣬ͬʱ�����������ڸ�������ʵ��Ԫ��λ�õĶ����Լ�����Ԫ�صĴ�С
-	Flexbox���ֹ�����Ҫ�������¼��㣺
-	1.��Ļ����������ڴ�С�����ı�Ҳ��������������
-	2.����ָ��������Ŀ�����������ᰴ�����������ռ䣨������������ռ䣩���Ӷ�����������Ŀ�Ĵ�С
-	3.����ָ��������Ŀ�����������Ὣ������������ռ䣬���䵽������Ŀ֮ǰ��֮���֮�䣻
-	4.����ָ����ν���ֱ��Ԫ�ز�����Ķ���ռ�ֲ�����Ԫ�ص���Χ��
-	5.���Կ���Ԫ����ҳ���ϵĲ��ַ���
-	6.���԰��ղ�ͬ���ĵ�����ģ�ͣ�DOM����ָ������ʽ����Ļ�ϵ�Ԫ����������Ҳ����˵�������������Ⱦ�в������ĵ����Ⱥ�˳������������Ŀ˳��
+8.伸缩布局（Flexbox布局）
+	Flexbox布局，即伸缩布局盒模型（Flexible Box），用来提供一个更加有效的方式制定、调整和分布一个容器里项目布局，即使它们的大小是未知或者动态的，这里简称为Flex。
+	Flexbox布局常用于设计比较复杂的页面，可以轻松的实现屏幕和浏览器窗口大小发生变化时保持元素的相对位置和大小不变，同时减少了依赖于浮动布局实现元素位置的定义以及重置元素的大小
+	Flexbox布局功能主要具有以下几点：
+	1.屏幕和浏览器窗口大小发生改变也可以灵活调整布局
+	2.可以指定伸缩项目沿着主轴或侧轴按比例分配额外空间（伸缩容器额外空间），从而调整伸缩项目的大小
+	3.可以指定伸缩项目沿着主轴或侧轴将伸缩容器额外空间，分配到伸缩项目之前、之后或之间；
+	4.可以指定如何将垂直于元素布局轴的额外空间分布到该元素的周围；
+	5.可以控制元素在页面上的布局方向；
+	6.可以按照不同于文档对象模型（DOM）所指定排序方式对屏幕上的元素重新排序。也就是说可以在浏览器渲染中不按照文档流先后顺序重排伸缩项目顺序
 
-	ʹ�÷�����
-	1.����һ��flex����
-	��Ԫ������display���Ե�ֵΪflex����Safari������У�����Ȼ��Ҫ����ǰ׺-webkit��
+	使用方法：
+	1.创建一个flex容器
+	给元素设置display属性的值为flex。在Safari浏览器中，你依然需要添加前缀-webkit，
 	.flexcontainer{ display: -webkit-flex; display: flex; }
 
-	2.Flex��Ŀ��ʾ
-	Flex��Ŀ��Flex��������Ԫ�ء�����������Ҫ��ͺ��ᶨλ��Ĭ�ϵ�������ˮƽ������һ�С������ͨ��flex-direction���ı����᷽���޸�Ϊcolumn����Ĭ��ֵ��row
+	2.Flex项目显示
+	Flex项目是Flex容器的子元素。他们沿着主要轴和横轴定位。默认的是沿着水平轴排列一行。你可以通过flex-direction来改变主轴方向修改为column，其默认值是row
 	.flexcontainer{ display: -webkit-flex; display: flex; -webkit-flex-direction: column; flex-direction: column; }
 
-	3.Flex��Ŀ�ƶ�������
-	��ν�flex��Ŀ�ƶ���������ȡ��������ķ���������Ǵ�ֱ�ķ���ͨ��align-items���ã��������ˮƽ�ķ���ͨ��justify-content���á�
+	3.Flex项目移动到顶部
+	如何将flex项目移动到顶部，取决于主轴的方向。如果它是垂直的方向通过align-items设置；如果它是水平的方向通过justify-content设置。
 	.flexcontainer{ -webkit-flex-direction: column; flex-direction: column; -webkit-justify-content: flex-start; justify-content: flex-start; }
 
-	4.Flex��Ŀ�Ƶ����
-	flex��Ŀ�ƶ�����߻��ұ�Ҳȡ��������ķ������flex-direction����Ϊrow������justify-content���Ʒ����������Ϊcolumn������align-items���Ʒ���
+	4.Flex项目移到左边
+	flex项目称动到左边或右边也取决于主轴的方向。如果flex-direction设置为row，设置justify-content控制方向；如果设置为column，设置align-items控制方向。
 	.flexcontainer{ display: -webkit-flex; display: flex; -webkit-flex-direction: row; flex-direction: row; -webkit-justify-content: flex-start; justify-content: flex-start; }
 
-	5.Flex��Ŀ�ƶ��ұ�
+	5.Flex项目移动右边
 	.flexcontainer{ display: -webkit-flex; display: flex; -webkit-flex-direction: row; flex-direction: row; -webkit-justify-content: flex-end; justify-content: flex-end; }
 
-	6.ˮƽ��ֱ����
-	��Flexbox����������ˮƽ��ֱ������΢������ġ�����justify-content����align-itemsΪcenter�������������ķ�������flex-directionΪrow��column
+	6.水平垂直居中
+	在Flexbox容器中制作水平垂直居中是微不足道的。设置justify-content或者align-items为center。另外根据主轴的方向设置flex-direction为row或column
 	.flexcontainer{ display: -webkit-flex; display: flex; -webkit-flex-direction: row; flex-direction: row; -webkit-align-items: center; align-items: center; -webkit-justify-content: center; justify-content: center; }
 
-	7.Flex��Ŀʵ���Զ�����
-	�����Զ���һ��flex��Ŀ����������flex����ʵ���Զ�����������Ҫ��ÿ��flex��Ŀ����flex����������Ҫ������ֵ
+	7.Flex项目实现自动伸缩
+	您可以定义一个flex项目，如何相对于flex容器实现自动的伸缩。需要给每个flex项目设置flex属性设置需要伸缩的值
 	.bigitem{ -webkit-flex:200; flex:200; }  .smallitem{ -webkit-flex:100; flex:100; }
 
-ʮ��Media Queries ��Responsive ���
+十、Media Queries 与Responsive 设计
 	
-1.Media Queries����ý������
-	Media Queriesģ������һ��ҳ����Ӧ��ͬ���նˣ�����Ļ�ߴ磩���Ӷ������ҳ�����û���һ�����õ�����
-	Media Queries��CSS3�����ӵ�һ��ģ�鹦�ܣ���������ɫ����ͨ��CSS3����ѯý�壬Ȼ����ö�Ӧ����ʽ
-	�ڳ��׵��˽�Media Queries������Ҫ�˽����е�������Ҫ���֣���һ����ý�����ͣ��ڶ�����ý������
-	1.ý������
-	Screen��All��PrintΪ���������ý�����ͣ�
-		1.screen����������ʾ��
-		2.all���������豸
-		3.print������ӡ��ֽ���ӡԤ����ͼ
-	ý�����͵����÷���Ҳ�ж��֣��������У�link��ǩ��@import��CSS3������@media����
-		1.link����link��������ý��������ʵ������<link>��ǩ������ʽ��ʱ��ͨ��link��ǩ�е�media������ָ����ͬ��ý������
-			����1��<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
-			����2��<link rel="stylesheet" type="text/css" href="print.css" media="print" />
-		2.@import����
-			@import����������ʽ�ļ���ͬ��Ҳ������������ý�����͡�@import����ý��������Ҫ�����ַ�ʽ��һ��������ʽ��ͨ��@import������һ����ʽ�ļ���
-			��һ�ַ�������<head></head>��ǩ�е�<style></style>�����룬������ʹ�÷�����IE6~7������֧�֣�����ʽ�ļ��е�����һ����ʽ�ļ�ʱ���Ϳ���ָ����Ӧ��ý�����͡�
-			����1��@importurl(reset.css) screen;   
-			����2��@importurl(print.css) print;
-			����3��	<head>
+1.Media Queries——媒体类型
+	Media Queries模块来让一个页面适应不同的终端（或屏幕尺寸），从而让你的页面让用户有一个更好的体验
+	Media Queries是CSS3新增加的一个模块功能，其最大的特色就是通过CSS3来查询媒体，然后调用对应的样式
+	在彻底的了解Media Queries我们需要了解其中的两个重要部分，第一个是媒体类型，第二个是媒体特性
+	1.媒体类型
+	Screen、All和Print为最常见的三种媒体类型：
+		1.screen——电脑显示器
+		2.all——所有设备
+		3.print——打印用纸或打印预览视图
+	媒体类型的引用方法也有多种，常见的有：link标签、@import和CSS3新增的@media几种
+		1.link——link方法引入媒体类型其实就是在<link>标签引用样式的时候，通过link标签中的media属性来指定不同的媒体类型
+			例子1：<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+			例子2：<link rel="stylesheet" type="text/css" href="print.css" media="print" />
+		2.@import方法
+			@import可以引用样式文件，同样也可以用来引用媒体类型。@import引入媒体类型主要有两种方式，一种是在样式中通过@import调用另一个样式文件；
+			另一种方法是在<head></head>标签中的<style></style>中引入，但这种使用方法在IE6~7都不被支持，如样式文件中调用另一个样式文件时，就可以指定对应的媒体类型。
+			例子1：@importurl(reset.css) screen;   
+			例子2：@importurl(print.css) print;
+			例子3：	<head>
 				<style type="text/css">
     					@importurl(style.css) all;
 				</style>
 				</head>
-		3.@media�������ص㣩
-			@media��CSS3����������һ�����ԣ�����Ϊý���ѯ����ҳ����Ҳ����ͨ���������������ý������
-			��1������ʽ�ļ�������ý�����ͣ����ã�	@media screen {
-   									ѡ����{/*�����ʽ����д�����*/}
+		3.@media方法（重点）
+			@media是CSS3中新引进的一个特性，被称为媒体查询。在页面中也可以通过这个属性来引入媒体类型
+			（1）在样式文件中引用媒体类型（常用）	@media screen {
+   									选择器{/*你的样式代码写在这里⋯*/}
 								}
-			��2��ʹ��@media����ý�����͵ķ�ʽ����<head>��ǩ�е�<style>������	<head>
+			（2）使用@media引入媒体类型的方式是在<head>标签中的<style>中引用	<head>
 												<style type="text/css">
 													@media screen{
-    													ѡ����{/*�����ʽ����д�����*/}
+    													选择器{/*你的样式代码写在这里⋯*/}
 												}
 												</style>
 												</head>
 	
-	2.ý������
-		����ý��������	1.������max-width
-				2.��С����min-width
-				3.�豸��Ļ���������Device Width
-				4.���ý������ʹ��and
-				5.�ų�ĳ���ƶ���ý������not
-				6.ָ��ĳ���ض���ý������only
+	2.媒体特征
+		常见媒体特征：	1.最大宽度max-width
+				2.最小宽度min-width
+				3.设备屏幕的输出宽度Device Width
+				4.多个媒体特性使用and
+				5.排除某种制定的媒体类型not
+				6.指定某种特定的媒体类型only
 
-2.Media Queriesʹ�÷���
-	Media Queries��ʹ�÷������£�@media ý������and ��ý�����ԣ�{�����ʽ}
-	����1��	@media screen and (max-width:480px){
+2.Media Queries使用方法
+	Media Queries的使用方法如下：@media 媒体类型and （媒体特性）{你的样式}
+	例子1：	@media screen and (max-width:480px){
  			.ads {
    				display:none;
   			}
 		}
 
-	����2��	@media screen and (min-width:600px) and (max-width:900px){
+	例子2：	@media screen and (min-width:600px) and (max-width:900px){
   			body {background-color:#f5f5f5;}
 			}
 
-	����3��<link rel="stylesheet" media="screen and (max-device-width:480px)" href="iphone.css" />
+	例子3：<link rel="stylesheet" media="screen and (max-device-width:480px)" href="iphone.css" />
 	
-	����4��@media not print and (max-width: 1200px){��ʽ����}
+	例子4：@media not print and (max-width: 1200px){样式代码}
 
-	����5��<linkrel="stylesheet" type="text/css" href="style.css" media="handheld and (max-width:480px), screen and (min-width:960px)" />
+	例子5：<linkrel="stylesheet" type="text/css" href="style.css" media="handheld and (max-width:480px), screen and (min-width:960px)" />
 
-3.Responsive��ƣ���Ӧʽ��ƣ�
-	��Ӧʽ���Ҫ����Ԫ�ز��ֵ����򣬶��һ���Ҫ�����������Ӧ�����Ǿ���Ҫ������������������
-		1.��վ���뽨�������������
-		2.���õ���վ��ͼƬ�����ǿ�������
-		3.��ͬ����ʾ�����Ҫ��Media Queries��д��ͬ����ʽ
+3.Responsive设计（响应式设计）
+	响应式设计要考虑元素布局的秩序，而且还需要做到“有求必应”，那就需要满足以下三个条件：
+		1.网站必须建立灵活的网格基础
+		2.引用到网站的图片必须是可伸缩的
+		3.不同的显示风格，需要在Media Queries上写不同的样式
 
-	��Ӧʽ������
-		1.��������
-			����������һ���򵥵�����ϵͳ������������Ʋο�����������е�����ϵͳ����ÿ���������ʹ�ðٷֱȵ�λ�����������С
-		2.����ͼƬ
-			����ͼƬָ���ǲ���ͼƬ���ù̶��ߴ磬���Ǹ�����������������ţ�������Ӧ��������ĳߴ硣��ʵ�ַ����ǱȽϼ򵥣�һ�������ܸ㶨�����飺
+	响应式设计术语：
+		1.流体网格
+			流体网格是一个简单的网格系统，这种网格设计参考了流体设计中的网格系统，将每个网格格子使用百分比单位来控制网格大小
+		2.弹性图片
+			弹性图片指的是不给图片设置固定尺寸，而是根据流体网格进行缩放，用于适应各种网格的尺寸。而实现方法是比较简单，一句代码就能搞定的事情：
 			img {max-width:100%;}
-		3.ý���ѯ
-			ý���ѯ���Ը����豸�ĳߴ磬��ѯ���������ʽ
-		4.��Ļ�ֱ���
-			��Ļ�ֱ���ָ�����û�ʹ�õ��豸�������Webҳ��ʱ����ʾ��Ļ�ķֱ��ʣ�Responsive�������Media Queries������������ʹ�õķֱ����������Ӧ��CSS��ʽ
-		5.��Ҫ�ϵ㡪���豸���ȵ��ٽ��
-			ý�����ԡ�min-width���͡�max-width����Ӧ������ֵ������Ӧʽ����еĶϵ�ֵ��ʹ����Ҫ�ϵ�ʹ�Ҫ�ϵ㣬����ý���ѯ����������ÿ���ϵ���Ӧ����һ����ʽ�ļ�
+		3.媒体查询
+			媒体查询可以根据设备的尺寸，查询出适配的样式
+		4.屏幕分辨率
+			屏幕分辨率指的是用户使用的设备浏览您的Web页面时的显示屏幕的分辨率，Responsive设计利用Media Queries属性针对浏览器使用的分辨率来适配对应的CSS样式
+		5.主要断点——设备宽度的临界点
+			媒体特性“min-width”和“max-width”对应的属性值就是响应式设计中的断点值。使用主要断点和次要断点，创建媒体查询的条件。而每个断点会对应调用一个样式文件
 
-4.Responsive���ּ���
-	��һ�� ���������޹ؽ�Ҫ��div
-	�ڶ�����Ҫʹ������Ԫ�أ�inline��
-	��������������JS��flash
-	���ģ�����û�õľ��Զ�λ�͸�����ʽ
-	���壬�����κ�����ṹ�Ͳ�ʹ��100%����
-	������ʹ��HTML5 Doctype�����ָ��
-	���ߣ����ú������ʽ��reset.css��
-	�ڰˣ�һ���򵥵�������ĺ��Ĳ���
-	�ھţ�����Ҫ����ҳԪ��ʹ�ü򵥵ļ��ɣ����絼���˵�֮��Ԫ��
-	Ŀ�ģ��������HTML�򵥸ɾ������������ҳ�沼���еĹؼ����֣�Ԫ�أ���Ҫ���ֵ������ִ�������ʵ�֣�����˵CSS3��Ч����JS�ű�
-	���ٲ��Եķ����������Ƚ�����ҳ�������е���ʽ���Լ�����ʽ��ص���Ϣ������������д򿪣������������������򣬷����Ķ�����ô�������ṹ��������ȥ
+4.Responsive布局技巧
+	第一， 尽量少用无关紧要的div
+	第二，不要使用内联元素（inline）
+	第三，尽量少用JS或flash
+	第四，丢弃没用的绝对定位和浮动样式
+	第五，摒弃任何冗余结构和不使用100%设置
+	第六，使用HTML5 Doctype和相关指南
+	第七，重置好你的样式（reset.css）
+	第八，一个简单的有语义的核心布局
+	第九，给重要的网页元素使用简单的技巧，比如导航菜单之类元素
+	目的：保持你的HTML简单干净，而且在你的页面布局中的关键部分（元素）不要过分的依赖现代技巧来实现，比如说CSS3特效或者JS脚本
+	快速测试的方法：你首先禁掉你页面中所有的样式（以及与样式相关的信息），在浏览器中打开，如果你的内容排列有序，方便阅读，那么你的这个结构不会差到哪里去
 
-5.Responsive��ơ���meta��ǩ
-	ʹ�÷�����<meta name=��viewport�� content=���� />
-	Ϊ����Responsive����������豸������ʾ������Ҳ�������Webҳ����Ӧ��Ļ�Ĵ�С����ʾ����Ļ�ϣ�����ͨ��������������meta��ǩ�������ã�������ʹ���豸�Ŀ���Ϊ��ͼ�Ŀ���
-	<meta name=��viewport�� content=��width=device-width,initial-scale=1.0�� />���ص㣩
+5.Responsive设计——meta标签
+	使用方法：<meta name=”viewport” content=”” />
+	为了让Responsive设计在智能设备中能显示正常，也就是浏览Web页面适应屏幕的大小，显示在屏幕上，可以通过这个可视区域的meta标签进行重置，告诉他使用设备的宽度为视图的宽度
+	<meta name=”viewport” content=”width=device-width,initial-scale=1.0” />（重点）
 
-6.Responsive��ơ�����ͬ�豸�ķֱ�������
-	1.1024px����
+6.Responsive设计——不同设备的分辨率设置
+	1.1024px显屏
 		@media screen and (max-width : 1024px) {                    
-			/* ��ʽд������ */          
+			/* 样式写在这里 */          
 		}
 
-	2.iPad�������
+	2.iPad横板显屏
 		@media screen and (max-device-width: 1024px) and (orientation: landscape) {              
-			/* ��ʽд���� */            
+			/* 样式写在这 */            
 		}
 	
-	3.iPad��������
+	3.iPad竖板显屏
 		@media screen and (max-device-width: 768px) and (orientation: portrait) {         
-			/* ��ʽд���� */            
+			/* 样式写在这 */            
 		}
 
-	4.iPhone �� Smartphones
+	4.iPhone 和 Smartphones
 		@media screen and (min-device-width: 320px) and (min-device-width: 480px) {              
-			/* ��ʽд���� */            
+			/* 样式写在这 */            
 		}   
 
-ʮһ���û�������������Ҫ����
+十一、用户界面与其它重要属性
 
-1.������������resize
-	�������û�ͨ���϶��ķ�ʽ���޸�Ԫ�صĳߴ����ı�Ԫ�صĴ�С����ĿǰΪֹ������ʹ��overflow���Ե��κ�����Ԫ��
-	��ʽ��resize: none | both | horizontal | vertical | inherit
-		1.none���û������϶�Ԫ���޸ĳߴ��С
-		2.both���û������϶�Ԫ�أ�ͬʱ�޸�Ԫ�صĿ��Ⱥ͸߶�
-		3.horizontal���û������϶�Ԫ�أ��������޸�Ԫ�صĿ��ȣ��������޸�Ԫ�صĸ߶�
-		4.vertical���û������϶�Ԫ�أ��������޸�Ԫ�صĸ߶ȣ��������޸�Ԫ�صĿ���
+1.自由缩放属性resize
+	它允许用户通过拖动的方式来修改元素的尺寸来改变元素的大小。到目前为止，可以使用overflow属性的任何容器元素
+	格式：resize: none | both | horizontal | vertical | inherit
+		1.none：用户不能拖动元素修改尺寸大小
+		2.both：用户可以拖动元素，同时修改元素的宽度和高度
+		3.horizontal：用户可以拖动元素，仅可以修改元素的宽度，但不能修改元素的高度
+		4.vertical：用户可以拖动元素，仅可以修改元素的高度，但不能修改元素的宽度
 
-2.CSS3���������ԣ���ʵ���ǲ�ռ���ֿռ��border��
-	������outline��border���ԱȽ����ƣ������������߲�ռ����ҳ���ֿռ䣬��һ���Ǿ��Σ�ͬʱ��������������һ�ֶ�̬��ʽ��ֻ��Ԫ�ػ�ȡ��������߱�����ʱ����
-	��ʽ��outline: ��outline-color�� || [outline-style] || [outline-width] || [outline-offset] || inherit����Щ���Կ��ԶԱ�������border��
-	���ӣ�outline: red solid 2px;
-	Ч����������Ϊ��ɫʵ�ߴ�2px
+2.CSS3外轮廓属性（其实就是不占布局空间的border）
+	外轮廓outline与border属性比较相似，但是外轮廓线不占用网页布局空间，不一定是矩形；同时，外轮廓是属于一种动态样式，只有元素获取到焦点或者被激活时呈现
+	格式：outline: ［outline-color］ || [outline-style] || [outline-width] || [outline-offset] || inherit（这些属性可以对比类似于border）
+	例子：outline: red solid 2px;
+	效果：外轮廓为红色实线粗2px
 
-3.CSS��������
-	ͨ��CSS3��α�ࡰ:before������:after����CSS3��αԪ�ء�::before������::after����ʵ�֣���ؼ�������CSS3�еġ�content��������ʵ�֡�����������Զ���img��inputԪ�ز�������
-	content���CSS��α�����αԪ�أ�һ������������ļ�����
-		1.none���������κ�����
-		2.attr�������ǩ����ֵ
-		3.url��ʹ��ָ���ľ��Ի���Ե�ַ����һ���ⲿ��Դ��ͼ����Ƶ����Ƶ�������֧�ֵ������κ���Դ��
-		4.string�������ַ���
-	���ӣ�	HTML���֣�	<a href="##" title="����һ��title����ֵ���Ҳ�����ĺ���">����Ԫ��</a>
-		CSS���֣�	a:after {
+3.CSS生成内容
+	通过CSS3的伪类“:before”，“:after”和CSS3的伪元素“::before”、“::after”来实现，其关键是依靠CSS3中的“content”属性来实现。不过这个属性对于img和input元素不起作用
+	content配合CSS的伪类或者伪元素，一般可以做以下四件事情
+		1.none：不生成任何内容
+		2.attr：插入标签属性值
+		3.url：使用指定的绝对或相对地址插入一个外部资源（图像，声频，视频或浏览器支持的其他任何资源）
+		4.string：插入字符串
+	例子：	HTML部分：	<a href="##" title="我是一个title属性值，我插在你的后面">我是元素</a>
+		CSS部分：	a:after {
   					content:attr(title);
        					color:#f00;
 				}
-	Ч��������Ԫ������һ��title����ֵ���Ҳ�����ĺ��棨����һ��title����ֵ���Ҳ�����ĺ����Ϊ��ɫ��
+	效果：我是元素我是一个title属性值，我插在你的后面（我是一个title属性值，我插在你的后面变为红色）
 
 4.
 	
