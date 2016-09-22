@@ -40,7 +40,7 @@
 
 4.表格（table）
 
-	1.表格行（<tr></tr>）的类：	
+	1.表格行（<tr></tr>）的类：
 	（1）.active表示当前活动的信息（背景为灰色）
 	（2）.success表示成功或者正确的行为（背景为黄色）
 	（3）.info表示中立的信息或行为（背景为淡蓝）
@@ -52,7 +52,7 @@
 	在Bootstrap中，对于基础表格是通过类名“.table”来控制。如果在<table>元素中不添加任何类名，表格是无任何样式效果的。
 	想得到基础表格，我们只需要在<table>元素上添加“.table”类名，就可以得到Bootstrap的基础表格。
 	Bootstrap表格的不同：给表格设置了margin-bottom:20px以及设置单元内距，在thead底部设置了一个2px的浅灰实线，每个单元格顶部设置了一个1px的浅灰实线（反正看起来更好看了）
-	
+
 	3.斑马线表格
 	在<table class="table">的基础上增加类名：.table-striped
 
@@ -81,24 +81,24 @@
 	在<form>元素中添加类名：.form-inline
 
 2.表单控件（框）（为了让控件在各种表单风格中样式不出错，需要添加类名.form-control）
-	
+
 	1.输入框input
 	Bootstrap框架都是通过input[type=“?”](其中?号代表type类型，比如说text类型，对应的是input[type=“text”])的形式来定义样式的
 
 	2.下拉选择框select
 	<select class="form-control"> 	//单行下拉选择框
-      		<option>1</option> 
-      		<option>2</option> 
-      		<option>3</option> 
-      		<option>4</option> 
-      		<option>5</option> 
+      		<option>1</option>
+      		<option>2</option>
+      		<option>3</option>
+      		<option>4</option>
+      		<option>5</option>
       	</select>
 	<select multiple class="form-control"> 	//多行下拉选择框（在select加上了multiple）
-        	<option>1</option> 
-        	<option>2</option> 
-        	<option>3</option> 
-        	<option>4</option> 
-        	<option>5</option> 
+        	<option>1</option>
+        	<option>2</option>
+        	<option>3</option>
+        	<option>4</option>
+        	<option>5</option>
       	</select>
 
 	3.文本域textarea
@@ -138,7 +138,7 @@
 		.help-inline一般让提示信息显示在控件的后面，也就是同一水平显示
 
 4.按钮
-	
+
 	1.基本按钮
 		通过.btn来实现 实例：<button class="btn" type="button">我是一个基本按钮</button>
 
@@ -210,7 +210,7 @@
 	      </div>
 
 3.基本用法
-	1.列组合：列组合简单理解就是更改数字来合并列（原则：列总和数不能超12），有点类似于表格的colspan属性	
+	1.列组合：列组合简单理解就是更改数字来合并列（原则：列总和数不能超12），有点类似于表格的colspan属性
 	2.列偏移：.col-md-offset-*(其中星号代表要偏移的列组合数)，列与偏移列的总数不得超过12，不然会致列断行显示
 	3.列排序：.col-md-push-*和.col-md-pull-*(其中星号代表移动的列组合数)
 		实例：<div class="container">
@@ -219,13 +219,13 @@
 				<div class="col-md-8 col-md-pull-4">.col-md-8</div>
 			</div>
 		      </div>
-	
+
 	4.列的嵌套：注意：如果在.col-md-8中嵌套一个，那么里面的列加起来列与偏移列的总数为12（因为父列被默认为100%）
 
 四.菜单、按钮及导航
 
 1.下拉菜单（要用到js）
-	
+
 	1.基本用法
 		1.使用一个名为“dropdown”的容器包裹了整个下拉菜单元素
 		2.使用了一个<button>按钮做为父菜单，并且定义类名“dropdown-toggle”和自定义“data-toggle”属性，且值必须和最外容器类名一致
@@ -241,7 +241,7 @@
     					<li role="presentation"><a role="menuitem" tabindex="-1" href="#">梨</a></li>
     					<li role="presentation"><a role="menuitem" tabindex="-1" href="#">桃</a></li>
   				</ul>
-			</div> 
+			</div>
 
 	2.下拉分割线
 		假设下拉菜单有两个组，那么组与组之间可以通过添加一个空的<li>，并且给这个<li>添加类名“divider”来实现添加下拉分隔线的功能
@@ -252,7 +252,7 @@
 	4.对齐方式
 		Bootstrap框架中下拉菜单默认是左对齐，如果你想让下拉菜单相对于父容器右对齐时，可以在.dropdown-menu上添加一个.pull-right或者.dropdown-menu-right类名
 		与此同时，还有一个类名刚好与.dropdown-menu-right相反的类名.dropdown-menu-left，其效果就是让下拉菜单与父容器左边对齐，其实就是默认效果
-	
+
 	5.菜单项状态
 		1.悬浮状态（:hover）
 		2.焦点状态（:focus）
@@ -284,7 +284,7 @@
          			<li><a href="##">客服服务</a></li>
     			</ul>
 		</div>
-		
+
 	4.垂直分组
 		把水平分组的.btn-group类名换成.btn-group-vertical
 
@@ -297,7 +297,7 @@
 
 	7.按钮的向下向上三角形（下拉菜单最右边的三角形）
 		按钮的向下三角形，我们是通过在<button>标签中添加一个<span>标签元素，并且命名为.caret
-		
+
 	8.向上弹起的下拉菜单
 		如何实现下拉菜单向上弹起，实现方法：需要在.btn-group类或.dropdown上追加.dropup
 
@@ -374,7 +374,7 @@
 					<li><a href="##">关于我们</a></li>
 				</ul>
 			</div>
-	
+
 	3.为导航条添加标题、二级菜单及状态
 		通过.navbar-header和.navbar-brand来实现导航条最前面的标题
 		二级导航条菜单就是把二级导航菜单中的nav改为navbar
@@ -413,12 +413,12 @@
 		2、导航条中的文本navbar-text
 		3、导航条中的普通链接navbar-link
 		但这三种样式在框架中使用时受到一定的限制，需要和navbar-brand、navbar-nav配合起来使用。而且对数量也有一定的限制，一般情况在使用一到两个不会有问题，超过两个就会有问题。
-		
+
 	6.固定导航条（导航条固定在浏览器顶部或底部）
 		在制作导航条最外部容器navbar上追加对应的类名：
 		.navbar-fixed-top：导航条固定在浏览器窗口顶部
 		.navbar-fixed-bottom：导航条固定在浏览器窗口底部
-	
+
 	7.响应式导航条（重点）
 		使用方法：
 		1、保证在窄屏时需要折叠的内容必须包裹在带一个div内，并且为这个div加入.collapse、.navbar-collapse两个类名。最后为这个div添加一个class类名或者id名。
@@ -436,7 +436,7 @@
       			</ul>
 		</div>
 
-		
+
 		示例：<div class="navbar navbar-default" role="navigation">
 			<div class="navbar-header">
 				<!-- .navbar-toggle样式用于toggle收缩的内容，即nav-collapse collapse样式所在元素 -->
@@ -463,7 +463,7 @@
 
 	8.反色导航条（比较好看）
 		将.navbar-deafult类名换成.navbar-inverse类名
-	
+
 	9.带页码的分页导航
 		在ul标签上加入.pagination
 			在此基础上：1、通过“pagination-lg”让分页导航变大；
@@ -484,18 +484,18 @@
 		示例：	<ul class="pager">
 				<li><a href="#">&laquo;上一页</a></li>
 				<li><a href="#">下一页&raquo;</a></li>
-			</ul> 
+			</ul>
 		previous：让“上一步”按钮居左
 		next：让“下一步”按钮居右
 		示例：	<ul class="pager">
 				<li class="previous"><a href="#">&laquo;上一页</a></li>
 				<li class="next"><a href="#">下一页&raquo;</a></li>
-			</ul> 
+			</ul>
 		如果在li标签上添加了disabled类名的时候，分页按钮处于禁用状态，但同样不能禁止其点击功能。你可以通过js来处理，或将a标签换成span标签
 		示例：	<ul class="pager">
 				<li class="disabled"><span>&laquo;上一页</span></li>
 				<li><a href="#">下一页&raquo;</a></li>
-			</ul>  
+			</ul>
 
 2.标签
 	用来告诉用户一些额外的信息，比如说在导航上添加了一个新导航项，可能就会加一个“new”标签，来告诉用户
@@ -575,12 +575,12 @@
 				<button class="close" type="button" data-dismiss="alert">&times;</button>		//注意：&times;是×
 				恭喜您操作成功！
 			</div>
-		
+
 	3.警示框的链接
 		给警示框加的链接添加一个名为.alert-link的类名
 		示例：	<div class="alert alert-success" role="alert">
-				<strong>Well done!</strong> 
-				You successfully read 
+				<strong>Well done!</strong>
+				You successfully read
 				<a href="#" class="alert-link">this important alert message</a>
 			</div>
 
@@ -599,7 +599,7 @@
 		示例：	<div class="progress">
 				<div class="progress-bar progress-bar-success" style="width:40%"></div>
 			</div>
-	
+
 	3.条纹进度条
 		在进度条的容器.progress基础上增加类名.progress-striped
 		示例：	<div class="progress progress-striped">
@@ -619,7 +619,7 @@
 				<div class="progress-bar progress-bar-info progress-bar-striped" style="width:20%"></div>
 				<div class="progress-bar progress-bar-warning" style="width:30%"></div>
 				<div class="progress-bar progress-bar-danger progress-bar-striped" style="width:15%"></div>
-			</div> 
+			</div>
 
 	6.带Label的进度条（进度条上有数字）
 		只需要在进度条中添加你需要的值
@@ -647,7 +647,7 @@
 
 	2.媒体对象的嵌套
 		将另一个媒体对象结构放置在媒体对象的主体内.media-body（和.media-heading平级）
-		
+
 	3.媒体对象列表
 		在写结构的时候可以使用ul，并且在ul上添加类名.media-list，而在li上使用.media
 
@@ -663,7 +663,7 @@
 				<li class="list-group-item">CSS3背景</li>
 				<li class="list-group-item">CSS3文本</li>
 			</ul>
-	
+
 	2.带徽章的列表组
 		带徽章的列表组其实就是将Bootstrap框架中的徽章组件和基础列表组结合在一起的一个效果
 		在.list-group-item中添加徽章组件.badge
@@ -738,4 +738,3 @@
             				<li class="list-group-item">我是列表项</li>
             				<li class="list-group-item">我是列表项</li>
         			</ul>
-
