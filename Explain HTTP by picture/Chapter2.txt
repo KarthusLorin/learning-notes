@@ -14,7 +14,9 @@ Host:hackr.jp
 最后的HTTP/1.1，即HTTP的版本号，用来提示客户端使用的HTTP协议功能。
 综合来说，这段请求内容的意思是：请求访问某台HTTP服务器上的/index.html页面资源。
 请求报文是由请求方法、请求URL、协议版本、可选的请求首部报文段和内容实体构成的。
-例如：POST（方法） /form/entry（URI） HTTP/1.1（协议版本）
+
+例如：
+POST（方法） /form/entry（URI） HTTP/1.1（协议版本）
 HOST：hackr.jp
 Connection: keep-alive
 Content-Type: application/x-www-form-urlencoded
@@ -22,3 +24,28 @@ Content-Length: 16
 （请求首部字段）
 name=ueno&age=37
 （内容实体）
+
+接收到请求的服务器，会将请求内容的处理结果以响应的形式返回。
+例如：
+HTTP/1.1 200 OK
+Data: Tue,10 Jul 2012 06:50:15 GMT
+Content-Length: 362
+Content-Type: text/html
+
+<html>
+......
+
+HTTP/1.1表示服务器对应的HTTP版本
+200 OK表示请求的处理结果的状态码（status code）和原因短语（reason-phrase）。
+下一行显示了创建响应的日期时间，是首部字段（header field）内的一个属性。
+接着以一空行分隔，之后的内容称为资源实体的主题（entity body）。
+响应报文基本上由协议版本，状态码（表示请求成功或失败的数字代码）、用以解释状态码的原因短语、可选的响应首部字段以及实体构成。
+
+HTTP是不保存状态的协议
+HTTP是一种不保存状态，即无状态（stateless）协议。HTTP协议自身不对请求和响应之间的通信状态进行保存。
+也就是说在HTTP这个级别，协议对于发送过的请求或响应都不做持久化处理。
+使用HTTP协议，每当有新的请求发送时，就会有对应的新响应产生，协议本身并不保留之前一切的请求或响应报文的信息。
+这是为了更快的处理大量事物，确保协议的可伸缩性。
+但是，有时需要保存用户状态，于是引入了Cookie技术。有了Cookie再用HTTP协议通信，皆可以管理状态了
+
+请求URI定位资源
