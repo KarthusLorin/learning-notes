@@ -49,3 +49,12 @@ HTTP是一种不保存状态，即无状态（stateless）协议。HTTP协议自
 但是，有时需要保存用户状态，于是引入了Cookie技术。有了Cookie再用HTTP协议通信，皆可以管理状态了
 
 请求URI定位资源
+当客户端请求访问资源而发送请求时，URI需要将作为请求报文中的请求URI包含在内。
+URI为完整的请求URI:
+GET http://hackr.jp/index.html HTTP/1.1
+在首部字段Host中写明网络域名或IP地址:
+GET /index.html HTTP/1.1
+Host: hackr.jp
+除此以外，如果不是访问特定资源而是对服务器本身发起请求，可以用一个*来代替请求URI。
+下面这个例子就是查询HTTP服务器端支持的HTTP方法种类：
+OPTIONS * HTTP/1.1
