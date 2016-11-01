@@ -59,4 +59,26 @@ Host: hackr.jp
 下面这个例子就是查询HTTP服务器端支持的HTTP方法种类：
 OPTIONS * HTTP/1.1
 
+
 告知服务器意图的HTTP方法
+
+1.GET：获取资源
+GET方法用来请求访问已被URI识别的资源。指定的资源经服务器端解析后返回响应内容。
+例1：
+请求：GET /index.html HTTP/1.1
+     Host:www.hackr.jp
+响应：返回index.html的页面资源
+例2：
+请求：GET /index.html HTTP/1.1
+     Host:www.hackr.jp
+     If-Modified-Since:Thu,12 Jul 2012 07:30:00 GMT
+响应：仅返回2012年7月12日7点30分以后更新过的index.html页面资源。如果未有内容更新，则以状态码304 Not Modified作为响应返回。
+
+2.POST：传输实体主体
+POST方法用来传输实体的主体
+虽然用GET也可以传输实体的主体，但一般不用GET方法进行传输，而是用POST方法。常用来把信息传输给服务器。
+例：
+请求：POST /submit.cgi HTTP/1.1
+     Host:www.hackr.jp
+     Content-Length:1560 （1560字节的数据）
+响应：返回submit.cgi接受数据的处理结果
