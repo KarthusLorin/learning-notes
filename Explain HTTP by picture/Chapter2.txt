@@ -82,3 +82,14 @@ POST方法用来传输实体的主体
      Host:www.hackr.jp
      Content-Length:1560 （1560字节的数据）
 响应：返回submit.cgi接受数据的处理结果
+
+3.PUT：传输文件
+PUT方法用来传输文件。就像FTP协议的文件上传一样，要求在请求报文的主题包含文件内容，然后保存到请求URI指定的位置。
+但是，由于HTTP/1.1的PUT方法自身不带验证机制，任何人都可以上传文件，存在安全性问题，因此一般的WEB网站不适用该方法。
+若配合WEB应用程序的验证机制，或架构设计采用REST（REpresentational Stata Transfer，表征状态转移）标准的同类WEB网站，就可能会开放使用PUT方法。
+例：
+请求：PUT /example.html HTTP/1.1
+     Host:www.hackr.jp
+     Content-Type:text/html
+     Content-Length:1560 （1560字节的数据）
+响应：响应返回状态码204 No Content (比如：该html已存在于服务器上)
