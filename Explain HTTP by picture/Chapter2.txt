@@ -93,3 +93,10 @@ PUT方法用来传输文件。就像FTP协议的文件上传一样，要求在�
      Content-Type:text/html
      Content-Length:1560 （1560字节的数据）
 响应：响应返回状态码204 No Content (比如：该html已存在于服务器上)
+
+4.HEAD：获得报文首部
+HEAD方法和GET方法一样，只是不返回报文主体部分。用于确认URI的有效性及资源更新的日期时间等。
+例：
+请求：HEAD /index.html HTTP/1.1
+     Host:www.hackr.jp
+响应：返回index.html有关的响应首部
