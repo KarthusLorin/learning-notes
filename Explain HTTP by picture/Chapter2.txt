@@ -100,3 +100,11 @@ HEAD方法和GET方法一样，只是不返回报文主体部分。用于确认U
 请求：HEAD /index.html HTTP/1.1
      Host:www.hackr.jp
 响应：返回index.html有关的响应首部
+
+5.DELETE：删除文件
+DELETE方法用来删除文件，是与PUT相反的方法。DELETE方法按请求URI删除指定的资源。
+但是，HTTP/1.1的DELETE方法本身和PUT方法一样不带验证机制，所以一般的Web网站也不适用DELETE方法。当配合Web应用程序的验证机制，或遵守REST标准时还是有可能会开放使用的。
+例：
+请求：DELETE /example.html HTTP/1.1
+     Host:www.hackr.jp
+响应：响应返回状态码204 No Content（比如：该html已从该服务器上删除）
