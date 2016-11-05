@@ -108,3 +108,54 @@ DELETE方法用来删除文件，是与PUT相反的方法。DELETE方法按请�
 请求：DELETE /example.html HTTP/1.1
      Host:www.hackr.jp
 响应：响应返回状态码204 No Content（比如：该html已从该服务器上删除）
+
+6.OPTIONS：询问支持的方法
+OPTION方法用来查询针对请求URI指定的资源支持的方法。
+例：
+请求：OPTIOINS * HTTP/1.1
+     Host:www.hackr.jp
+响应：HTTP/1.1 200 OK
+     Allow:GET,POST,HEAD,OPTIONS（返回服务器支持的方法）
+
+7.TRACE：追踪路径
+TRACE方法是让Web服务器端将之前的请求通信环回给客户端的方法。
+客户端通过TRACE方法可以查询发送出去的请求是怎样被加工修改/篡改的。这是因为，请求想要连接到源服务器可能会通过代理中转，TRACE方法就是用来确认连接过程中发生的一系列操作。
+但是，TRACE方法本来就不怎么常用，再加上它容易引发XST（）Cross-Site Tracing，跨站追踪）攻击，通常就更不会用到了。
+例：
+请求：TRACE / HTTP/1.1
+     Host:hackr.jp
+     Max-Forwards:2
+响应：HTTP/1.1 200 OK
+     Content-Type:message/http
+     Content-Length:1024
+
+     TRACE / HTTP/1.1
+     Host:hackr.jp
+     Max-forwards:2（返回响应包含请求内容）
+
+8.CONNECT：要求用隧道协议连接代理
+CONNECT方法要求在与代理服务器通信时建立隧道，实现用隧道协议进行TCP通信。
+主要使用SSL（Secure Sockets Layer，安全套接层）和TLS（Transport Layer Security，传输层安全）协议把通信内容加密后经网络隧道传输。
+格式如下：
+CONNECT 代理服务器名 : 端口号 HTTP版本
+例：
+请求：CONNECT proxy.hackr.jp:8080 HTTP/1.1\
+     Host:proxy.hackr.jp
+响应：HTTP/1.1 200 OK（之后进入网络隧道）
+
+使用方法下达命令
+向请求URI指定的资源发送请求报文时，采用称为方法的命令。
+方法的作用在于，可以指定请求的资源按期望产生某种行为。方法中有GET、POST和HEAD等。
+方法                      说明                     支持的HTTP协议版本
+GET                      获取资源                  1.0、1.1
+POST                     传输实体主体               1.0、1.1
+PUT                      传输文件                  1.0、1.1
+HEAD                     获得报文首部               1.0、1.1
+DELETE                   删除文件                  1.0、1.1
+OPTIONS                  询问支持的方法             1.1
+TRACE                    追踪路径                  1.1
+CONNECT                  要求用隧道协议连接代理       1.1
+LINK                     建立和资源之间的联系        1.1
+UNLINK                   断开连接关系               1.1
+
+持久连接节省通信量
