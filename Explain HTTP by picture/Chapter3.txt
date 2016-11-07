@@ -1,3 +1,1 @@
 Chapter3：HTTP报文内的HTTP信息
-
-HTTP报文
