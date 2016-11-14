@@ -20,3 +20,4 @@ Content-Type: text/html
 Keep-Alive: timeout=15, max=100
 若HTTP首部字段重复了会如何？
 有些浏览器会优先处理第一次出现的首部字段，而有些则会优先处理最后出现的首部字段。
+
