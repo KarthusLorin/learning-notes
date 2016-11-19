@@ -50,3 +50,20 @@ HTTP/1.1中定义了7种警告：
 214                   Transformation applied（使用了转换）     代理对内容编码或媒体类型等执行了某些处理时
 299                   Miscellaneous persistent warning（持久杂项警告）  任意的警告内容
 
+请求首部字段
+请求首部字段是从客户端往服务器端发送请求报文中所使用的字段，用于补充请求的附加信息、客户端信息、对响应内容相关的优先级等内容。
+一：Accept（重点）
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept首部字段可通知服务器，用户代理能够处理的媒体类型及媒体类型的相对优先级，可使用type/subtype这种形式，一次指定多种媒体类型。
+下面列举几个媒体类型的例子：
+1.文本文件
+text/html,text/plain,text/css,application/xhtml+xml,application/xml
+2.图片文件
+image/jpeg,image/gif,image/png
+3.视频文件
+video/mpeg,video/quicktime
+4.应用程序使用的二进制文件
+application/octet-stream,application/zip
+比如，如果浏览器不支持PNG图片的显示，那么Accept就不指定image/png,而指定可处理的image/gif和image/jepg等图片类型。
+
+
