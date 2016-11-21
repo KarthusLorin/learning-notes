@@ -65,5 +65,27 @@ video/mpeg,video/quicktime
 4.应用程序使用的二进制文件
 application/octet-stream,application/zip
 比如，如果浏览器不支持PNG图片的显示，那么Accept就不指定image/png,而指定可处理的image/gif和image/jepg等图片类型。
+若想给显示的媒体类型增加优先级，则使用q=来额外表示权重值，用分号进行分隔。权重值q的范围是0~1，且1为最大值，不指定去值时，默认权重为q=1.0
+当服务器提供多种内容时，将会首先返回权重值最高的媒体类型。
+二：Accept-Charset
+Accept-Charset: iso-8859-5, unicode-1-1; q=0.8
+Accept-Charset首部字段可用来通知服务器用户dialing支持的字符集以及字符集的相对优先顺序，另外，可一次性指定多种字符集。
+与Accept相同的是可用权重q值来表示相对优先级。
+该首部字段应用于内容协商机制的服务器驱动协商。
+三：Accept-Encoding
+Accept-Encoding: gzip, deflate
+Accept-Encoding首部字段用来告知服务器用户代理支持的内容编码及内容编码的优先级顺序，可一次性指定多种内容编码。
+四：Accept-Language
+Accept-Language: zh-cn,zh;q=0.7,en-us,en;q=0.3;
+首部字段Accept-Language用来告知服务器用户代理能够处理的自然语言集（指中文或英文等），以及自然语言集的相对优先级。可一次指定多种自然语言集。
+权重表示方法依然是用q值。
+五：Authorization
+首部字段Authorization是用来告知服务器，用户代理的认证信息（证书值）。
+通常，想要通过服务器认证的用户代理会在接收到返回的401状态码后，把首部字段Authorization加入请求中，
+六：Expect
+Expect: 100-continue
+客户端使用首部字段Expect来告知服务器，期望出现的某种特定行为。
+因服务器无法理解客户端的期望作出回应并发送错误时，会返回状态码417 Expectation failed 。
+客户端可以利用该首部字段，写明所期望出现的扩展。
 
 
