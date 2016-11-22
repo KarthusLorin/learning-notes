@@ -1,8 +1,8 @@
 Chapter6：HTTP首部
 
-6.3~
+6.3~6.5
 
-HTTP/1.1通用首部字段
+6.3——HTTP/1.1通用首部字段
 通用首部字段是指，请求报文和响应报文双方都会使用的首部
 一：Cache-Control
 通过指定首部字段Cache-Control的指令，就能操作缓存的工作机制。
@@ -50,7 +50,7 @@ HTTP/1.1中定义了7种警告：
 214                   Transformation applied（使用了转换）     代理对内容编码或媒体类型等执行了某些处理时
 299                   Miscellaneous persistent warning（持久杂项警告）  任意的警告内容
 
-请求首部字段
+6.4——请求首部字段
 请求首部字段是从客户端往服务器端发送请求报文中所使用的字段，用于补充请求的附加信息、客户端信息、对响应内容相关的优先级等内容。
 一：Accept（重点）
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
@@ -105,7 +105,13 @@ If-Match: "123456"
 服务器会比对If-Match的字段值和资源的ETag值，仅当两者一致时，才会执行请求。反之，则返回状态码412 Precondition Failed 的响应。
 还可以使用星号（*）指定If-Match的字段值，针对这种情况，服务器会忽略ETag的值，只要资源存在就处理请求。
 十：If-Modified-Since
-If-Modified-Since: 
+If-Modified-Since: Thu, 15 Apr 2004 00:00:00 GMT
+首部字段If-Modified-Since,属附带条件之一，它会告知服务器若If-Modified-Since字段值早于资源的更新时间，则希望能处理该请求。
+而在指定字段值的日期之后，如果请求的资源都没有过更新，则返回状态码304 Not Modified的响应。
+获取资源的更新时间，可通过确认首部字段Last-Modified来queding。
+十一：If-None-Match
+首部字段If-None-Match属于附带条件之一。它和首部字段If-Match作用相反。用于指定If-None-Match字段值的实体标记（ETag）值与请求资源的ETag不一致时，则处理。
+
 
 
 
