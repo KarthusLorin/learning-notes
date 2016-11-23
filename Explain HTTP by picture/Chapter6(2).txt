@@ -111,7 +111,35 @@ If-Modified-Since: Thu, 15 Apr 2004 00:00:00 GMT
 获取资源的更新时间，可通过确认首部字段Last-Modified来queding。
 十一：If-None-Match
 首部字段If-None-Match属于附带条件之一。它和首部字段If-Match作用相反。用于指定If-None-Match字段值的实体标记（ETag）值与请求资源的ETag不一致时，则处理。
+十二：If-Range
+首部字段If-Range属于附带条件之一，它告知服务器若指定的If-Range字段值（ETag值或时间）和请求资源的ETag值或时间相一致时，则作为范围请求处理。反之，则返回全体资源。
+十三：If-Unmodified-Since
+If-Unmodified-Since: Thu, 03 Jul 2012 00:00:00 GMT
+首部字段If-Unmodified-Since和首部字段If-Modified-Since的作用相反。
+十四：Max-Forwards
+Max-Forwards: 10
+通过TRACE方法或OPTIONS方法，发送包含首部字段Max-Forwards的请求时，该字段以十进制整数形式指定可经过的服务器最大数目。
+服务器在往下一个服务器转发请求之前，会将Max-Forwards的值减一后重新赋值。
+当服务器接收到Max-Forwards值为0的请求时，则不再进行转发，而是直接返回响应。
+十五：Proxy-Authorization
+Proxy-Authorization: Basic dGlwOjkpNLAGfFYS
+接收到从代理服务器发来的认证质询时，客户端会发送包含首部字段Proxy-Authorization的请求，以告知服务器认证所需要的信息。
+十六：Range
+Range: bytes=5001-10000
+对于只需获取部分的范围请求，包含首部字段Range即可告知服务器资源的指定范围。
+示例表示请求获取从第5001字节至第10000字节的资源。
+成功则返回206 Partial Content的响应，失败则返回200 OK以及全部资源。
+十七：Referer
+Referer: http://www.hackr.jp/index.html
+首部字段Referer会告知服务器请求的原始资源的URI。
+十八：TE
+TE: gzip, deflate;q=0.5
+首部字段TE会告知服务器客户端能够处理响应的传输编码方式及相对优先级。
+首部字段TE除指定传输编码之外，还可以指定伴随trialer字段的分块传输编码的方式。应用后者时，只需把trailers赋值给该字段值。
+TE: trailers
+十九：User-Agent
+User-Agent: Mozilla/5.0 (Windows NT 6.1;WOW64; rv:13.0) Gecko/=>20100101 Firefox/13.0.1
+首部字段User-Agent会将创建请求的浏览器和用户代理名称等信息传达给服务器。
+如果经过代理，那么中间也有可能被添加上代理服务器的名称。
 
-
-
-
+6.5——响应首部字段
