@@ -1,0 +1,52 @@
+Chapter1——数据类型
+
+JavaScript六种数据类型
+1.number
+2.string
+3.boolean
+4.null
+5.undefined
+前五种是原始类型
+6.object——对象类型
+Function，Array，Date等这些也是object对象类型
+总的来说：
+原始类型{number,string(字符串),boolean（布尔值）,null,undefined}
+对象类型{object（function(函数)，array(数组)，date(日期)）}
+
+JavaScript隐式转换
+例子：
+var x = 'The answer is ' + 42   //'The answer is 42'
+"37" - 7                        //30    减号理解为减法运算
+"37" + 7                        //377   加号理解为字符串拼接
+所以，可以巧用+/-规则转换类型
+string - 0                      //变为number
+number + ''                     //变为string
+
+一：关于"==="
+当执行严格等于——"==="时，顺序如下：
+类型不同，返回false
+类型相同：执行"=="
+常见问题：
+null === null                   //true
+undefined === undefined         //true
+NaN === NaN                     //false 注意，两个NaN都是不相等的——NaN != NaN
+new Object === new Object       //false JS中对象比较的是对象的引用，虽然有可能对象值完全相等，但是，它们引用的不是一个对象，所以不严格相等
+
+二：关于"=="
+类型相同，同"==="
+类型不同，尝试类型转换和比较
+null == undefinde               //true
+number == string                //string转number
+例子：1 == "1.0"                 //true
+boolean == ?                    //boolean转化为number，true为1，false为0
+例子：1 == true                  //true
+object == number | string       //对象转为基本类型
+例子：new String('hi') == 'hi'   //true
+其他情况为false
+常见问题：
+"1.23" == 1.23                  //true
+0 == false                      //true
+null == undefined               //true
+new Object() == new Object()    //true
+[1,2] == [1,2]                  //true
+
