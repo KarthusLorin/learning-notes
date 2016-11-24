@@ -1,4 +1,19 @@
 Chapter6：HTTP首部
 
+6.6~6.7
+
 6.6——实体首部字段
 实体首部字段是包含在请求报文和响应报文中的实体部分所使用的首部，用于补充内容的更新时间等与实体相关的信息。
+一：Allow
+Allow: GET, HEAD
+首部字段Allow用于通知客户端客户端能够支持Request-URI指定资源的所有HTTP方法。
+当服务器接收到不支持的HTTP方法时，会以状态码405 Not Allowed作为响应返回。与此同时，还会把所有能支持的HTTP方法写入首部字段Allow后返回。
+二：Content-Encoding
+Content-Encoding: gzip
+首部字段Content-Encoding会告知客户端服务器对实体的主体部分选用的内容编码方式。
+内容编码是指在不丢失实体信息的前提下所进行的压缩。
+主要采用以下4种内容编码方式：
+1.gzip
+2.compress
+3.deflate
+4.identity
