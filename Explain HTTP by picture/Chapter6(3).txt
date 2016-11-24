@@ -17,3 +17,28 @@ Content-Encoding: gzip
 2.compress
 3.deflate
 4.identity
+三：Content-Language
+Content-Language: zh-CN
+首部字段Content-Language会告知客户端，实体主体使用的自然语言
+四：Content-Length
+Content-Length: 15000
+首部字段Content-Length表明实体主体部分大小（单位是字节）。
+对实体主体进行内容编码传输时，不能再使用Content-Length首部字段。
+五：Content-Location
+Content-Location: http://www.hackr.jp/index-ja.html
+首部字段Content-Location给出与报文主体部分相对应的URI，表示的是报文主体返回资源对应的URI。
+当返回的页面内容与实际请求的对象不同时，首部字段Content-Location内会写明URI。
+六：Content-MD5
+Content-MD5: OGFKZDUwNGVhNGY3N2MxMDIwZmQ4NTBmY2IyTY==
+首部字段Content-MD5是一串由MD5算法生成的值，其目的在于检查报文主体在传输过程中是否保持完整，以及确认传输到达。
+七：Content-Range
+Content-Range: bytes 5001-10000/10000
+针对范围请求，返回响应时使用的首部字段Content-Range，能告知客户端作为响应返回的实体的哪个部分符合范围请求。字段值以字节为单位，表示当前发送部分及整个实体大小。
+八：Content-Type
+Content-Type: text/html; charset=UTF-8
+首部字段Content-Type说明了实体主体内对象的媒体类型。
+九：Expires
+Expires: Wed, 04 Jul 2012 08:26:05 GMT
+首部字段Expires会将资源失效的日期告知客户端。缓存服务器在接收到含有首部字段Expires的响应后，会以缓存来应答请求。
+在Expires字段值指定的时间之前，响应的副本会一直被保存。
+当超过指定的时间后，缓存服务器在请求发送过来时，会转向源服务器请求资源。
