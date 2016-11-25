@@ -42,3 +42,28 @@ Expires: Wed, 04 Jul 2012 08:26:05 GMT
 首部字段Expires会将资源失效的日期告知客户端。缓存服务器在接收到含有首部字段Expires的响应后，会以缓存来应答请求。
 在Expires字段值指定的时间之前，响应的副本会一直被保存。
 当超过指定的时间后，缓存服务器在请求发送过来时，会转向源服务器请求资源。
+源服务器不希望缓存服务器对资源缓存时，最好在Expires字段内写入与首部字段Date相同的时间值。
+但是，当首部字段Cache-Control有指定max-age指令时，比起首部字段Expires，会优先处理max-age指令。
+十：Last-Modified
+Last-Modified: Wed, 23 May 2012 09:59:55 GMT
+首部字段Last-Modified指明资源最终修改的时间，一般来说，这个值就是Request-URI指定资源被修改的时间。
+
+6.7——为Cookie服务的首部字段
+Cookie的工作机制是用户识别及状态管理。
+Web网站为了管理用户的状态会通过Web浏览器，把一些数据临时写入用户的计算机内。
+接着，当用户访问该网站时，可通过通信方式取回之前存放的Cookie。
+调用Cookie时，由于可检验Cookie的有效期，以及发送方的域、路径、协议等信息，所以正规发布的Cookie内的数据不会因来自其他Web站点和攻击者的攻击而泄露。
+一：Set-Cookie
+Set-Cookie: statue=enable; expires=Tue, 05 Jul 2011 07:26:31 GMT; =>path=/; domain=.hackr.jp
+Set-Cookie字段的属性
+属性                      说明
+NAME=VALUE               赋予Cookie的名称和其值（必须项）
+expires=DATE             Cookie的有效期（若不明确指定则默认为浏览器关闭前为止）
+path=PATH                将服务器上的文件目录作为Cookie的适用对象（若不指定则默认为文档所在的文件目录）
+domain=域名               作为Cookie适用对象的域名（若不指定则默认为创建Cookie的服务器的域名）
+Secure                   仅在HTTPS安全通信时才会发送Cookie
+HttpOnly                 加以限制，使Cookie不能被JS脚本访问
+二：Cookie
+Cookie: status=enable
+首部字段Cookie会告知服务器，当客户端想获得HTTP状态管理支持时，就会在请求中包含从服务器接收到的Cookie。
+接收到多个Cookie时，同样可以以多个Cookie形式发送。
