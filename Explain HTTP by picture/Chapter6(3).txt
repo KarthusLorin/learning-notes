@@ -1,6 +1,6 @@
 Chapter6：HTTP首部
 
-6.6~6.7
+6.6~6.8
 
 6.6——实体首部字段
 实体首部字段是包含在请求报文和响应报文中的实体部分所使用的首部，用于补充内容的更新时间等与实体相关的信息。
@@ -54,7 +54,8 @@ Web网站为了管理用户的状态会通过Web浏览器，把一些数据临�
 接着，当用户访问该网站时，可通过通信方式取回之前存放的Cookie。
 调用Cookie时，由于可检验Cookie的有效期，以及发送方的域、路径、协议等信息，所以正规发布的Cookie内的数据不会因来自其他Web站点和攻击者的攻击而泄露。
 一：Set-Cookie
-Set-Cookie: statue=enable; expires=Tue, 05 Jul 2011 07:26:31 GMT; =>path=/; domain=.hackr.jp
+Set-Cookie: statue=enable; expires=Tue, 05 Jul 2011 07:26:31 GMT; =>
+path=/; domain=.hackr.jp
 Set-Cookie字段的属性
 属性                      说明
 NAME=VALUE               赋予Cookie的名称和其值（必须项）
@@ -67,3 +68,30 @@ HttpOnly                 加以限制，使Cookie不能被JS脚本访问
 Cookie: status=enable
 首部字段Cookie会告知服务器，当客户端想获得HTTP状态管理支持时，就会在请求中包含从服务器接收到的Cookie。
 接收到多个Cookie时，同样可以以多个Cookie形式发送。
+
+6.8——其他首部字段
+HTTP首部字段是可以自行扩展的，所以，在Web服务器和浏览器的应用上，会出现各种非标准的首部字段。
+一：X-Frame-Options
+X-Frame-Options: DENY
+首部字段X-Frame-Options属于HTTP响应首部，用于控制网站内容在其他Web网站的Frame标签内的显示问题，其主要目的是为了防止点击劫持（clickjacking）攻击。
+首部字段X-Frame-Options有以下两个可指定的字段值：
+1.DENY：拒绝
+2.SAMEORIGIN：仅同源域名下的页面（Top-level-browsing-context）匹配时许可。
+二：X-XSS-Protection
+X-XSS-Protection: 1
+首部字段X-XSS-Pritection属于HTTP响应首部，它是针对跨站脚本攻击（XSS）的一种对策，用于控制浏览器XSS防护机制的开关。
+首部字段X-XSS-Protection可指定的字段值如下：
+0：将XSS过滤设置成无效状态
+1：将XSS过滤设置成有效状态
+三：DNT
+DNT: 1
+首部字段DNT属于HTTP请求首部，其中DNT是Do Not Track的简称，意为拒绝个人信息被收集，是表示拒绝被精准广告追踪的一种方法。
+首部字段DNT可指定的字段值如下：
+0：同意被追踪
+1：拒绝被追踪
+四：P3P
+首部字段P3P属于HTTP响应首部，通过利用P3P（The Platform for Privacy Preferences，在线隐私偏好平台）技术，可以让Web网站上的个人隐私变成一种仅供程序可理解的形式，以达到保护用户隐私的目的。
+要进行P3P的设定，需按以下操作步骤进行：
+步骤1：创建P3P隐私
+步骤2：创建P3P隐私对照文件后，保存命名在/w3c/p3p.xml
+步骤3：从P3P隐私中新建Compact policies后，输出到HTTP响应中
