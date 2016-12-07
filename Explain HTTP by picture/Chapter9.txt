@@ -48,3 +48,21 @@ WebSocket，即Web浏览器与Web服务器之间全双工通信标准，主要�
 
 9.3.2——WebSocket协议
 一旦Web服务器与客户端之间建立起WebSocket协议的通信连接，之后所有的通信都依靠这个专用协议进行。通信中可互相发送JSON、XML、HTML或图片等任意数据的格式。
+由于是建立在HTTP基础上的协议，因此连接的发起方仍是客户端，而一旦确立WebSocket通信连接，不论服务器还是客户端，任意一方都可直接向对方发送报文。
+下面列举WebSocket协议的主要特点：
+1.推送功能：支持由服务器向客户端推送数据的推送功能，这样，服务器可直接发送数据，而不必等待客户端的请求。
+2.减少通信量：只要建立起WebSocket连接，就希望一直保持连接状态。和HTTP相比，不但每次连接时的总开销减少，而且由于WebSocket的首部信息很少，通信量也相应减少。
+为了实现WebSocket通信，在HTTP连接建立之后，需要完成一次“握手”（Handshaking）的步骤。
+一：握手·请求
+为了实现WebSocket通信，需要用到HTTP的Upgrade首部字段，告知服务器通信协议发生改变，以达到握手的目的。
+Upgrade: websocket
+Sec-websocket-Key字段内记录着握手过程中必不可少的键值，Sec-WebSocket-Protocol字段内记录使用的自协议。
+子协议WebSocket协议标准在连接分开使用时，定义那些连接的名称。
+二：握手·响应
+对于之前的响应，返回状态码101 Switching Protocols的响应。
+Sec-WebSocket-Accept的字段值是由握手请求中的Sec-WebSocket-Key的字段值生成的。
+成功握手确立WebSocket连接之后，通信时不再使用HTTP的数据帧，而采用WebSocket独立的数据帧。
+三：WebSocket API
+JS可调用"The WebSocket API"（http://www.w3.org/TR/websockets/，由W3C标准制定）内提供的WebSocket程序接口，以实现WebSocket协议下全双工通信。
+
+9.4——期待已久的HTTP/2.0
