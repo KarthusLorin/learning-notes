@@ -1,0 +1,26 @@
+Chapter10：构建Web内容的技术
+
+10.1——HTML（不多解释）
+HTML（HyperText Markup Language，超文本标记语言）是为了发送Web上的超文本（Hypertext）而开发的标记语言。
+超文本是一种文档系统，可将文档中任意位置的信息与其他信息（文本或图片等）建立关联，即超链接文本。
+标记语言是指通过在文档的某部分穿插特别的字符串标签，用来修饰文档的语言。
+
+10.2——动态HTML
+所谓动态HTML（Dynamic HTML），是指客户端脚本语言将静态的HTML内容编程动态的技术的总称。
+动态HTML技术是通过调用客户端脚本语言JavaScript，实现对HTML的Web页面的动态改造。利用DOM（Document Object Model，文档对象模型）可指定欲发生动态变化的HTML元素。
+
+10.3——Web应用
+Web应用是指通过Web功能提供的应用程序，比如购物网站、网上银行、SNS、BBS、搜索引擎和e-learning等。
+
+10.3.1——与Web服务器及程序协作的CGI
+CGI（Common Gateway Interface，通用网关接口）是指Web服务器在接收到客户端发送过来的请求后转发给程序的一组机制。
+在CGI的作用下，程序会对请求内容做出相应动作，比如创建HTML等动态内容。
+使用CGI的程序叫做CGI程序，通常是用Perl、PHP、Ruby和c等编程语言写成。
+
+10.3.2——因Java而普及的Servlet
+Servlet是一种能在服务器上创建动态内容的程序，是用Java实现的一个接口，属于面向企业级Java（JavaEE，Java Enterprise Edition）的一部分。
+之前提及的CGI，由于每次接到请求，程序都要跟着启动一次，因此一旦访问量过大，Web服务器要承担相当大的负载。
+而Servlet运行在Web服务器相同的进程中，因此受到的负载较小。Servlet的运行环境叫做Web容器或Servlet容器。
+
+10.4——数据发布的格式及语言
+10.4.1——可扩展标记语言
