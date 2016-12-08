@@ -65,4 +65,11 @@ Sec-WebSocket-Accept的字段值是由握手请求中的Sec-WebSocket-Key的字�
 三：WebSocket API
 JS可调用"The WebSocket API"（http://www.w3.org/TR/websockets/，由W3C标准制定）内提供的WebSocket程序接口，以实现WebSocket协议下全双工通信。
 
-9.4——期待已久的HTTP/2.0
+9.4——期待已久的HTTP/2.0（不重要）
+HTTP/2.0的目标是改善用户在使用Web时的速度体验
+
+9.5——Web服务器管理文件的WebDAV
+WebDAV（Web-based Distributed Authoring and Versioning，基于万维网的分布式创作和版本控制）是一个可对Web服务器上的内容直接进行文件复制、编辑等操作的分布式文件系统。
+除了创建、删除文件等基本功能，它还具备文件创建者管理、文件编辑过程中禁止其他用户内容覆盖的加锁功能，以及对文件内容修改的版本控制功能。
+使用HTTP/1.1的PUT方法和DELETE方法，就可以对Web服务器上的文件进行创建和删除操作，可是出于安全性及便捷性等考虑，一般不适用。
+
