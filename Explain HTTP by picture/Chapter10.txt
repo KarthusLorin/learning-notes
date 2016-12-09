@@ -24,3 +24,7 @@ Servlet是一种能在服务器上创建动态内容的程序，是用Java实现
 
 10.4——数据发布的格式及语言
 10.4.1——可扩展标记语言
+XML(eXtensible Markup Language，可扩展标记语言)是一种可按应用目标进行扩展的通用标记语言。旨在通过使用XML，使互联网数据共享变得容易。
+XML和HTML都是从标准通用标记语言SGML（Standard Generalized Makeup Language）简化而成。与HTML相比，它对数据的记录方式做了特殊化处理。
+
+10.4.2——发布更新信息的RSS/Atom
