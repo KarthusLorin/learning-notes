@@ -28,3 +28,11 @@ XML(eXtensible Markup Language，可扩展标记语言)是一种可按应用目�
 XML和HTML都是从标准通用标记语言SGML（Standard Generalized Makeup Language）简化而成。与HTML相比，它对数据的记录方式做了特殊化处理。
 
 10.4.2——发布更新信息的RSS/Atom
+RSS（简易信息聚合，也叫聚合内容）和Atom都是发布新闻或博客日志等更新信息文档的格式的总称，两者都用到了XML。
+用于订阅博客更新信息的RSS阅读器，这种应用几乎支持RSS的所有版本以及Atom。
+
+10.4.3——JavaScript衍生的轻量级易用JSON
+JSON（JavaScript Object Notation）是一种以JavaScript（ECMAScript）的对象表示法为基础的轻量级数据标记语言，能够处理的数据类型有false/null/true/对象/数组/数字/字符串，这七种类型。
+例子：
+{"name": "Web Application Security", "num": "TR001"}
+JSON让数据更轻更纯粹，并且JSON的字符串形式可被JavaScript轻易地读入。
