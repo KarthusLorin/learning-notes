@@ -1,6 +1,6 @@
 Chapter1——数据类型
 
-JavaScript六种数据类型
+1.2——JavaScript六种数据类型
 1.number
 2.string
 3.boolean
@@ -13,7 +13,7 @@ Function，Array，Date等这些也是object对象类型
 原始类型{number,string(字符串),boolean（布尔值）,null,undefined}
 对象类型{object（function(函数)，array(数组)，date(日期)）}
 
-JavaScript隐式转换
+1.3——JavaScript隐式转换
 例子：
 var x = 'The answer is ' + 42   //'The answer is 42'
 "37" - 7                        //30    减号理解为减法运算
@@ -50,3 +50,25 @@ null == undefined               //true
 new Object() == new Object()    //true
 [1,2] == [1,2]                  //true
 
+1.4——JavaScript包装对象
+number、string、boolean这三种基本类型都有各自的包装类
+string的包装类是String Object
+number的包装类是Number Object
+boolean的包装类是Boolean Object
+
+一：何为包装类？
+var str = "string";
+var strObj = new String("string");
+str                             //"String"
+strObj                          //String0: "s"1: "t"2: "r"3: "i"4: "n"5: "g"length: 6__proto__: String[[PrimitiveValue]]: "string"
+strObj就是包装类的一个实例
+所谓的包装类就是把一个基本类型（特指string、number、boolean）转化而成的对象。
+
+二：包装类的运用
+var a = "string";
+alert(a.length);                //6
+a.t = 3;                        
+alert(a.t);                     //undefined
+a是个基本类型，不是个对象，但是为什么a.length的值不是undefined呢？为什么明明定义了a.t的值，但是a.t输出的是undefined？
+实际上，在JS中，当把一个基本类型（特指string，number，boolean）当做对象使用时，JS会自动把它们转换为各自的包装类。
+而当完成访问时，这个临时的对象会被销毁，所以先设置a.t的值，然后访问得出的是undefined。
