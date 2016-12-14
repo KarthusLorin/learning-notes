@@ -72,3 +72,54 @@ alert(a.t);                     //undefined
 a是个基本类型，不是个对象，但是为什么a.length的值不是undefined呢？为什么明明定义了a.t的值，但是a.t输出的是undefined？
 实际上，在JS中，当把一个基本类型（特指string，number，boolean）当做对象使用时，JS会自动把它们转换为各自的包装类。
 而当完成访问时，这个临时的对象会被销毁，所以先设置a.t的值，然后访问得出的是undefined。
+
+1.5——JavaScript类型检测
+JS中检测类型的方法主要有以下五种：
+1.typeof
+2.instanceof
+3.Object.prototype.toString
+4.constructor
+5.duck type（不常用）
+
+一：typeof
+例子：
+typeof 100                      //"number"
+typeof true                     //"boolean"
+typeof function                 //"function"
+typeof(underfined)              //"undefined"（注意）
+typeof NaN                      //"number"（注意）
+typeof new Object()             //"object"
+typeof [1,2]                    //"object"
+typeof null                     //"object"（注意）
+typeof适合函数对象和基本类型的判断，但是有缺陷——null虽然是基本类型，但是返回的确实object
+
+二：instaceof
+用法：obj instanceof Object
+左边的操作数要求是个对象，右边的操作数必须是个函数对象或者函数构造器。
+如果左边是个基本类型，则直接返回false；如果右边不是要求的，则直接返回TypeError。
+例子：
+[1,2] instanceof Array === true
+new Object() instanceof Array === false
+注意：不同window或iframe间的对象类型检测不能使用instanceof
+
+三：Object.prototype.toString
+用法：Object.prototype.toString.apply(操作数)
+例子：
+Object.prototype.toString.apply([]) === "[object Array]"
+Object.prototype.toString.apply(function(){}) === "[object Function]"
+Object.prototype.toString.apply(null) === "[object Null]"
+Object.prototype.toString.apply(undefined) === "[object Undefined]"
+注意：IE6/7/8 Object.prototype.toString.apply(null)返回"[object Object]"
+
+四：constructor
+constructor属性返回对创建此对象的数组函数的引用
+用法：object.constructor
+例子：
+Var test = [];
+test.constructor === Array
+注意：constructor是可以被改写的，使用时要小心
+
+五：类型检测小结
+1.typeof：适合基本类型及function检测，遇到null失效
+2.[[Class]]：通过{}.toString拿到，适合内置对象和基元类型，遇到null和undefined失效（IE678等返回[object Object]）
+3.instanceof：适合自定义对象，也可以用来检测原生对象，在不同iframe和window间检测时失效
