@@ -1,3 +1,398 @@
 Chapter3——语句
 
 3.1——block语句，var语句
+
+一：block（块）语句
+块语句常用于组合0~多个语句，用一对花括号定义。
+语法：
+{
+    语句1;
+    语句2;
+    ...
+    语句n;
+}
+例子：
+{
+    var str = "hi";
+    console.log(str);
+}
+if(true){
+    console.log('hi');
+}
+注意：
+1.当一个完整的语句用花括号开头的时候，会被认为是block语句；所以，定义对象时要加前面那一块
+{a:1,b:2}                               //SyntaxError:Unexpected token:
+var o = {a:1,b:2};                      //ok
+2.没有块级作用域
+for(var i = 0;i < 10;i++){
+    var str = "hi";
+    console.log(str);
+}                                       //例1
+var i = 0;
+for(;i<10;i++){
+    var str = "hi";
+    console.log(str);
+}                                       //例2
+例1和例2是相等的
+
+function foo(){
+    var a = 1;
+    console.log(a);                     //1          
+}
+foo();
+console.log(typeof a);                  //undefined
+没有块级作用域，但是有函数作用域、全局作用域等，上面的那个例子就是函数作用域。
+
+二：var（声明）语句
+var相对比较简单，但是有个很大的误区。
+在一条语句中定义多个变量的方法是：
+var a = 1,b =1;
+而不是：
+var a = b = 1;
+例子：
+function foo(){
+    var a = b = 1;
+}
+foo();
+console.log(typeof a);                 //'undefined'
+console.log(typeof b);                 //'number'
+注意：var a = b =1;
+这个语句在全局作用域下没有问题；但是在局部作用域（比如函数作用域）中，就有问题了——创建出来的a是正常的局部变量，但是b是全局变量。
+
+3.2——try-catch语句
+try-catch提供了一个异常捕获机制，
+执行流程：先执行try块中的代码，如果抛出了异常就由catch从句去捕获并执行；如果没有异常，catch块中的代码就会被忽略；不管有没有异常，finally块中的代码都会执行。
+try{
+    throw "test";
+}catch(ex){
+    console.log(ex);                    //test
+}finally{
+    console.log('finally');
+}
+简而言之，如果有异常，执行流程就是try->catch->finally；如果没有异常，则是try->finally。
+
+一：关于省略
+catch和finally可以省略其中一个，但是不能全部省略。
+比如：
+try{
+    //do sth
+} finally{
+    console.log('finally');
+}
+
+二：关于嵌套try-catch的执行顺序
+例1：
+try{
+    try{
+        throw new Error("oops");
+    }
+    finally{
+        console.log("finally");
+    }
+}
+catch(ex){
+    console.error("outer",ex.message);
+}
+第二个try捕获异常后会跳到最近的一层catch去处理，但是要先跳出第一层try块，所以结果是：
+"finally"
+"outer""oops"
+
+例2：
+try{
+    try{
+        throw new Error("oops");
+    }
+    catch(ex){
+        console.error("inner",ex.message);
+    }
+    finally{
+        console.log("finally");
+    }
+}
+catch(ex){
+    console.error("outer",ex.message);
+}
+由于异常已经在内部处理过了，所以外部的catch没有作用，所以，结果是：
+"inner" "oops"
+"finally"
+
+例3：
+try{
+    try{
+        throw new Error("oops");
+    }
+    catch(ex){
+        console.error("inner",ex.message);
+        throw ex;
+    }
+    finally{
+        console.log("finally");
+    }
+}
+catch(ex){
+    console.error("outer",ex.message);
+}
+由于内部的catch又抛出一个异常，需要外部的catch处理，所以，结果是：
+"inner" "oops"
+"finally"
+"outer" "oops"
+
+总结：
+1.每个异常都由最靠近异常的那个catch处理
+2.如果内部的异常没有处理，抛给外面处理之前，要先执行里面的finally语句
+3.一个异常只由一个catch处理，除非catch中又抛出了新的异常
+
+3.3——函数、switch、循环
+
+一：function（函数）语句
+function语句用来定义函数对象，用function语句定义的函数叫做函数声明。
+function fd(){
+    //do sth
+    return true;
+}
+上面的就是个函数声明。
+var fe = function(){
+    //do sth
+    return true;
+}
+不用function定义的就是函数表达式，上面的就是个函数表达式。
+函数声明与函数表达式的区别有很多，其中最重要的一个就是：函数声明会被预先处理——函数前置。
+fd();                                       //true（因为函数声明会被预先处理）
+function fd(){
+    //do sth
+    return true;
+}
+当在函数定义之前调用函数时，因为函数声明会被前置，所以不会报错。
+fe();                                       //TypeError
+var fe = function(){
+    //do sth
+    return true;
+}
+因为函数表达式不会前置，所以直接报错。
+
+二：for...in语句
+例子：
+var p;
+var obj = {x:1,y:2}
+for(p in obj){
+    //do sth.
+}
+注意：
+1.顺序不确定
+2.enumerable为false时不会出现
+3.for in对象属性时受原型链影响
+
+三：switch语句
+例子：
+var val = 2;
+switch(val){
+    case 1:
+        console.log(1);
+        break;
+    case 2:
+        console.log(2);
+        break;
+    default:
+        console.log(0);
+        break;
+}
+结果：2
+但是如果把所有的break去掉，那么结果就变成：
+2
+0
+因为这种特性，所以可以这样使用：
+var val = 2;
+switch(val){
+    case 1:
+    case 2:
+    case 3:
+        console.log(123);
+        break;
+    case 4:
+    case 5:
+        console.log(45);
+        break;
+    default:
+        console.log(0);
+}
+结果：123
+
+四：循环
+常见有三种循环
+第一种：while循环
+while(isTrue){
+    //do sth.
+}
+第二种：do...while循环
+do{
+    //do sth.
+}while(isTrue)
+第三种：for循环
+for(var i = 0;i < n;i++){
+    //do sth
+}
+
+五：with（可以忽略）
+with语句可以修改当前的作用域。
+with({x:1}){
+    console.log(x);
+}
+当with后面接个对象并定义个x的时候，在with中可以直接使用x而不用对象.x。
+当要一层层访问多层关系时，使用with会比较方便。
+witch(document.forms[0]){
+    console.log(name.value);
+}
+name.value的意思是document.forms[0].name.value
+当然，这种访问其实可以用其他来代替，比如：
+var form = document.forms[0];
+console.log(form.name.value);
+JavaScript不推荐使用with，因为：
+1.让JS引擎优化更难
+2.可读性差
+3.可被变量定义代替
+4.严格模式下被禁用
+
+3.4——严格模式
+严格模式是一种特殊的执行模式，它修复了部分语言上的不足，提供更强的错误检查，并增强安全性。
+由于严格模式是向下兼容的（严格模式的代码在非严格模式下也可以允许），所以，严格模式适用于写重量级应用或nodeJS。
+如何进入严格模式？
+function func(){
+    'use strict';
+}
+这种方法可以让这个函数作用域使用严格模式。
+'use strict'
+function func(){
+    //do sth.
+}
+也可以写在JS文件的开头，那么整个JS都会使用严格模式。
+严格模式和普通模式的区别？
+
+一：不允许使用with
+!function(){
+    with({x:1}){
+        console.log(x);
+    }
+}                                                   //1
+
+!function(){
+    'use strict';
+    with({x:1}){
+        console.log(x);
+    }
+}                                                   //SyntaxError
+
+二：不允许未声明的变量被赋值
+!function(){
+    x = 1;
+    console.log(window.x);
+}();                                                //x转为全局变量，结果为1
+
+!function(){
+    'use strict';
+    x = 1;
+    console.log(window.x);
+}();                                                //ReferenceError
+
+三：arguments变为参数的静态副本
+!function(a){
+    arguments[0] = 100;
+    console.log(a);                         
+}(1);                                               //100
+注意：如果不传a的值，返回的是undefined，不受arguments的影响。
+
+!function(a){
+    'use strict';
+    arguments[0] = 100;
+    console.log(a);
+}(1);                                               //1
+注意，此时arguments变为参数的静态副本，无论传不传a的值，结果都为1
+
+!function(a){
+    'use strict';
+    arguments[0].x = 100;
+    console.log(a.x);
+}({x:1});                                           //100
+注意：如果传入的是对象的话，改变对象的属性依然会影响。
+
+四：delete参数、函数名报错
+!function(a){
+    console.log(delete a);
+}(1);                                               //false
+
+!function(a){
+    'use strict';
+    delete a;
+}(1);                                               //SyntaxError
+
+五：delete不可配置的属性报错
+!function(a){
+    var obj = {};
+    Object.defineProperty(obj,'a',{consigurable:false});        //configurable属性为false时，不可delete
+    console.log(delete obj.a);
+}(1);                                               //false
+
+!function(a){
+    'use strict';
+    var obj = {};
+    Object.defineProperty(obj,'a',{configurable:false});
+    delete obj.a;
+}(1);                                               //TypeError
+
+六：对象字面量重复属性名报错
+!function(){
+    var obj = {x:1,x:2};
+    console.log(obj.x);
+}();                                                //2
+
+!function(){
+    'use strict';
+    var obj = {x:1,x:2};
+}();                                                //SyntaxError
+
+七：禁止八进制字面量
+!function(){
+    console.log(0123);
+}();                                                //83
+
+!function(){
+    'use strict';
+    console.log(0123);
+}();                                                //SyntaxError
+
+八：eval，arguments变为关键字，不能作为变量、函数名
+!function(){
+    function eval(){}
+    console.log(eval);
+}();                                                //function eval(){}
+
+!function(){
+    'use strict';
+    function eval(){}
+}();                                                //SyntaxError
+
+九：eval独立作用域
+!function(){
+    eval('var evalVal = 2;');
+    console.log(typeof evalVal);
+}();                                                //number
+
+!function(){
+    'use strict';
+    eval('var evalVal = 2;');
+    console.log(typeof evalVal);
+}();                                                //undefined
+
+总结：
+提到过的：
+1.不允许用with
+2.所有变量必须声明，赋值给为声明的变量报错，而不是隐式创建全局变量
+3.eval中的代码不能创建eval所在的作用域下的变量、函数。而是为eval单独创建一个作用域，并在eval返回时丢弃
+4.函数中的特殊对象arguments是静态副本，而不像非严格模式那样，修改arguments或修改参数变量会相互影响
+5.删除configurable=false的属性时报错，而不是忽略
+6.禁止八进制字面量，如010（八进制的8）
+7.eval，arguments变为关键字，不可作为变量名、函数名
+没提到过的：
+1.一般函数调用时（不是对象的方法调用，也不使用apply/call/bind等修改this）this指向null，而不是全局对象
+2.若使用apply/call，当传入null或undefined时，this指向null或undefined，而不是全局对象。
+3.试图修改不可写属性（writable=false），在不可扩展的对象上添加属性时报TypeError，而不是忽略。
+4.arguments.caller，arguments.callee被禁用
