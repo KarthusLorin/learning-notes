@@ -1,0 +1,201 @@
+Chapter4——对象
+
+4.1~4.3
+
+4.1——对象概述
+对象中包含一系列属性，这些属性是无序的，每个属性都有一个字符串key和对应的value。
+var obj = {x:1,y:2};
+obj.x;                                  //1
+obj.y;                                  //2
+注意：key必须是个字符串（所有key都会自动通过toString处理）。
+
+例1：
+var obj = {};
+boj[1] = 1;
+obj['1'] = 2;
+obj;                                    //Object{1:2}
+
+例2：
+obj[{}] = true;
+obj[{x:1}] = true;
+obj;                                    //Object{1:2,[object Object]:true}
+
+4.2——创建对象、原型链
+
+一：创建对象-字面量方法
+var obj1 = {x:1,y:2};
+var obj2 = {
+    x:1,
+    y:2,
+    o:{
+        z:3,
+        n:4
+    }
+};
+
+二：创建对象-new/原型链方法
+function foo(){}
+foo.prototype.z = 3;
+var obj = new foo();                    //通过new来创建对象，会自动继承原型链
+obj.y = 2;
+obj.x = 1;
+obj.x;                                  //1
+obj.y;                                  //2
+obj.z;                                  //3
+typeof obj.toString;                    //'function'
+'z' in obj;                             //true
+obj.hasOwnProperty('z');                //false（hasOwnproperty是用来检测属性是对象本身，而不是继承来的）
+obj.z = 5;                              //给obj本身加上了属性z
+obj.hasOwnProperty('z');                //true
+foo.prototype.z;                        //still 3
+obj.z;                                  //5，因为obj本身有属性z，所以不再通过原型链往上查找z
+obj.z = undefined                       //undefined
+delete obj.z;                           //删除obj本身的属性z
+obj.z;                                  //3，因为obj本身的属性z被删除，所以需要通过原型链往上查找z
+
+三：创建对象-Object.create
+通过Object.create创建的对象依然有prototype。
+
+例1：
+var obj = Object.create({x:1});
+obj.x;                                  //1
+typeof obj.toString;                    //"function"
+obj.hasOwnProperty('x');                //false
+
+例2：
+var obj = Object.create(null);
+obj.toString;                           //undefined，并不是所有对象的原型链上都有Object.prototype，而toString方法在Object.prototype上
+
+4.3——属性操作
+
+一：读写对象属性
+
+例1：
+var obj = {x:1,y:2};
+obj.x;                                  //1，推荐使用这种方法读属性
+obj["y"];                               //2，这种方法也有用处，见例2
+obj["x"] = 3;                           
+obj.y = 4;
+
+例2：
+var obj = {x1:1,x2:2};
+var i = 1,n = 2;
+for(;i <= n;i++){
+    console.log(obj['x'+i]);            //当需要拼接key值的时候，用obj["x"]的方法
+}                                       //1,2
+
+例3：
+var p;
+for(p in obj){
+    console.log(obj[p]);                //当用for...in时，也用obj["x"]
+}
+
+二：属性读写-异常
+
+例1：
+var obj = {x:1};
+obj.y;                                  //undefined
+var yz = obj.y.z;                       //TypeError:Cannot read property 'z' of undefined
+obj.y.z = 2;                            //TypeError:Cannot set property 'z' of undefined
+
+例2：
+var yz;
+if(obj.y){
+    yz = obj.yz
+}
+
+例3：
+var yz = obj && obj.y && obj.y.z;
+
+例2和例3实际上是一样的效果。
+
+三：属性删除
+
+例1：
+var person = {age:28,title:'fe'};
+delete person.age;                      //true
+delete person['title'];                 //true
+person.age;                             //undefined
+delete person.age;                      //true（delete返回的true不代表操作生效，只是表明对象上不存在这个值）
+delete Object.prototype;                //false（没有权限）
+var descriptor = Object.getOwnPropertyDescriptor(Object,'prototype');
+descriptor.configurable;                //false（没有配置权限）
+
+例2：
+var globalVal = 1;
+delete globalVal;                       //false，显式（用var声明）创建的全局变量不能被删除
+
+例3：
+(function(){
+    var localVal = 1;
+    return delete localVal;
+})();                                   //false，局部变量不能被删除
+
+例4:
+function fd(){}
+delete fd;                              //false，函数声明不能被删除
+
+例5：
+(function(){
+    function fd(){
+        return delete fd;
+    }
+})();                                   //false,不论是不是在函数局部作用域里面还是外面，都不能删除
+
+例6：
+ohNo = 1;
+window.ohNo;                            //1
+delete ohNo;                            //true，隐式创建的全局变量可以被删除
+
+四：属性检测
+
+var cat = new Object;
+cat.legs = 4;
+cat.name = "Kitty";
+
+检测方法一：x in obj
+'legs' in cat;                          //true
+'abc' in cat;                           //false
+"toString" in cat;                      //true,inherited property!
+缺点：属性如果在原型链上也会返回true，如第三个例子
+
+检测方法二：obj.hasOwnProperty(x)
+cat.hasOwnProperty('legs');             //true
+cat.hasOwnProperty('toString);          //false
+
+检测属性是否可被枚举：obj.propertyIsEnumerable(x)——
+cat.propertyIsEnumerable('legs');       //true
+cat.propertyIsEnumerable('toString');   //false
+
+注意!=undefined与!==undefined的区别：!=undefined包括了!==undefined以及!==null
+if(cat.legs != undefined){
+    //!== undefined,or, !== null
+}
+if(cat.legs !== undefined){
+    //only if cat.legs is not undefined
+}
+
+五：属性枚举
+var o = {x:1,y:2,z:3};
+'toString' in o;                        //true
+o.propertyIsEnumerable('toString');     //false
+var key;
+for(key in o){
+    console.log(key);                   //x,y,z
+}
+
+var obj = Object.create(o);
+obj.a = 4;
+var key;
+for(key in obj){
+    console.log(key);                   //a,x,y,z
+}
+
+var obj = Object.create(o);
+obj.a = 4;
+var key;
+for(key in obj){
+    if(obj.hasOwnProperty(key)){        //过滤掉原型链上的属性
+        consolelog(key);                //a
+    }
+}
