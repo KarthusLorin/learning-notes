@@ -1,0 +1,111 @@
+Chapter4——对象
+
+4.4~4.6
+
+4.4——get/set方法
+
+var man = {
+    name:'Bosn',
+    weibo:'@Bosn',
+    get age(){
+        return new Date().getFullYear() - 1988;
+    },
+    set age(val){
+        console.log('Age can\'t be set to' + val);
+    }
+}
+console.log(man.age);                                   //27
+man.age = 100;                                          //Age can't be set to 100
+console.log(man.age);                                   //still 27
+
+get: 一旦目标属性被访问就会调回此方法，并将此方法的运算结果返回用户。
+set:一旦目标属性被赋值，就会调回此方法。
+
+一：get/set与原型链
+function foo(){}
+Object.defineProperty(foo.prototype,'z',{get:function(){return 1;}});
+var obj = new foo();
+obj.z;                                                  //1
+obj.z = 10;                 
+obj.z;                                                  //still 1
+为什么设置了obj.z而最后结果依然为1？
+当obj本身没有z，并且往原型链上查找时发现了get方法，那么尝试赋值时，会走原型链上的get方法。
+那么，该如何修改obj.z的值呢？
+
+Object.defineProperty(obj,'z',{value:100,condigurable:true});
+obj.z;                                                  //100
+delete obj.z;                           
+obj.z;                                                  //back to 1
+
+二：关于writable
+var o = {};
+Object.defineProperty(o,'x',{value:1});                 //writable=false,configurable=false
+var obj = Object.create(o);
+obj.x;                                                  //1
+obj.x = 200;                                            
+obj.x;                                                  //still 1,can't change it
+
+Object.defineProperty(obj,'x',{writable:true,configurable,value:true});
+obj.x;                                                  //100
+obj.x = 500;                                            
+obj.x;                                                  //500
+
+4.5——属性标签
+
+一：如何查看属性标签？
+语法：
+Object.getOwnPropertyDescriptor(对象,目标属性);
+Object.getOwnPropertyDescriptor({pro:true},'pro');      //Object{value:true,writable:true,enumerable:true,configurable:true}
+Object.getOwnPropertyDescriptor({pro:true},'a');        //undefined
+
+二：如何设置属性标签
+Object.defineProperty方法可以设置属性标签。
+语法：
+Object.defineProperty(obj,prop,descriptor)
+obj：目标对象
+prop：需要定义的属性或方法的名字
+descriptor：目标属性所拥有的特性
+
+可供定义的特性列表：
+value:属性的值
+writable:如果为false，属性的值就不能被重写。
+get: 一旦目标属性被访问就会调回此方法，并将此方法的运算结果返回用户。
+set:一旦目标属性被赋值，就会调回此方法。
+configurable:如果为false，则任何尝试删除目标属性或修改属性以下特性（writable, configurable, enumerable）的行为将被无效化。
+enumerable:是否能在for...in循环中遍历出来或在Object.keys中列举出来。
+
+例1：
+var person = {};
+Object.defineProperty(person,'name',{
+    configurable:false,
+    writable:false,
+    enumerable:true,
+    value:"Bosn Ma"
+})
+person.name;                                            //Bosn Ma
+person.name = 1;                                        
+person.name;                                            //still Bosn Ma
+delete person.name;                                     //false
+
+例2：
+Object.defineProperty(person,'type',{
+    configurable:true,
+    writable:true,
+    enumerable:false,                                   //不可遍历属性
+    value:"Object"
+})
+Object.keys(person);                                    //["name"]，Object.keys是返回该对象上面的所有的key，此时例1的name属性返回了，而例2的person属性没有返回
+
+三：给多个属性分别设置属性标签
+Object.defineProperties方法可以给多个属性设置属性标签
+
+Object.defineProperties(person,{
+    title:{value:'fe',enumerable:true},
+    corp:{value:'BABA',enumerable:true},
+    salary:{value:50000,enumerable:true,writable:true}
+});
+Object.getOwnPropertyDescriptor(person,'salary');
+//Object{value:50000,writable:true,enumerable:true}
+Object.getOwnPropertyDescriptor(person,'corp');
+//Object{value:"BABA",writable:false,enumerable:true};
+
