@@ -109,3 +109,91 @@ Object.getOwnPropertyDescriptor(person,'salary');
 Object.getOwnPropertyDescriptor(person,'corp');
 //Object{value:"BABA",writable:false,enumerable:true};
 
+4.6——对象标签、对象序列化
+对象级的标签主要有三个
+1.[[proto]]
+2.[[class]]
+3.[[extensible]]
+
+一：__proto__
+每个对象都含有__proto__属性，而prototype是函数才会有的属性。
+__proto__可以称为隐式原型，一个对象的隐式原型指向构造该对象的构造函数的原型——换句话说，__proto__指向原型链的上个节点。
+
+二：class
+class表示对象的类型，但是没有直接的方法查看class，所以可以通过下面这种方法来查看class。
+var toString = Object.prototype.toString;
+function getType(o){
+    return toString.call(o).slice(8,-1);
+}
+toString.call(null);                                    //"[object Null]"
+getType(null);                                          //"Null"
+getType(undefined);                                     //"Undefined"
+getType(1);                                             //"Number"
+getType(new Number(1));                                 //"Number"
+typeof new Number(1);                                   //"object"
+getType(true);                                          //"Boolean"
+getType(new Boolean(true));                             //"Boolean"
+
+三：extensible标签
+extensible标签表示对象是否可扩展。
+
+var obj = {x:1,y:2};
+Object.isExtentsible(obj);                              //true
+Object.preventExtensions(obj);                          //让对象不可扩展
+Object.isExtentsible(obj);                              //false
+obj.z = 1;      
+obj.z;                                                  //undefined,add new property failed
+Object.getOwnPropertyDescriptor(obj,'x');
+//Object(value:1,writable:true,enumerable:true,configurable:true);
+Object.seal(obj);                                       //在preventExtensions的基础上，将configurable设置为false
+Object.getOwnPropertyDescriptor(obj,'x');
+//Object{value:1,writable:true,enumerable:true,configurable:true};
+Object.isSealed(obj);                                   //true
+Object.freeze(obj);                                     //冻结，writable,configurable全为false
+Object.getOwnPropertyDescriptor(obj,'x');
+//Object(value:1,writable:fales,enumerable:true,configurable:false);
+Object.isFrozen(obj);                                   //true
+注意：不影响到原型链上，要影响原型链只能一层层往上设置过去。
+
+四：序列化
+JSON.stringify(obj)可以序列化对象，将对象转化为JSON对象。
+
+例1：
+var obj = {x:1,y:true,z:[1,2,3],nullVal:null};
+JSON.stringify(obj);                                    //"{"x":1,"y":true,"z":[1,2,3],"nullVal":null}"
+
+例2：
+var obj = {val:undefined,a:NaN,b:Infinity,c:new Date()};
+JSON.stringify(obj);                                    //"{"a":null,"b":null,"c":"2015-01-20T14:15:43.910Z"}"
+注意：
+1.未序列化对象中值为undefined的属性不会出现在序列化的JSON对象中
+2.未序列化对象中值为NaN或者Infinity的属性，在JSON对象中的值变为null
+3.未序列化对象中值为时间的属性，在JSON对象中转化为UTC时间格式
+
+五：反序列化
+JSON.parse('obj')可以反序列化对象，将JSON对象转化为正常对象。
+
+obj = JSON.parse('{"x":1}');
+obj.x;                                                  //1
+
+六：自定义序列化
+在将要序列化的对象的属性内部加上toJSON方法。
+
+var obj = {
+    x:1,
+    y:2,
+    o:{
+        o1:1,
+        o2:2,
+        toJSON:function(){
+            return this.o1 + this.o2;
+        }
+    }
+};
+JSON.stringify(obj);                                    //"{"x":1,"y":2,"o":3}"
+
+七：其他对象方法
+
+toString()：该方法可把一个逻辑值转换为字符串，并返回结果。
+
+valueOf()：该方法可返回Boolean对象的原始值。
