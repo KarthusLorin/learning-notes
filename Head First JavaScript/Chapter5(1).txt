@@ -1,0 +1,107 @@
+Chapter5——数组
+
+5.1~5.3
+
+5.1——创建数组、数组操作
+数组是值的有序集合，每个值叫做元素，每个元素在数组中都有数字位置编号，也就是索引。
+JS中的数组是弱类型的，数组中可以含有不同类型的元素，数组元素甚至可以是对象或其它数组。
+例子：
+var arr = [1,true,null,undefined,{x:1},[1,2,3]];
+
+一：创建数组-字面量方法
+var BAT = ['Alibaba','Tencent','Baidu'];
+var students = [{name:'Bosn',age:27},{name:'Nunnly',age:3}];
+var arr = ['Nunnly','is','big','keng','B',123,true,null];
+var arrInArr = [[1,2],[3,4,5]];
+var commasArr1 = [1,,2];                            //1,undefined,2
+var commasArr2 = [,,];                              //undefined * 2（数组允许最后多余一个逗号，所以以逗号结尾不会默认增加一个undefined）
+注意：数组大小是由限制的——size from 0 to 4294967295(2^23-1)
+
+二：创建数组——new Array
+var arr = new Array();
+var arrWithLength = new Array(100);                 //undefined * 100
+var arrLikesLiteral = new Array(true,false,null,1,2,"hi");
+//等价于[true,false,null,1,2,"hi"];
+使用new Array创建数组时，当传入多个参数时，同字面量方法
+
+三：数组元素的读写
+var arr = [1,2,3,4,5];
+arr[1];                                             //2
+arr.length;                                         //5
+arr[5] = 6;                                         //通过赋值可以动态的添加数组的长度
+arr.length;                                         //6
+delete arr[0];                      
+arr[0];                                             //undefined
+
+四：数组元素的增删
+JS中的数组是动态的，无需指定大小。
+
+var arr = [];
+arr[0] = 1;
+arr[1] = 2;
+arr.push(3);
+arr;                                                //[1,2,3]
+arr[arr.length] = 4;                                //equal to arr.push(4)
+arr;                                                //[1,2,3,4]
+arr.unshift(0);                                     
+arr;                                                //[0,1,2,3,4];
+delete arr[2];                                      //delete掉之后，相当于把那个元素变为undefined
+arr;                                                //[0,1,undefined,3,4]
+arr.length;                                         //5
+2 in arr;                                           //false
+arr.length -= 1;                                    //直接改变数组大小可以删除元素
+arr;                                                //[0,1,undefined,3],4 is removed
+arr.pop();                                          //3 returned by pop
+arr;                                                //[0,1,undefined],3 is removed
+arr.shift();                                        //0 returned by shift
+arr;                                                //[1,undefined]
+
+五：数组迭代
+var i = 0,n = 10;
+var arr = [1,2,3,4,5];
+for(;i < n;i++){
+    console.log(arr[i]);                            //1,2,3,4,5
+}
+for(i in arr){
+    console.log(arr[i]);                            //1,2,3,4,5
+}
+
+Array.prototype.x = 'inherited';                    //给数组增加一个原型属性
+for(i in arr){
+    console.log(arr[i]);                            //1,2,3,4,5,inherited（由于for...in会把原型上的属性也给遍历出来，所以inherited也出来了）
+}
+for(i in arr){
+    if(arr.hasOwnProperty(i)){                      //通过条件语句筛去原型属性
+        console.log(arr[i]);                        //1,2,3,4,5
+    }
+}
+
+5.2——二维数组、稀疏数组
+
+一：二维数组
+遍历二维数组的例子：
+var arr = [[0,1],[2,3],[4,5]];
+var i = 0,j = 0;
+var row;
+for(;i < arr.length;i++){
+    row = arr[i];
+    console.log('row' + i);
+    for(j = 0;j < row.length;j++){
+        console.log(row[j]);
+    }
+}
+
+二：稀疏数组
+稀疏数组并不含有从0开始的连续索引，一般length属性值比实际元素个数大。
+一般可以用：索引值 in 数组 来判断某个索引是否存在。
+var arr1 = [undefined];
+var arr2 = new Array(1);
+0 in arr1;                                          //true
+0 in arr2;                                          //false
+arr1.length = 100;                          
+arr1[99] = 123;     
+99 in arr1;                                         //true
+98 in arr1;                                         //false
+
+var arr = [,,];
+0 in arr;                                           //false
