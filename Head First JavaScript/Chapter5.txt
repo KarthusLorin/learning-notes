@@ -1,7 +1,5 @@
 Chapter5——数组
 
-5.1~5.3
-
 5.1——创建数组、数组操作
 数组是值的有序集合，每个值叫做元素，每个元素在数组中都有数字位置编号，也就是索引。
 JS中的数组是弱类型的，数组中可以含有不同类型的元素，数组元素甚至可以是对象或其它数组。
@@ -221,4 +219,174 @@ arr;                                                //[1,2,5]
 arr= [1,2,3,4,5];           
 arr.splice(1,1,'a','b');                            //[2]
 arr;                                                //[1,"a","b",3,4,5]
+
+5.4——数组方法（ES5）
+注意：ES5只能用于IE9以上。
+
+一：Array.prototype.forEach
+forEach()方法用于数组遍历
+语法：
+array.forEach(callback[, thisObject])
+callback：为每个元素执行的函数，接收三个参数：
+    currentValue(当前值)：数组中正在处理的当前元素。
+    index(索引)：数组中正在处理的当前元素的索引。
+    array：正在应用forEach()数组。
+thisArg：可选参数。当执行回调 函数时用作this的值(参考对象)。
+
+var arr = [1,2,3,4,5];              
+arr.forEach(function(x,index,a){
+    console.log(x + '|' + index + '|' + (a === arr));
+});
+//1|0|true
+//2|1|true
+//3|2|true
+//4|3|true
+//5|4|true
+
+二：Array.prototype.map
+map()方法用于数组映射，注意，仅仅作映射，不修改原来数组。
+语法：
+array.map(callback[, thisArg])
+callback：为每个元素执行的映射函数。
+    currentValue：callback 的第一个参数，数组中当前被传递的元素。
+    index：callback 的第二个参数，数组中当前被传递的元素的索引。
+    array：callback 的第三个参数，调用 map 方法的数组。
+thisArg：可选，执行 callback 函数时 this 指向的对象。
+
+var arr = [1,2,3];
+arr.map(function(x){
+    return x + 10;
+});                                                 //[11,12,13]
+arr;                                                //[1,2,3]
+
+三：Array.prototype.filter
+filter()方法用于数组过滤，注意，仅仅作过滤，不修改原来数组
+语法：
+var new_array = arr.filter(callback[, thisArg])
+callback：为每个元素执行的过滤函数，接受三个参数。
+    element：当前被处理的数组元素。
+    index：数组中当前被处理的元素的索引。
+    array：调用filter方法的数组
+thisArg：可选，执行callback函数时this指向的对象。
+
+var arr = [1,2,3,4,5,6,7,8,9,10];
+arr.filter(function(x,index){
+    return index % 3 === 0 || x >= 8;               //return [1,4,7,8,9,10]
+});
+arr;                                                //[1,2,3,4,5,6,7,8,9,10]
+
+四：Array.prototype.every & some
+every() 方法测试数组的所有元素是否都通过了指定函数的测试。
+some() 方法测试数组中的某些元素是否通过了指定函数的测试。
+语法：
+arr.every(callback[, thisArg])
+arr.some(callback[, thisArg])
+callback：用来测试每个元素的函数。
+thisArg：执行 callback 时使用的 this 值。
+
+every的例子：
+var arr = [1,2,3,4,5];
+arr.every(function(x){
+    return x < 10;
+});                                                 //true
+arr.every(function(x){
+    return x < 3;                                   //false
+});
+
+some的例子：
+var arr = [1,2,3,4,5];
+arr.some(function(x){
+    return x === 3;                                 //true
+});
+arr.some(function(x){
+    return x === 100;                               //false
+});
+
+五：Array.prototype.reduce & reduceRight
+reduce() 方法接收一个函数作为累加器（accumulator），数组中的每个值（从左到右）开始合并，最终为一个值。
+reduceRight() 方法接受一个函数作为累加器（accumulator），让每个值（从右到左，亦即从尾到头）缩减为一个值。（与 reduce() 的执行方向相反）
+语法：
+arr.reduce(callback,[initialValue])
+arr.reduceRight(callback[, initialValue])
+callback：执行数组中每个值的函数，包含四个参数
+    previousValue：上一次调用回调返回的值，或者是提供的初始值（initialValue）
+    currentValue：数组中当前被处理的元素
+    index：当前元素在数组中的索引
+    array：调用 reduce 的数组
+initialValue：作为第一次调用 callback 的第一个参数。
+
+reduce的例子：
+var arr = [1,2,3];
+var sum = arr.reduce(function(x,y){
+    return x + y;
+},0);                                               //6
+arr;                                                //[1,2,3]
+arr = [3,6,9];
+var max = arr.reduce(function(x,y){                 //x为previousValue，y为currentValue
+    console.log(x + "|" + y);
+    return x > y ? x : y;
+});
+//3|9
+//9|6
+max;                                                //9
+
+reduceRight的例子：
+max = arr.reduceRight(function(x,y){
+    console.log(x + "|" + y);
+    return x > y ? x : y;
+});
+//6|9
+//9|3
+max;                                                //9
+
+六：Array.prototype.indexOf & lastIndexOf
+indexOf()方法返回给定元素能找在数组中找到的第一个索引值，否则返回-1。
+lastIndexOf() 方法返回指定元素（也即有效的 JavaScript 值或变量）在数组中的最后一个的索引，如果不存在则返回 -1。从数组的后面向前查找，从 fromIndex 处开始。
+语法：
+arr.indexOf(searchElement[, fromIndex = 0])
+searchElement：要查找的元素
+fromIndex：
+开始查找的位置。如果该索引值大于或等于数组长度，意味着不会在数组里查找，返回-1。
+如果参数中提供的索引值是一个负值，则将其作为数组末尾的一个抵消，即-1表示从最后一个元素开始查找，-2表示从倒数第二个元素开始查找 ，以此类推。 
+注意：如果参数中提供的索引值是一个负值，仍然从前向后查询数组。如果抵消后的索引值仍小于0，则整个数组都将会被查询。其默认值为0。
+
+var arr = [1,2,3,2,1];                              
+arr.indexOf(2);                                     //1
+arr.indexOf(99);                                    //-1
+arr.indexOf(1,1);                                   //4
+arr.indexOf(1,-3);                                  //4
+arr.indexOf(2,-1);                                  //-1
+arr.indexOf(2);                                     //3
+arr.indexOf(2,-2);                                  //3
+arr.indexOf(2,-3);                                  //1          
+
+七：Array.isArray
+Array.isArray() 方法用来判断某个值是否为Array。如果是，则返回 true，否则返回 false。
+注意：isArray()方法不是prototype上的方法，所以正确的用法是Array.isArray();
+语法：
+Array.isArray(value)
+value：需要检测的值。
+
+Array.isArray([]);                                  //true
+
+5.5——数组小结
+
+一：数组 VS 一般对象
+
+相同点：
+1.都可以继承
+2.数组是对象，对象不一定是数组
+3.都可以当做对象添加删除属性
+
+不同点：
+1.数组自动更新length
+2.按索引访问数组常常比访问一般对象属性明显迅速
+3.数组对象继承Array.prototype上的大量数组操作方法
+
+二：字符串和数组
+
+var str = "hello world";                    
+str.charAt(0);                                      //h
+str[1];                                             //e
+Array.prototype.join.call(str,"_");                 //"h_e_l_l_o_ _w_o_r_l_d"
 
